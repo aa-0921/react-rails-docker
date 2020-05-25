@@ -1,10 +1,10 @@
 import * as React from "react";
-import { Home } from './pages/Home';
-import { Profile } from './pages/Profile';
-import { ZeitSample } from './pages/zeit-sample';
-import { Layout } from './pages/views/layout'
+import { Home } from '../pages/Home';
+import { Profile } from '../pages/Profile';
+import { ZeitSample } from '../pages/zeit-sample';
+import { Layout } from './layout'
 import { BrowserRouter, Route, Link } from 'react-router-dom'
-import { Header } from './pages/views/header'
+import { Header } from './header'
 
 export const HomePage = () => (
   <BrowserRouter>

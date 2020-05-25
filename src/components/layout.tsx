@@ -4,7 +4,7 @@ import React, {Component} from 'react'
 // const props: Element
 
 interface Props {
-  props: Element,
+  childrens: Element,
 }
 export function Layout(props: Props) {
   return (
