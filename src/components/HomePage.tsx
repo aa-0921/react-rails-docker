@@ -8,18 +8,22 @@ import { Header } from './header'
 
 export const HomePage = () => (
   <BrowserRouter>
-    {/* <Layout> */}
-      {/* <ul>
-        <li><Link to='/'>Home</Link></li>
-        <li><Link to='/profile'>Profile</Link></li>
-        <li><Link to='/zeit-sample'>zeit-sample</Link></li>
-      </ul>
-
-      <hr /> */}
       <Header />
       <Route exact path='/' component={Home} />
       <Route path='/profile' component={Profile} />
       <Route path='/zeit-sample' component={ZeitSample} />
-    {/* </Layout> */}
   </BrowserRouter>
 )
+const styles = {
+    header: {
+        height: 100,
+        background: "#ddd",
+    },
+    main: {
+        height: 200,
+    },
+    footer: {
+        height: 100,
+        background: "#ddd",
+    }
+}

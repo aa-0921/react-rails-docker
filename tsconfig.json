@@ -10,11 +10,19 @@
     "forceConsistentCasingInFileNames": true,
     "allowJs": true,
     "esModuleInterop": true,
-    "jsx": "react"
+    "jsx": "react",
+    "moduleResolution": "node",
+    "lib": [
+      "es2019",
+      "dom"
+    ]
   },
   "exclude": [
     "node_modules",
     "webpack.config.js",
     "dist"
+  ],
+  "include": [
+    "src/**/*"
   ]
 }
