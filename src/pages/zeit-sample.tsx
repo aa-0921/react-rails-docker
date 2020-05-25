@@ -1,10 +1,10 @@
 import * as React from "react";
 // import HomePage from '../HomePage';
 import  { useState } from 'react';
-import { Text } from '../Text';
-import { ZeitBtn } from '../ZeitBtn';
-import { ZeitToast } from '../ZeitToast';
-import { SiteImage } from '../SiteImage';
+import { Text } from '../components/Text';
+import { ZeitBtn } from '../components/ZeitBtn';
+import { ZeitToast } from '../components/ZeitToast';
+import { SiteImage } from '../components/SiteImage';
 
 export function ZeitSample() {
   const [text, setText] = useState('');
