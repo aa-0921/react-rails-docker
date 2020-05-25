@@ -2,13 +2,13 @@ import * as React from "react";
 import { Home } from '../pages/Home';
 import { Profile } from '../pages/Profile';
 import { ZeitSample } from '../pages/zeit-sample';
-import { Layout } from './layout'
+// import { Layout } from './layout'
 import { BrowserRouter, Route, Link } from 'react-router-dom'
 import { Header } from './header'
 
 export const HomePage = () => (
   <BrowserRouter>
-    <Layout>
+    {/* <Layout> */}
       {/* <ul>
         <li><Link to='/'>Home</Link></li>
         <li><Link to='/profile'>Profile</Link></li>
@@ -20,6 +20,6 @@ export const HomePage = () => (
       <Route exact path='/' component={Home} />
       <Route path='/profile' component={Profile} />
       <Route path='/zeit-sample' component={ZeitSample} />
-    </Layout>
+    {/* </Layout> */}
   </BrowserRouter>
 )
