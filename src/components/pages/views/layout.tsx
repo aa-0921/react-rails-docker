@@ -1,12 +1,16 @@
 import { Header } from './header'
 // import Footer from './Footer'
 import React, {Component} from 'react'
+// const props: Element
 
-export function Layout() {
+interface Props {
+  props: Element,
+}
+export function Layout(props: Props) {
   return (
       <div>
           <Header />
-          {this.props.children}
+          {props.childrens}
           {/* <Footer /> */}
       </div>
   )
