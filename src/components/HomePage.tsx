@@ -12,7 +12,8 @@ import { About } from '../pages/About';
 export const HomePage = () => (
   <BrowserRouter>
     {/* <Header style={styles.header} /> */}
-    <Header />
+    {/* <Header /> */}
+    <header style={{ height: 100, background: '#ddd' }}>head</header>
 
     <Route exact path="/" component={Home} />
     <Route path="/profile" component={Profile} />

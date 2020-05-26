@@ -4,6 +4,11 @@ import '../scss/index.scss';
 // src / pages / About.tsx;
 // src / scss / index.scss;
 
+// import '../../css/tailwind.css';
+import '../../public/style.css';
+
+// css / tailwind.css;
+
 export function About() {
   return (
     <div className="About">

@@ -10,3 +10,8 @@
 
 @import "tailwindcss/utilities";
 @import "./custom-utilities.css"; */
+
+@tailwind base;
+@tailwind components;
+
+@tailwind utilities;

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack --mode=production",
-    "build:tailwind": "postcss css/tailwind.css -o css/generated.css",
+    "build:css": "tailwindcss build css/tailwind.css -o public/style.css",
     "watch": "webpack --mode=development --watch",
     "watch:tailwind": "postcss ./src/styles.css -o ./src/tailwind.css -w",
     "lint": "eslint src --fix -c .eslintrc.json 'src/**/*.js'",
@@ -56,6 +56,7 @@
     "@types/react-dom": "^16.9.8",
     "@types/react-router-dom": "^5.1.5",
     "@zeit-ui/react": "^1.6.0-canary.2",
-    "react-router-dom": "^5.2.0"
+    "react-router-dom": "^5.2.0",
+    "tailwindcss": "^1.4.6"
   }
 }
