@@ -13,7 +13,8 @@ export const HomePage = () => (
   <BrowserRouter>
     {/* <Header style={styles.header} /> */}
     {/* <Header /> */}
-    <header style={{ height: 100, background: '#ddd' }}>head</header>
+    <Header />
+    {/* <header style={{ height: 100, background: '#ddd' }}>head</header> */}
 
     <Route exact path="/" component={Home} />
     <Route path="/profile" component={Profile} />
