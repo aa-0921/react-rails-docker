@@ -7,6 +7,8 @@ import { Header } from './header';
 import { Footer } from './footer';
 import { About } from '../pages/About';
 
+// import './tailwind.css';
+
 // style: {
 //     height: number;
 //     background: string;
@@ -30,6 +32,7 @@ export const HomePage = () => (
   <BrowserRouter>
     {/* <Header style={styles.header} /> */}
     <Header />
+
     <Route exact path="/" component={Home} />
     <Route path="/profile" component={Profile} />
     <Route path="/zeit-sample" component={ZeitSample} />
