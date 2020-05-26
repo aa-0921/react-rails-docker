@@ -1,6 +1,6 @@
-import * as React from "react";
+import * as React from 'react';
 // import HomePage from '../HomePage';
-import  { useState } from 'react';
+import { useState } from 'react';
 import { Text } from '../components/Text';
 import { ZeitBtn } from '../components/ZeitBtn';
 import { ZeitToast } from '../components/ZeitToast';
@@ -11,17 +11,17 @@ export function ZeitSample() {
 
   return (
     <div>
-      <h1>
+      <h4>
         <Text text={text} />
         入力して下さい
-      </h1>
+      </h4>
       <ZeitBtn />
       <SiteImage />
       <ZeitToast />
       <input
         type="text"
         value={text}
-        onChange={e => {
+        onChange={(e) => {
           setText(e.target.value);
         }}
       />

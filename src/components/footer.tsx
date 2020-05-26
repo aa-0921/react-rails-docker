@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 
-export function Header() {
+export function Footer() {
   return (
-    <header>
-      <h5>Header</h5>
+    <footer>
+      <hr />
+      <h5>Footer</h5>
       <ul>
         <li>
           <Link to="/">Home</Link>
@@ -16,8 +17,6 @@ export function Header() {
           <Link to="/zeit-sample">feed</Link>
         </li>
       </ul>
-
-      <hr />
-    </header>
+    </footer>
   );
 }
