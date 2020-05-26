@@ -13,7 +13,10 @@ export function Header() {
           <Link to="/profile">Pickup</Link>
         </li>
         <li>
-          <Link to="/zeit-sample">feed</Link>
+          <Link to="/zeit-sample">Feed</Link>
+        </li>
+        <li>
+          <Link to="/about">About</Link>
         </li>
       </ul>
 

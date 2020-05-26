@@ -5,6 +5,7 @@ import { ZeitSample } from '../pages/zeit-sample';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
 import { Header } from './header';
 import { Footer } from './footer';
+import { About } from '../pages/About';
 
 // style: {
 //     height: number;
@@ -32,6 +33,8 @@ export const HomePage = () => (
     <Route exact path="/" component={Home} />
     <Route path="/profile" component={Profile} />
     <Route path="/zeit-sample" component={ZeitSample} />
+    <Route path="/about" component={About} />
+
     <Footer />
     {/* <Footer style={styles.header} /> */}
   </BrowserRouter>

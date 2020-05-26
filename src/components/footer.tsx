@@ -16,6 +16,9 @@ export function Footer() {
         <li>
           <Link to="/zeit-sample">feed</Link>
         </li>
+        <li>
+          <Link to="/about">About</Link>
+        </li>
       </ul>
     </footer>
   );

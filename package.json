@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack --mode=production",
+    "build:tailwind": "tailwind build src/styles.css -o src/tailwind.css",
     "watch": "webpack --mode=development --watch",
     "watch:tailwind": "postcss ./src/styles.css -o ./src/tailwind.css -w",
     "lint": "eslint src --fix -c .eslintrc.json 'src/**/*.js'",
