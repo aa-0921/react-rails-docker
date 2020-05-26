@@ -36,10 +36,20 @@ module.exports = {
           'css-loader', // translates CSS into CommonJS
           'sass-loader', // compiles Sass to CSS, using Node Sass by default
         ],
+        // loaders: [
+        //   require.resolve('style-loader'),
+        //   require.resolve('css-loader'),
+        //   require.resolve('sass-loader'),
+        // ],
       },
       {
         test: /\.css$/,
         use: ['style-loader', 'css-loader'],
+        // loaders: [
+        //   require.resolve('style-loader'),
+        //   require.resolve('css-loader'),
+        //   require.resolve('sass-loader'),
+        // ],
       },
       // {
       //   use: [

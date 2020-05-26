@@ -9,25 +9,6 @@ import { About } from '../pages/About';
 
 // import './tailwind.css';
 
-// style: {
-//     height: number;
-//     background: string;
-// }
-
-// const styles = {
-//   header: {
-//     height: 100,
-//     background: '#0000000',
-//   },
-//   // main: {
-//   //   height: 200,
-//   // },
-//   footer: {
-//     height: 100,
-//     background: '#1111111',
-//   },
-// };
-
 export const HomePage = () => (
   <BrowserRouter>
     {/* <Header style={styles.header} /> */}

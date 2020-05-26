@@ -1,12 +1,8 @@
 import React from 'react';
 
-// interface AboutProps {
-//   children: Element[];
-//   className: string;
-// }
-
-// import './tailwind.css';
-import './src/scss/index.scss';
+import '../scss/index.scss';
+// src / pages / About.tsx;
+// src / scss / index.scss;
 
 export function About() {
   return (
