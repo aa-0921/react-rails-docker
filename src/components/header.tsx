@@ -25,38 +25,31 @@ export function Header() {
                     >
                       Dashboard
                     </a>
-                    <a
-                      href="#"
-                      className="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
+
+                    <Link
+                      to="/"
+                      className="text-lg text-white ml-4 px-3 py-2 rounded-md text-sm font-medium hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
                     >
-                      <Link to="/" className="text-lg text-white">
-                        Home
-                      </Link>
-                    </a>
-                    <a
-                      href="#"
-                      className="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
+                      Home
+                    </Link>
+                    <Link
+                      to="/pickup"
+                      className="text-lg text-white ml-4 px-3 py-2 rounded-md text-sm font-medium  hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
                     >
-                      <Link to="/pickup" className="text-lg text-white">
-                        Pickup
-                      </Link>
-                    </a>
-                    <a
-                      href="#"
-                      className="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
+                      Pickup
+                    </Link>
+                    <Link
+                      to="/zeit-sample"
+                      className="text-lg text-white ml-4 px-3 py-2 rounded-md text-sm font-medium hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
                     >
-                      <Link to="/zeit-sample" className="text-lg text-white">
-                        Feed
-                      </Link>
-                    </a>
-                    <a
-                      href="#"
-                      className="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
+                      Feed
+                    </Link>
+                    <Link
+                      to="/about"
+                      className="text-lg text-white ml-4 px-3 py-2 rounded-md text-sm font-medium hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
                     >
-                      <Link to="/about" className="text-lg text-white">
-                        About
-                      </Link>
-                    </a>
+                      About
+                    </Link>
                   </div>
                 </div>
               </div>
