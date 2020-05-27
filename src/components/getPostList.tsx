@@ -10,7 +10,7 @@ interface Props {
 
 // export function TakeApi(props: Props) {
 
-export const TakeApi = (props: Props) => {
+export const getPostList = (props: Props) => {
   const [error, setError] = useState(null);
   const [apiResponse, setApiResponse] = useState('');
 
@@ -20,7 +20,8 @@ export const TakeApi = (props: Props) => {
   // };
 
   useEffect(() => {
-    fetch(props.url)
+    // fetch(props.url)
+    fetch('/posts')
       .then((res) => res.json())
       .then(
         (result) => {
@@ -31,7 +32,7 @@ export const TakeApi = (props: Props) => {
         },
       );
     return () => {
-      <React.Fragment>TakeApi: {apiResponse}</React.Fragment>;
+      <React.Fragment>getPostList: {apiResponse}</React.Fragment>;
     };
   });
 };
