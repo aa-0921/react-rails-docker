@@ -1,34 +1,46 @@
-import React, { Component } from 'react';
+import * as React from 'react';
+import { useEffect } from 'react';
+
 import { connect } from 'react-redux';
 import { requestFetch, requestDelete } from '../actions';
 
-class ShowPost extends Component {
-  componentDidMount() {
-    this.props.requestFetch();
-  }
+interface ShowPostProps {
+  text: string[];
+  postText: { fetchPostData: { postText: string[] }; key: string[] };
+  fetchPostData: string;
+  requestFetch: () => void;
+  requestDelete: (arg: number) => void;
+  mapDispatchToProps: () => void;
+}
 
-  render() {
-    const datas = this.props.postText.fetchPostData.postText;
-    return (
+interface data {
+  text: string;
+  id: number;
+}
+
+export const ShowPost = (props: ShowPostProps): void => {
+  useEffect(() => {
+    props.requestFetch();
+    const datas = props.postText.fetchPostData.postText;
+    return () => {
       <div>
-        {datas.map((data: any) => {
+        {datas.map((data: data) => {
           return (
             <div key={data.id}>
               {data.text}
-              <span onClick={() => this.props.requestDelete(data.id)}>x</span>
+              <span onClick={() => props.requestDelete(data.id)}>x</span>
             </div>
           );
         })}
-      </div>
-    );
-  }
-}
+      </div>;
+    };
+  });
+};
 
-const mapDispatchToProps = (dispatch: any) => ({
-  requestFetch: () => dispatch(requestFetch()),
-  requestDelete: (data: any) => dispatch(requestDelete(data)),
-});
-const mapStateToProps = (state: any) => ({
-  postText: state,
-});
-export default connect(mapStateToProps, mapDispatchToProps)(ShowPost);
+// export const mapDispatchToProps = (dispatch) => ({
+//   requestFetch: () => dispatch(requestFetch()),
+//   requestDelete: (data: any) => dispatch(requestDelete(data)),
+// });
+// export const mapStateToProps = (state) => ({
+//   postText: state,
+// });

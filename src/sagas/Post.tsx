@@ -30,12 +30,12 @@ export function* deleteData(action: any) {
   }
 }
 
-// export function* createData(action) {
-//   const textData = action.PostText.location;
-//   const responseData = yield call(createPostData, textData);
-//   if (responseData) {
-//     yield put(succeededCreate(responseData.data));
-//   } else {
-//     yield put(failedCreate('エラー'));
-//   }
-// }
+export function* createData(action) {
+  const textData = action.PostText.location;
+  const responseData = yield call(createPostData, textData);
+  if (responseData) {
+    yield put(succeededCreate(responseData.data));
+  } else {
+    yield put(failedCreate('エラー'));
+  }
+}
