@@ -6,14 +6,17 @@ import { requestFetch, requestDelete } from '../actions';
 
 interface ShowPostProps {
   text: string[];
-  postText: { fetchPostData: { postText: string[] }; key: string[] };
-  fetchPostData: string;
+  textForHomeTimeline: {
+    postForHomeTimeline: { postText: postedTextData[] };
+    key: postedTextData[];
+  };
+  postForHomeTimeline: string;
   requestFetch: () => void;
   requestDelete: (arg: number) => void;
   mapDispatchToProps: () => void;
 }
 
-interface data {
+interface postedTextData {
   text: string;
   id: number;
 }
@@ -21,14 +24,14 @@ interface data {
 export const ShowPost = (props: ShowPostProps): void => {
   useEffect(() => {
     props.requestFetch();
-    const datas = props.postText.fetchPostData.postText;
+    const postedTextDatas = props.textForHomeTimeline.postForHomeTimeline.postText;
     return () => {
       <div>
-        {datas.map((data: data) => {
+        {postedTextDatas.map((postedTextData: postedTextData) => {
           return (
-            <div key={data.id}>
-              {data.text}
-              <span onClick={() => props.requestDelete(data.id)}>x</span>
+            <div key={postedTextData.id}>
+              {postedTextData.text}
+              <span onClick={() => props.requestDelete(postedTextData.id)}>x</span>
             </div>
           );
         })}

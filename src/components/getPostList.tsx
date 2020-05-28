@@ -29,7 +29,9 @@ export const getPostList = (props: Props) => {
         },
         (error) => {
           setApiResponse(error);
+          throw new Error();
         },
+        // .catch(error => console.error('Error:', error));
       );
     return () => {
       <React.Fragment>getPostList: {apiResponse}</React.Fragment>;

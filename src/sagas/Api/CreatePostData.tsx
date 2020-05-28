@@ -1,6 +1,6 @@
 // import axios from 'axios';
 
-// const url = 'http://localhost:8000/pots_datas';
+// const url = process.env.REACT_APP_API_URL_POST_DATAS;
 // export default function createTodoData(todoText) {
 //   return axios.post(url, { todoText: todoText });
 // }

@@ -1,7 +1,7 @@
 // import axios from 'axios';
 
 export default function fetchPostData() {
-  return fetch('http://localhost:8000/post_datas/${id}', {
+  return fetch(process.env.REACT_APP_API_URL_POST_DATAS + '/${id}', {
     method: 'get',
   });
 }
