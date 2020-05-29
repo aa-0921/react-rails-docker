@@ -2,13 +2,15 @@ import { put, call } from 'redux-saga/effects';
 import {
   succeededFetch,
   failedFetch,
-  // succeededCreate,
-  // failedCreate,
+  succeededCreate,
+  failedCreate,
   succeededDelete,
   failedDelete,
 } from '../actions';
 import fetchPostData from './Api/FetchPostData';
 import deletePostData from './Api/DeletePostData';
+import createPostData from './Api/CreatePostData';
+
 // import createPostData from './Api/CreatePostData';
 
 export function* fetchData() {
@@ -30,7 +32,7 @@ export function* deleteData(action: any) {
   }
 }
 
-export function* createData(action) {
+export function* createData(action: any) {
   const textData = action.PostText.location;
   const responseData = yield call(createPostData, textData);
   if (responseData) {
