@@ -6,10 +6,11 @@ import {
   failedCreate,
   succeededDelete,
   failedDelete,
+  // requestDelete,
 } from '../actions';
-import fetchPostData from './Api/FetchPostData';
-import deletePostData from './Api/DeletePostData';
-import createPostData from './Api/CreatePostData';
+import { fetchPostData } from './Api/FetchPostData';
+import { deletePostData } from './Api/DeletePostData';
+import { createPostData } from './Api/CreatePostData';
 
 // import createPostData from './Api/CreatePostData';
 
@@ -22,9 +23,10 @@ export function* fetchData() {
   }
 }
 
-export function* deleteData(action: any) {
-  const PostId = action.data;
-  const responseData = yield call(deletePostData, PostId);
+// // export function* deleteData(action: ReturnType<typeof deletePostData.deleteData>) {
+export function* deleteData(action) {
+  const postId = action.data;
+  const responseData = yield call(deletePostData, postId);
   if (responseData) {
     yield put(succeededDelete(responseData.data));
   } else {

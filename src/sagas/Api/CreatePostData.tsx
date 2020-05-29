@@ -2,14 +2,14 @@
 //   postText: string[],
 // };
 
-export default function createTodoData(postText: string) {
+export const createPostData = (postText: string) => {
   const url: string = process.env.REACT_APP_API_URL_POST_DATAS!;
   return fetch(url, {
     method: 'POST',
     body: postText,
     // method: 'post',
   });
-}
+};
 
 // const url = 'http://localhost:3001/todo_datas';
 // export default function createTodoData(todoText) {

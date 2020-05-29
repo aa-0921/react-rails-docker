@@ -29,7 +29,7 @@ export const getPostList = (props: Props) => {
         },
         (error) => {
           setApiResponse(error);
-          throw new Error();
+          throw new Error('error');
         },
         // .catch(error => console.error('Error:', error));
       );

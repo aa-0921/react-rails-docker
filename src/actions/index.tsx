@@ -11,14 +11,13 @@ export const SUCCEEDED_CREATE = 'SUCCEEDED_CREATE';
 export const FAILED_CREATE = 'FAILED_CREATE';
 
 export const requestFetch = () => ({ type: REQUEST_FETCH } as const);
-export const succeededFetch = (payload: any) => ({ type: SUCCEEDED_FETCH, payload } as const);
-export const failedFetch = (message: any) =>
-  ({ type: FAILED_FETCH, message, error: Error } as const);
+export const succeededFetch = (payload) => ({ type: SUCCEEDED_FETCH, payload, data } as const);
+export const failedFetch = (message) => ({ type: FAILED_FETCH, message, error: Error } as const);
 
-export const requestDelete = (data: any) => ({ type: REQUEST_DELETE, data } as const);
-export const succeededDelete = (payload: any) => ({ type: SUCCEEDED_DELETE, payload } as const);
-export const failedDelete = (message: any) => ({ type: FAILED_DELETE, message } as const);
+export const requestDelete = (data) => ({ type: REQUEST_DELETE, data } as const);
+export const succeededDelete = (payload) => ({ type: SUCCEEDED_DELETE, payload } as const);
+export const failedDelete = (message) => ({ type: FAILED_DELETE, message } as const);
 
-export const requestCreate = (postText: any) => ({ type: REQUEST_CREATE, postText });
-export const succeededCreate = (payload: any) => ({ type: SUCCEEDED_CREATE, payload });
-export const failedCreate = (message: any) => ({ type: FAILED_CREATE, message });
+export const requestCreate = (postText) => ({ type: REQUEST_CREATE, postText });
+export const succeededCreate = (payload) => ({ type: SUCCEEDED_CREATE, payload });
+export const failedCreate = (message) => ({ type: FAILED_CREATE, message });

@@ -8,11 +8,20 @@ type Actions =
 
 const initialState = {
   fetching: false,
-  todoText: [],
+  postText: [],
   error: null,
 };
 
-export const fetchPostData = (state = initialState, action: Actions) => {
+interface FetchPostDataState {
+  postText: PostText[];
+  payloadOBj: PayloadObj[];
+}
+
+interface PayloadObj {
+  data: string[];
+}
+
+export const fetchPostData = (state: FetchPostDataState = initialState, action: Actions) => {
   switch (action.type) {
     case REQUEST_FETCH:
       return { ...state, fetching: true, error: null };
