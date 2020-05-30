@@ -1,6 +1,6 @@
 import { PayloadObj } from '../Reducers/Post';
 import { postedTextData } from '../@types/postedTextData';
-let postedTextData: postedTextData;
+
 export const REQUEST_FETCH = 'REQUEST_FETCH';
 export const SUCCEEDED_FETCH = 'SUCCEEDED_FETCH';
 export const FAILED_FETCH = 'FAILED_FETCH';
