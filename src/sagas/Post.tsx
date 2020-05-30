@@ -12,6 +12,11 @@ import { fetchPostData } from './Api/FetchPostData';
 import { deletePostData } from './Api/DeletePostData';
 import { createPostData } from './Api/CreatePostData';
 
+import { REQUEST_DELETE } from '../../src/actions/index';
+import { requestDelete } from '../../src/actions/index';
+
+// import { REQUEST_DELETE } from "/Users/aa/projects/sugomori-frontend/src/actions/index"
+
 // import createPostData from './Api/CreatePostData';
 
 export function* fetchData() {
@@ -25,6 +30,9 @@ export function* fetchData() {
 
 export interface DeleteAction {
   data: number;
+  // type: string;
+  // type: REQUEST_DELETE;
+  type: ReturnType<typeof requestDelete>;
 }
 export interface CreateAction {
   PostText: PostTextObj;
