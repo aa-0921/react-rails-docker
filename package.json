@@ -67,5 +67,8 @@
     "redux-form": "^8.3.5",
     "redux-saga": "^1.1.3",
     "tailwindcss": "^1.4.6"
+  },
+  "engines": {
+    "npm": "please_use_yarn_instead"
   }
 }
