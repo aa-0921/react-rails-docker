@@ -23,8 +23,18 @@ export function* fetchData() {
   }
 }
 
+export interface DeleteAction {
+  data: number;
+}
+export interface CreateAction {
+  PostText: PostTextObj;
+}
+export interface PostTextObj {
+  location: string;
+}
+
 // // export function* deleteData(action: ReturnType<typeof deletePostData.deleteData>) {
-export function* deleteData(action) {
+export function* deleteData(action: DeleteAction) {
   const postId = action.data;
   const responseData = yield call(deletePostData, postId);
   if (responseData) {
@@ -34,7 +44,7 @@ export function* deleteData(action) {
   }
 }
 
-export function* createData(action: any) {
+export function* createData(action: CreateAction) {
   const textData = action.PostText.location;
   const responseData = yield call(createPostData, textData);
   if (responseData) {
@@ -43,3 +53,7 @@ export function* createData(action: any) {
     yield put(failedCreate('エラー'));
   }
 }
+
+//  | ReturnType<typeof requestFetch>
+//   | ReturnType<typeof succeededFetch>
+//   | ReturnType<typeof failedFetch>;

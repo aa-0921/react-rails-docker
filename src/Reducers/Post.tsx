@@ -1,5 +1,7 @@
 import { REQUEST_FETCH, SUCCEEDED_FETCH, FAILED_FETCH } from '../actions';
 import { requestFetch, succeededFetch, failedFetch } from '../actions';
+import { postedTextData } from '../@types/postedTextData';
+let postedTextData: postedTextData;
 
 type Actions =
   | ReturnType<typeof requestFetch>
@@ -12,16 +14,22 @@ const initialState = {
   error: null,
 };
 
-interface FetchPostDataState {
-  postText: PostText[];
+export interface FetchPostDataState {
+  // postText: PostText[];
   payloadOBj: PayloadObj[];
 }
 
-interface PayloadObj {
+export interface PayloadObj {
   data: string[];
 }
 
-export const fetchPostData = (state: FetchPostDataState = initialState, action: Actions) => {
+interface PostState {
+  fetching: boolean;
+  postText: postedTextData[];
+  error: Error | null;
+}
+
+export const fetchPostData = (state: PostState = initialState, action: Actions) => {
   switch (action.type) {
     case REQUEST_FETCH:
       return { ...state, fetching: true, error: null };
