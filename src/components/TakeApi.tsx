@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
 
 interface Props {
-  error: string;
-  apiResponse: string;
+  // error: string;
+  // apiResponse: string;
   url: string;
 }
 
@@ -19,19 +19,19 @@ export const TakeApi = (props: Props) => {
   //   type: "button",
   // };
 
-  useEffect(() => {
-    fetch(props.url)
-      .then((res) => res.json())
-      .then(
-        (result) => {
-          setApiResponse(result);
-        },
-        (error) => {
-          setApiResponse(error);
-        },
-      );
-    return () => {
-      <React.Fragment>TakeApi: {apiResponse}</React.Fragment>;
-    };
-  });
+  // useEffect(() => {
+  //   fetch(props.url)
+  //     .then((res) => res.json())
+  //     .then(
+  //       (result) => {
+  //         setApiResponse(result);
+  //       },
+  //       (error) => {
+  //         setApiResponse(error);
+  //       },
+  //     );
+  return () => {
+    <React.Fragment>TakeApi: {apiResponse}</React.Fragment>;
+  };
+  // });
 };
