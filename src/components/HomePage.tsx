@@ -6,6 +6,7 @@ import { BrowserRouter, Route, Link } from 'react-router-dom';
 import { Header } from './header';
 // import { Footer } from './footer';
 import { About } from '../pages/About';
+import { Posts } from '../pages/Posts';
 
 // import './tailwind.css';
 
@@ -17,6 +18,8 @@ export const HomePage = () => (
     <Route path="/pickup" component={Pickup} />
     <Route path="/zeit-sample" component={ZeitSample} />
     <Route path="/about" component={About} />
+    <Route path="/about" component={About} />
+    <Route path="/posts" component={Posts} />
 
     {/* <Footer /> */}
   </BrowserRouter>
