@@ -4,6 +4,7 @@
 
 export async function FetchData() {
   const url: string = process.env.REACT_APP_API_URL_POST_DATAS!;
+  console.log(url);
   const res = await fetch(url);
   // .then((res) => res)
   // .then((res) => setPosts(res))

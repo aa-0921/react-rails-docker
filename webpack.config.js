@@ -1,6 +1,7 @@
 const path = require('path');
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-
+require('dotenv').config({ path: __dirname + '/.env' });
 // module.config.resolve = { extensions: ['.js', '.scss'] };
 module.exports = {
   mode: 'development',
@@ -68,6 +69,13 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: './src/index.html',
+    }),
+    new webpack.DefinePlugin({
+      'process.env': {
+        REACT_APP_API_URL_ALL_POST_DATAS: JSON.stringify(
+          process.env.REACT_APP_API_URL_ALL_POST_DATAS,
+        ),
+      },
     }),
   ],
 
