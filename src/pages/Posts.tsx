@@ -25,19 +25,13 @@
 // };
 
 import React, { useState, useEffect } from 'react';
+import { FetchData } from '../scripts/api/FetchData';
+
 export const Posts = () => {
   const [hasError, setErrors] = useState(false);
   const [posts, setPosts] = useState({});
   useEffect(() => {
-    async function fetchData() {
-      const url: string = process.env.REACT_APP_API_URL_POST_DATAS!;
-      const res = await fetch(url);
-      res
-        .json()
-        .then((res) => setPosts(res))
-        .catch((err) => setErrors(err));
-    }
-    fetchData();
+    FetchData().then((res) => setPosts(res));
   }, []);
   return (
     <div>
