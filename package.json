@@ -16,6 +16,7 @@
   "license": "ISC",
   "devDependencies": {
     "@fullhuman/postcss-purgecss": "^2.2.0",
+    "@types/core-js": "^2.5.3",
     "@typescript-eslint/eslint-plugin": "^3.0.0",
     "@typescript-eslint/parser": "^3.0.0",
     "autoprefixer": "^9.8.0",
@@ -54,12 +55,21 @@
   "dependencies": {
     "@types/react": "^16.9.35",
     "@types/react-dom": "^16.9.8",
+    "@types/react-redux": "^7.1.9",
     "@types/react-router-dom": "^5.1.5",
+    "@types/redux-form": "^8.2.6",
     "@zeit-ui/react": "^1.6.0-canary.2",
     "axios": "^0.19.2",
     "dotenv": "^8.2.0",
     "react-addons-update": "^15.6.2",
+    "react-redux": "^7.2.0",
     "react-router-dom": "^5.2.0",
+    "redux": "^4.0.5",
+    "redux-form": "^8.3.5",
+    "redux-saga": "^1.1.3",
     "tailwindcss": "^1.4.6"
+  },
+  "engines": {
+    "npm": "please_use_yarn_instead"
   }
 }
