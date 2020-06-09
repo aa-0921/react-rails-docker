@@ -60,6 +60,7 @@
     "@types/redux-form": "^8.2.6",
     "@zeit-ui/react": "^1.6.0-canary.2",
     "axios": "^0.19.2",
+    "dotenv": "^8.2.0",
     "react-addons-update": "^15.6.2",
     "react-redux": "^7.2.0",
     "react-router-dom": "^5.2.0",
