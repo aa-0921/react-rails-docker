@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
 
 interface Props {
-  error: string;
-  apiResponse: string;
+  // error: string;
+  // apiResponse: string;
   url: string;
 }
 
