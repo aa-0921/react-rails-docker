@@ -4,21 +4,21 @@ import { App } from './App';
 import './scss/index.scss';
 // require('./index.scss');
 
-import createSagaMiddleware from 'redux-saga';
-import { createStore, applyMiddleware } from 'redux';
-import { Provider } from 'react-redux';
-import { rootReducer } from './Reducers';
-import { rootSaga } from './sagas/index';
+// import createSagaMiddleware from 'redux-saga';
+// import { createStore, applyMiddleware } from 'redux';
+// import { Provider } from 'react-redux';
+// import { rootReducer } from './Reducers';
+// import { rootSaga } from './sagas/index';
 
-const sagaMiddleware = createSagaMiddleware();
-const store = createStore(rootReducer, applyMiddleware(sagaMiddleware));
+// const sagaMiddleware = createSagaMiddleware();
+// const store = createStore(rootReducer, applyMiddleware(sagaMiddleware));
 
-sagaMiddleware.run(rootSaga);
+// sagaMiddleware.run(rootSaga);
 
 const target = document.getElementById('app');
 ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
+  // <Provider store={store}>
+  <App />,
+  // </Provider>,
   target,
 );
