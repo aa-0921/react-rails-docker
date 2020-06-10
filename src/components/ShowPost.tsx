@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { useEffect } from 'react';
 
-import { connect } from 'react-redux';
 import { requestFetch, requestDelete } from '../actions';
 
 interface ShowPostProps {
