@@ -16,6 +16,7 @@ interface UserButtonProps {
   password_confirmation: string;
 }
 
+// export const UserButton = (props: UserButtonProps) => {
 export const UserButton = (props: UserButtonProps) => {
   const displayButton = () => {
     if (props.user === null) {

@@ -16,7 +16,7 @@ export const sessionApi = {
       body: JSON.stringify(loginFormData),
     }).then((response) => {
       console.log('success');
-      // updateCsrfToken(response.loginFormData.csrf_token);
+
       return response;
     });
   },
@@ -25,7 +25,7 @@ export const sessionApi = {
       method: 'DELETE',
     }).then((response) => {
       console.log('success');
-      // updateCsrfToken(response.formData.csrf_token);
+
       return response;
     });
   },
@@ -52,7 +52,7 @@ export const registrationApi = {
       body: JSON.stringify(registrationFormData),
     }).then((response) => {
       console.log('success');
-      // updateCsrfToken(response.registrationFormData.csrf_token);
+
       return response;
     });
   },
