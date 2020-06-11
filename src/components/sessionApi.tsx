@@ -2,6 +2,9 @@ type LoginParams = {
   email: string;
   password: string;
 };
+// const loginUrl: string = process.env.REACT_APP_API_URL_SIGN_IN!;
+// const logoutUrl: string = process.env.REACT_APP_API_URL_SIGN_OUT!;
+
 export const sessionApi = {
   login: ({ email, password }: LoginParams) => {
     const loginFormData = {
@@ -14,7 +17,8 @@ export const sessionApi = {
     // user_session POST
     // /api/v1/auth/sign_in(.: format)
     // devise_token_auth / sessions#create
-    fetch('api/v1/auth/sign_in', {
+    // console.log(loginUrl);
+    fetch('http://localhost:3000/api/v1/auth/sign_in', {
       method: 'POST',
       body: JSON.stringify(loginFormData),
     }).then((response) => {
@@ -24,7 +28,7 @@ export const sessionApi = {
     });
   },
   logout: () => {
-    fetch('api/v1/auth/sign_out', {
+    fetch('http://localhost:3000/api/v1/auth/sign_out', {
       method: 'DELETE',
     }).then((response) => {
       console.log('success');
