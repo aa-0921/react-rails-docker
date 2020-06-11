@@ -53,7 +53,7 @@ export const Login = (props: LoginProps) => {
             <Form.Label>メールアドレス</Form.Label>
             <Form.Control
               type="email"
-              placeholder="メールアドレスを入力してください"
+              placeholder="メールアドレスを入力"
               onChange={handleChange}
               value={props.email}
             />
@@ -62,7 +62,7 @@ export const Login = (props: LoginProps) => {
             <Form.Label>パスワード</Form.Label>
             <Form.Control
               type="password"
-              placeholder="パスワードを入力してください"
+              placeholder="パスワードを入力"
               onChange={handleChange}
               value={props.password}
             />
