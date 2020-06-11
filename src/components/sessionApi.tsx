@@ -11,7 +11,10 @@ export const sessionApi = {
         remember_me: 1,
       },
     };
-    fetch('/users/sign_in', {
+    // user_session POST
+    // /api/v1/auth/sign_in(.: format)
+    // devise_token_auth / sessions#create
+    fetch('api/v1/auth/sign_in', {
       method: 'POST',
       body: JSON.stringify(loginFormData),
     }).then((response) => {
@@ -21,7 +24,7 @@ export const sessionApi = {
     });
   },
   logout: () => {
-    fetch('/users/sign_out', {
+    fetch('api/v1/auth/sign_out', {
       method: 'DELETE',
     }).then((response) => {
       console.log('success');

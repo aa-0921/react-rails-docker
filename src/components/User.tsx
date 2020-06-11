@@ -1,3 +1,5 @@
+import { sessionApi } from '../components/sessionApi';
+
 class User {
   isLoggedIn = () => this.get('isLoggedIn') === 'true';
 
@@ -18,27 +20,10 @@ class User {
     // ログインエラー時には、falseを返してもいいし、returnを別の用途で利用したかったら
     // 例外を出しして呼び出し元でcatchしてもいいかと思います。
     // set = (key: string, value: string) => localStorage.setItem(key, value);
-    const requestOptions = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, password }),
-    };
+    sessionApi.login({ email, password });
+    this.set('isLoggedIn', true.toString());
 
-    return fetch(`/api/v1/auth/sign_in`, requestOptions)
-      .then(handleResponse)
-      .then((user) => {
-        // login successful if there's a user in the response
-        if (user) {
-          // store user details and basic auth credentials in local storage
-          // to keep user logged in between page refreshes
-          user.authdata = window.btoa(username + ':' + password);
-          localStorage.setItem('user', JSON.stringify(user));
-        }
-        // this.set('isLoggedIn', true.toString());
-
-        // return true;
-        return user;
-      });
+    return true;
   };
 
   logout = async () => {
