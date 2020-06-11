@@ -5,11 +5,10 @@ import { Login } from '../pages/Login';
 import { Logout } from '../pages/Logout';
 import { HomePage } from '../components/HomePage';
 
-// import List1 from './List1';
-// import List2 from './List2';
 import { Auth } from '../components/Auth';
 import User from '../components/User';
 // import { List } from './list';
+import { App } from '../../src/App';
 
 export const LoginApp = () => {
   return (
@@ -23,8 +22,8 @@ export const LoginApp = () => {
             {/* <Route exact path="/list" component={List} /> */}
             {/* <Redirect from="/" to="/list" /> */}
 
-            <Route exact path="/homepage" component={HomePage} />
-            <Redirect from="/" to="/homepage" />
+            <Route exact path="/app" component={App} />
+            <Redirect from="/" to="/App" />
           </Switch>
         </Auth>
       </Switch>

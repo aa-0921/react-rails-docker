@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { App } from './App';
 import './scss/index.scss';
+import { LoginApp } from './pages/LoginApp';
 // require('./index.scss');
 
 // import createSagaMiddleware from 'redux-saga';
@@ -18,7 +19,7 @@ import './scss/index.scss';
 const target = document.getElementById('app');
 ReactDOM.render(
   // <Provider store={store}>
-  <App />,
+  <LoginApp />,
   // </Provider>,
   target,
 );
