@@ -1,7 +1,7 @@
 class User {
   isLoggedIn = () => this.get('isLoggedIn') === 'true';
 
-  set = (key: string, value: boolean | string) => localStorage.setItem(key, value);
+  set = (key: string, value: string) => localStorage.setItem(key, value);
 
   get = (key: string) => this.getLocalStorage(key);
 
@@ -17,15 +17,16 @@ class User {
     // ログイン処理
     // ログインエラー時には、falseを返してもいいし、returnを別の用途で利用したかったら
     // 例外を出しして呼び出し元でcatchしてもいいかと思います。
+    // set = (key: string, value: string) => localStorage.setItem(key, value);
 
-    this.set('isLoggedIn', true);
+    this.set('isLoggedIn', true.toString());
 
     return true;
   };
 
   logout = async () => {
     if (this.isLoggedIn()) {
-      this.set('isLoggedIn', false);
+      this.set('isLoggedIn', false.toString());
 
       // ログアウト処理
       // 他に必要な処理があるのならこちら

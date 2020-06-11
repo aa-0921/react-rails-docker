@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 // import { Container, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import User from './User';
+import User from '../components/User';
 import { useEffect } from 'react';
 
 export const Logout = () => {
@@ -15,18 +15,16 @@ export const Logout = () => {
     logout();
   }, []);
 
-  render() {
-    return (
-      <Container className="center">
-        <Row className="justify-content-md-center">
-          <div>
-            <h2>ログアウトしました</h2>
-            <div className="text-center">
-              <Link to="/login">ログイン画面へ</Link>
-            </div>
-          </div>
-        </Row>
-      </Container>
-    );
-  }
-}
+  return (
+    // <Container className="center">
+    // <Row className="justify-content-md-center">
+    <div>
+      <h2>ログアウトしました</h2>
+      <div className="text-center">
+        <Link to="/login">ログイン画面へ</Link>
+      </div>
+    </div>
+    // </Row>
+    // </Container>
+  );
+};
