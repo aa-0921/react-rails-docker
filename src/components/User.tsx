@@ -22,16 +22,19 @@ class User {
 
     console.log(email);
     console.log(password);
+    this.set('isLoggedIn', true.toString());
 
     sessionApi.login({ email, password });
-    this.set('isLoggedIn', true.toString());
 
     return true;
   };
 
   logout = async () => {
+    console.log('User.logout ');
+
     if (this.isLoggedIn()) {
       this.set('isLoggedIn', false.toString());
+      sessionApi.logout;
 
       // ログアウト処理
       // 他に必要な処理があるのならこちら
