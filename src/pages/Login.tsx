@@ -25,7 +25,7 @@ type LoginProps = {
 export const Login = (props: LoginProps) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [emerrMessageail, setErrMessage] = useState('');
+  const [errMessage, setErrMessage] = useState('');
 
   const click = async () => {
     try {

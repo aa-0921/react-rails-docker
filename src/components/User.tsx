@@ -1,10 +1,10 @@
 import { sessionApi } from '../components/sessionApi';
+import { useState } from 'react';
 
 class User {
   isLoggedIn = () => this.get('isLoggedIn') === 'true';
 
   set = (key: string, value: string) => localStorage.setItem(key, value);
-
   get = (key: string) => this.getLocalStorage(key);
 
   getLocalStorage = (key: string) => {
@@ -19,13 +19,14 @@ class User {
     // ログイン処理
     // ログインエラー時には、falseを返してもいいし、returnを別の用途で利用したかったら
     // 例外を出しして呼び出し元でcatchしてもいいかと思います。
+    const loginStatus = 'false';
 
     console.log(email);
     console.log(password);
-    this.set('isLoggedIn', true.toString());
 
     sessionApi.login({ email, password });
-
+    this.set('isLoggedIn', loginStatus.toString());
+    console.log('isLoggedIn:' + this.isLoggedIn());
     return true;
   };
 

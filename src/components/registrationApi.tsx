@@ -18,7 +18,7 @@ export const registrationApi = {
       method: 'POST',
       body: JSON.stringify(registrationFormData),
     }).then((response) => {
-      console.log('success');
+      console.log('then(registrationApi.signUp)');
 
       return response;
     });
