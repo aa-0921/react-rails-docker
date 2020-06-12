@@ -37,8 +37,11 @@ export const Login = (props: LoginProps) => {
     }
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    e.target.id = e.target.value;
+  const handleChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(e.target.value);
+  };
+  const handleChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPassword(e.target.value);
   };
 
   return (
@@ -54,7 +57,7 @@ export const Login = (props: LoginProps) => {
             <Form.Control
               type="email"
               placeholder="メールアドレスを入力"
-              onChange={handleChange}
+              onChange={handleChangeEmail}
               value={props.email}
             />
           </Form.Group>
@@ -63,7 +66,7 @@ export const Login = (props: LoginProps) => {
             <Form.Control
               type="password"
               placeholder="パスワードを入力"
-              onChange={handleChange}
+              onChange={handleChangePassword}
               value={props.password}
             />
           </Form.Group>

@@ -14,6 +14,9 @@ export const sessionApi = {
     //     // remember_me: 1,
     //   },
     // };
+    console.log(email);
+    console.log(password);
+
     const obj = {
       email: email,
       password: password,
@@ -29,8 +32,8 @@ export const sessionApi = {
 
     fetch(
       'http://localhost:3000/api/v1/auth/sign_in',
-      { method, headers, body, credentials, mode },
-      // { method, headers, body },
+      // { method, headers, body, credentials, mode },
+      { method, headers, body },
 
       // fetch(logoutUrl, {
       // method: 'POST',
