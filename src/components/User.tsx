@@ -20,6 +20,9 @@ class User {
     // ログインエラー時には、falseを返してもいいし、returnを別の用途で利用したかったら
     // 例外を出しして呼び出し元でcatchしてもいいかと思います。
 
+    console.log(email);
+    console.log(password);
+
     sessionApi.login({ email, password });
     this.set('isLoggedIn', true.toString());
 

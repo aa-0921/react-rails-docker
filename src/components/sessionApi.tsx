@@ -20,18 +20,18 @@ export const sessionApi = {
     };
     const method = 'POST';
     const body = JSON.stringify(obj);
+    const credentials = 'include';
+    const mode = 'cors';
     const headers = {
-      Accept: 'application/json',
+      // Accept: 'application/json',
       'Content-Type': 'application/json',
     };
-    // user_session POST
-    // /api/v1/auth/sign_in(.: format)
-    // devise_token_auth / sessions#create
-    // console.log(loginUrl);
 
     fetch(
       'http://localhost:3000/api/v1/auth/sign_in',
-      { method, headers, body },
+      { method, headers, body, credentials, mode },
+      // { method, headers, body },
+
       // fetch(logoutUrl, {
       // method: 'POST',
       // body: JSON.stringify(loginFormData),
