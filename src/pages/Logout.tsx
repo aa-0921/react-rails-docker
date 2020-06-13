@@ -19,7 +19,7 @@ export const Logout = (props: LogoutProps) => {
         await User.logout();
         console.log('Logout.tsx', User.isLoggedIn());
       } catch (e) {
-        setErrMessage('メールアドレスかパスワードが違います');
+        setErrMessage('ログアウトに失敗しました。');
       }
     };
     logout();
