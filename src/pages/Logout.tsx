@@ -14,7 +14,7 @@ export const Logout = (props: LogoutProps) => {
   const [errMessage, setErrMessage] = useState('');
 
   useEffect(() => {
-    const logout = async () => {
+    const userLogout = async () => {
       try {
         await User.logout();
         console.log('Logout.tsx', User.isLoggedIn());
@@ -22,7 +22,7 @@ export const Logout = (props: LogoutProps) => {
         setErrMessage('ログアウトに失敗しました。');
       }
     };
-    logout();
+    userLogout();
   }, []);
 
   return (

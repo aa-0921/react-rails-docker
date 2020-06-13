@@ -32,15 +32,11 @@ export const Login = (props: LoginProps) => {
     User.set('isLoggedIn', false.toString());
     console.log('isLoggedIn(Login.tsx):', User.isLoggedIn());
   }, []);
-  const click = async () => {
+  const userLogin = async () => {
     try {
       await User.login(email, password);
       console.log(User.isLoggedIn());
       props.history.push({ pathname: 'list1' });
-      // return;
-      // <>
-      //   <App />;
-      // </>;
     } catch (e) {
       setErrMessage('メールアドレスかパスワードが違います');
     }
@@ -79,7 +75,7 @@ export const Login = (props: LoginProps) => {
               value={props.password}
             />
           </Form.Group>
-          <Button variant="primary" type="button" onClick={click}>
+          <Button variant="primary" type="button" onClick={userLogin}>
             ログイン
           </Button>
         </Form>
