@@ -2,15 +2,25 @@ import React, { Component } from 'react';
 // import { Container, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import User from '../components/User';
-import { useEffect } from 'react';
+import { Alert } from 'react-bootstrap';
+import { useState, useEffect } from 'react';
 
-export const Logout = () => {
-  // async componentDidMount() {
-  //   await User.logout();
-  // }
+type LogoutProps = {
+  errMessage: '';
+  message: string;
+};
+
+export const Logout = (props: LogoutProps) => {
+  const [errMessage, setErrMessage] = useState('');
+
   useEffect(() => {
     const logout = async () => {
-      await User.logout();
+      try {
+        await User.logout();
+        console.log('Logout.tsx', User.isLoggedIn());
+      } catch (e) {
+        setErrMessage('メールアドレスかパスワードが違います');
+      }
     };
     logout();
   }, []);
@@ -19,6 +29,7 @@ export const Logout = () => {
     // <Container className="center">
     // <Row className="justify-content-md-center">
     <div>
+      {props.errMessage && <Alert variant="danger">{props.message}</Alert>}
       <h2>ログアウトしました</h2>
       <div className="text-center">
         <Link to="/login">ログイン画面へ</Link>
