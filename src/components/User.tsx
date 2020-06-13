@@ -16,26 +16,13 @@ class User {
   };
 
   login = async (email: string, password: string) => {
-    // ログイン処理
-    // ログインエラー時には、falseを返してもいいし、returnを別の用途で利用したかったら
-    // 例外を出しして呼び出し元でcatchしてもいいかと思います。
-    const loginStatus = 'false';
-
     console.log(email);
     console.log(password);
-    // const response_return = '';
-    const resLogin = sessionApi.login({ email, password });
-    // console.log('sessionApi.login({ email, password })', sessionApi.login({ email, password }));
-    // console.log('response.text():' + response.text());
 
-    // this.set('isLoggedIn', loginStatus.toString());
-    // this.set('isLoggedIn', sessionApi.login({ email, password }).toString());
-    this.set('isLoggedIn', JSON.stringify(resLogin));
+    await sessionApi.login({ email, password });
 
-    console.log('isLoggedInの内容');
-    console.log('isLoggedIn:' + this.isLoggedIn());
-
-    console.log('this.getLocalStorage:', this.getLocalStorage('isLoggedIn'));
+    console.log('isLoggedIn(User.tsxログイン処理後):' + this.isLoggedIn());
+    console.log('this.getLocalStorage(User.tsx):', this.getLocalStorage('isLoggedIn'));
 
     return true;
   };

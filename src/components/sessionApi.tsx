@@ -1,25 +1,17 @@
+import * as React from 'react';
+
 import User from './User';
+import { App } from '../App';
 
 type LoginParams = {
   email: string;
   password: string;
-  // loginStatus: string;
 };
 // const loginUrl: string = process.env.REACT_APP_API_URL_SIGN_IN!;
 // const logoutUrl: string = process.env.REACT_APP_API_URL_SIGN_OUT!;
 
 export const sessionApi = {
   login: async ({ email, password }: LoginParams) => {
-    // const loginFormData = {
-    //   user: {
-    //     email: email,
-    //     password: password,
-    //     // remember_me: 1,
-    //   },
-    // };
-    console.log(email);
-    console.log(password);
-
     const obj = {
       email: email,
       password: password,
@@ -33,24 +25,21 @@ export const sessionApi = {
       'Content-Type': 'application/json',
     };
 
-    await fetch(
+    return fetch(
       'http://localhost:3000/api/v1/auth/sign_in',
       // { method, headers, body, credentials, mode },
       { method, headers, body },
-
-      // fetch(logoutUrl, {
-      // method: 'POST',
     )
       .then((response) => {
-        // console.log('resの内容', response);
-
         if (response.status == 200) {
-          // console.log('status == 200のresponse', JSON.stringify(response.json()));
-          // console.log('response.status', response.status);
-          // console.log('response', response);
-          response.json().then((json) => console.log(json));
-          return 'true';
+          User.set('isLoggedIn', 'true');
+          console.log('isLoggedIn(sessionApi.tsx):', User.isLoggedIn());
+          return <App />;
+          // return 'true';
         } else {
+          User.set('isLoggedIn', 'false');
+          console.log('isLoggedIn(else後):', User.isLoggedIn());
+
           // console.log('elseのresponse', JSON.stringify(response.json()));
           // console.log('response.json()', response.json());
           // throw new HttpError(response);
@@ -60,9 +49,12 @@ export const sessionApi = {
         }
       })
       .catch((error) => {
+        User.set('isLoggedIn', 'false');
+        console.log('isLoggedIn(catch後):', User.isLoggedIn());
+
         console.log('errorの内容', JSON.stringify(error.json));
 
-        return 'false';
+        // return 'false';
       });
   },
 

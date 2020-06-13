@@ -9,10 +9,11 @@ import * as React from 'react';
 import { Form, Button, Container, Row, Alert } from 'react-bootstrap';
 import { withRouter } from 'react-router-dom';
 import User from '../components/User';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 // import { Button } from '@zeit-ui/react'
 import * as H from 'history';
+import { App } from '../../src/App';
 
 type LoginProps = {
   email: '';
@@ -27,11 +28,19 @@ export const Login = (props: LoginProps) => {
   const [password, setPassword] = useState('');
   const [errMessage, setErrMessage] = useState('');
 
+  useEffect(() => {
+    User.set('isLoggedIn', false.toString());
+    console.log('isLoggedIn(Login.tsx):', User.isLoggedIn());
+  }, []);
   const click = async () => {
     try {
       await User.login(email, password);
       console.log(User.isLoggedIn());
       props.history.push({ pathname: 'list1' });
+      // return;
+      // <>
+      //   <App />;
+      // </>;
     } catch (e) {
       setErrMessage('メールアドレスかパスワードが違います');
     }
