@@ -9,7 +9,7 @@ type LoginParams = {
 // const logoutUrl: string = process.env.REACT_APP_API_URL_SIGN_OUT!;
 
 export const sessionApi = {
-  login: ({ email, password }: LoginParams) => {
+  login: async ({ email, password }: LoginParams) => {
     // const loginFormData = {
     //   user: {
     //     email: email,
@@ -33,7 +33,7 @@ export const sessionApi = {
       'Content-Type': 'application/json',
     };
 
-    return fetch(
+    await fetch(
       'http://localhost:3000/api/v1/auth/sign_in',
       // { method, headers, body, credentials, mode },
       { method, headers, body },
@@ -41,12 +41,27 @@ export const sessionApi = {
       // fetch(logoutUrl, {
       // method: 'POST',
     )
-      .then((res) => {
-        console.log(res);
-        // console.log(User.getLocalStorage(isLoggedIn));
-        return 'true';
+      .then((response) => {
+        // console.log('resの内容', response);
+
+        if (response.status == 200) {
+          // console.log('status == 200のresponse', JSON.stringify(response.json()));
+          // console.log('response.status', response.status);
+          // console.log('response', response);
+          response.json().then((json) => console.log(json));
+          return 'true';
+        } else {
+          // console.log('elseのresponse', JSON.stringify(response.json()));
+          // console.log('response.json()', response.json());
+          // throw new HttpError(response);
+          throw new Error();
+          // return response.json();
+          // response.text().then((text) => console.log(text));
+        }
       })
-      .catch(() => {
+      .catch((error) => {
+        console.log('errorの内容', JSON.stringify(error.json));
+
         return 'false';
       });
   },
@@ -71,8 +86,8 @@ export const sessionApi = {
   //   // return error;
   //   return loginStatus;
   // });
-  logout: () => {
-    fetch('http://localhost:3000/api/v1/auth/sign_out', {
+  logout: async () => {
+    await fetch('http://localhost:3000/api/v1/auth/sign_out', {
       // fetch(logoutUrl, {
       method: 'DELETE',
     }).then((response) => {
