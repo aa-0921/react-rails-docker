@@ -25,6 +25,7 @@ class User {
     console.log(password);
 
     sessionApi.login({ email, password });
+    console.log('sessionApi.login({ email, password })', sessionApi.login({ email, password }));
     // console.log('response.text():' + response.text());
 
     // this.set('isLoggedIn', loginStatus.toString());
@@ -33,6 +34,9 @@ class User {
 
     console.log('isLoggedInの内容');
     console.log('isLoggedIn:' + this.isLoggedIn());
+
+    console.log('this.getLocalStorage:', this.getLocalStorage('isLoggedIn'));
+
     return true;
   };
 

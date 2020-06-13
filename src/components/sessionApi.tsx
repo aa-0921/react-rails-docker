@@ -1,3 +1,5 @@
+import User from './User';
+
 type LoginParams = {
   email: string;
   password: string;
@@ -39,7 +41,9 @@ export const sessionApi = {
       // fetch(logoutUrl, {
       // method: 'POST',
     )
-      .then(() => {
+      .then((res) => {
+        console.log(res);
+        // console.log(User.getLocalStorage(isLoggedIn));
         return 'true';
       })
       .catch(() => {
