@@ -75,8 +75,7 @@ module.exports = {
         REACT_APP_API_URL_ALL_POST_DATAS: JSON.stringify(
           process.env.REACT_APP_API_URL_ALL_POST_DATAS,
         ),
-        REACT_APP_API_URL_SIGN_IN: JSON.stringify(process.env.REACT_APP_API_URL_SIGN_IN),
-        REACT_APP_API_URL_SIGN_OUT: JSON.stringify(process.env.REACT_APP_API_URL_SIGN_OUT),
+        REACT_APP_API_URL: JSON.stringify(process.env.REACT_APP_API_URL),
       },
     }),
   ],

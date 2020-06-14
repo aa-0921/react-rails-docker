@@ -24,7 +24,7 @@ export const sessionApi = {
       'Content-Type': 'application/json',
     };
 
-    const loginUrl: string = process.env.REACT_APP_API_URL_SIGN_IN!;
+    const loginUrl: string = process.env.REACT_APP_API_URL + '/sign_in';
 
     console.log('loginUrl:', loginUrl);
     console.log('process.env.REACT_APP_API_URL_SIGN_IN!:', process.env.REACT_APP_API_URL_SIGN_IN!);
@@ -54,7 +54,7 @@ export const sessionApi = {
   },
 
   logout: async () => {
-    const logoutUrl: string = process.env.REACT_APP_API_URL_SIGN_OUT!;
+    const logoutUrl: string = process.env.REACT_APP_API_URL + '/sign_out';
 
     await fetch(logoutUrl, { method: 'DELETE' }).then((response) => {
       console.log('success');

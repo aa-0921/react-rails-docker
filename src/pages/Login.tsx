@@ -6,7 +6,7 @@
 
 import * as React from 'react';
 // import React, { Component } from 'react';
-// import { Form, Button, Container, Row, Alert } from 'react-bootstrap';
+// import { Form } from 'react-bootstrap';
 import { withRouter } from 'react-router-dom';
 import User from '../components/User';
 import { useState, useEffect } from 'react';
@@ -51,36 +51,67 @@ export const Login = (props: LoginProps) => {
   };
 
   return (
-    <Grid.Container gap={2} justify="center">
+    <Grid.Container gap={-10} justify="center">
       <Row className="justify-content-md-center">
-        <Form>
+        <form>
           {props.errMessage && <Note type="warning">{props.message}</Note>}
           <p>
             <b>ログイン</b>
           </p>
-          <Form.Group controlId="email">
-            <Form.Label>メールアドレス</Form.Label>
-            <Form.Control
+          <div className="form-group">
+            <label className="form-label">メールアドレス</label>
+            {/* <Form.Group controlId="email">
+            <Form.Label>メールアドレス</Form.Label> */}
+            <input
               type="email"
               placeholder="メールアドレスを入力"
               onChange={handleChangeEmail}
               value={props.email}
             />
-          </Form.Group>
-          <Form.Group controlId="password">
-            <Form.Label>パスワード</Form.Label>
-            <Form.Control
+          </div>
+          <div className="form-group">
+            <label className="form-label">パスワード</label>
+            <input
               type="password"
               placeholder="パスワードを入力"
               onChange={handleChangePassword}
               value={props.password}
             />
-          </Form.Group>
-          <Button variant="primary" type="button" onClick={userLogin}>
+          </div>
+          <Button type="success" ghost onClick={userLogin}>
             ログイン
           </Button>
-        </Form>
+        </form>
       </Row>
+      {/* 
+      <form>
+        <p>
+          <b>ログイン</b>
+        </p>
+        <div className="form-group">
+          <label className="form-label">メールアドレス</label>
+          <input
+            placeholder="メールアドレスを入力"
+            type="email"
+            id="email"
+            className="form-control"
+            value=""
+          />
+        </div>
+        <div className="form-group">
+          <label className="form-label">パスワード</label>
+          <input
+            placeholder="パスワードを入力"
+            type="password"
+            id="password"
+            className="form-control"
+            value=""
+          />
+        </div>
+        <Button type="success" ghost className="jsx-1491622555 btn ">
+          <div className="text">ログイン</div>
+        </Button>
+      </form> */}
     </Grid.Container>
   );
 };
