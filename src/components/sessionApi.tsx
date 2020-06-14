@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 import * as React from 'react';
 
 import User from './User';
@@ -21,14 +23,21 @@ export const sessionApi = {
     const headers = {
       'Content-Type': 'application/json',
     };
+
     const loginUrl: string = process.env.REACT_APP_API_URL_SIGN_IN!;
+
+    console.log('loginUrl:', loginUrl);
+    console.log('process.env.REACT_APP_API_URL_SIGN_IN!:', process.env.REACT_APP_API_URL_SIGN_IN!);
+    console.log(
+      'process.env.REACT_APP_API_URL_ALL_POST_DATAS!:',
+      process.env.REACT_APP_API_URL_ALL_POST_DATAS!,
+    );
 
     return fetch(loginUrl, { method, headers, body })
       .then((response) => {
         if (response.status == 200) {
           User.set('isLoggedIn', 'true');
           console.log('isLoggedIn(sessionApi.tsx):', User.isLoggedIn());
-          return <App />;
         } else {
           User.set('isLoggedIn', 'false');
           console.log('isLoggedIn(else後):', User.isLoggedIn());

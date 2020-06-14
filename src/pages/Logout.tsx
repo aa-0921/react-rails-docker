@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-// import { Container, Row } from 'react-bootstrap';
+
 import { Link } from 'react-router-dom';
 import User from '../components/User';
-import { Alert } from 'react-bootstrap';
+
 import { useState, useEffect } from 'react';
+import { Note } from '@zeit-ui/react';
 
 type LogoutProps = {
   errMessage: '';
@@ -29,7 +30,7 @@ export const Logout = (props: LogoutProps) => {
     // <Container className="center">
     // <Row className="justify-content-md-center">
     <div>
-      {props.errMessage && <Alert variant="danger">{props.message}</Alert>}
+      {props.errMessage && <Note type="warning">{props.message}</Note>}
       <h2>ログアウトしました</h2>
       <div className="text-center">
         <Link to="/login">ログイン画面へ</Link>

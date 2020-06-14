@@ -6,7 +6,7 @@
 
 import * as React from 'react';
 // import React, { Component } from 'react';
-import { Form, Button, Container, Row, Alert } from 'react-bootstrap';
+// import { Form, Button, Container, Row, Alert } from 'react-bootstrap';
 import { withRouter } from 'react-router-dom';
 import User from '../components/User';
 import { useState, useEffect } from 'react';
@@ -14,6 +14,7 @@ import { useState, useEffect } from 'react';
 // import { Button } from '@zeit-ui/react'
 import * as H from 'history';
 import { App } from '../../src/App';
+import { Grid, Row, Note, Button } from '@zeit-ui/react';
 
 type LoginProps = {
   email: '';
@@ -50,10 +51,10 @@ export const Login = (props: LoginProps) => {
   };
 
   return (
-    <Container className="center">
+    <Grid.Container gap={2} justify="center">
       <Row className="justify-content-md-center">
         <Form>
-          {props.errMessage && <Alert variant="danger">{props.message}</Alert>}
+          {props.errMessage && <Note type="warning">{props.message}</Note>}
           <p>
             <b>ログイン</b>
           </p>
@@ -80,6 +81,6 @@ export const Login = (props: LoginProps) => {
           </Button>
         </Form>
       </Row>
-    </Container>
+    </Grid.Container>
   );
 };
