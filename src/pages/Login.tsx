@@ -41,7 +41,7 @@ export const Login = (props: LoginProps) => {
       if (process.env.NODE_ENV !== 'production') {
         console.log(User.isLoggedIn());
       }
-      props.history.push({ pathname: 'list1' });
+      props.history.push('/');
     } catch (e) {
       setErrMessage('メールアドレスかパスワードが違います');
     }
