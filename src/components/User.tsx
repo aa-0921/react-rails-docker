@@ -1,19 +1,20 @@
 import { sessionApi } from '../components/sessionApi';
-import { useState } from 'react';
+// import { useState } from 'react';
+import Cookies from 'js-cookie';
 
 class User {
-  isLoggedIn = () => this.get('isLoggedIn') === 'true';
+  isLoggedIn = () => Cookies.get('isLoggedIn') === 'true';
 
-  set = (key: string, value: string) => localStorage.setItem(key, value);
-  get = (key: string) => this.getLocalStorage(key);
+  set = (key: string, value: string) => Cookies.set(key, value);
+  get = (key: string) => Cookies.get(key);
 
-  getLocalStorage = (key: string) => {
-    const ret = localStorage.getItem(key);
-    if (ret) {
-      return ret;
-    }
-    return null;
-  };
+  // getLocalStorage = (key: string) => {
+  //   const ret = localStorage.getItem(key);
+  //   if (ret) {
+  //     return ret;
+  //   }
+  //   return null;
+  // };
 
   login = async (email: string, password: string) => {
     console.log(email);
@@ -22,7 +23,7 @@ class User {
     await sessionApi.login({ email, password });
 
     console.log('isLoggedIn(User.tsxログイン処理後):' + this.isLoggedIn());
-    console.log('this.getLocalStorage(User.tsx):', this.getLocalStorage('isLoggedIn'));
+    console.log('this.get(User.tsx):', this.get('isLoggedIn'));
 
     return true;
   };
