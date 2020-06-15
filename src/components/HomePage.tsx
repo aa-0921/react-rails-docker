@@ -12,9 +12,11 @@ import User from './User';
 
 // import './tailwind.css';
 
-export const HomePage = () => (
-  console.log('isLoggedIn(HomePage.tsx):', User.isLoggedIn()),
-  (
+export const HomePage = () => {
+  if (process.env.NODE_ENV !== 'production') {
+    console.log('isLoggedIn(HomePage.tsx):', User.isLoggedIn());
+  }
+  return (
     <BrowserRouter>
       <Header />
       {/* <header style={{ height: 100, background: '#ddd' }}>head</header> */}
@@ -27,5 +29,5 @@ export const HomePage = () => (
 
       {/* <Footer /> */}
     </BrowserRouter>
-  )
-);
+  );
+};

@@ -25,32 +25,41 @@ export const sessionApi = {
     };
 
     const loginUrl: string = process.env.REACT_APP_API_URL + '/sign_in';
-
-    console.log('process.env.NODE_ENV:', process.env.NODE_ENV);
-    console.log('loginUrl:', loginUrl);
-    console.log('process.env.REACT_APP_API_URL_SIGN_IN!:', process.env.REACT_APP_API_URL_SIGN_IN!);
-    console.log(
-      'process.env.REACT_APP_API_URL_ALL_POST_DATAS!:',
-      process.env.REACT_APP_API_URL_ALL_POST_DATAS!,
-    );
+    if (process.env.NODE_ENV !== 'production') {
+      console.log('process.env.NODE_ENV:', process.env.NODE_ENV);
+      console.log('loginUrl:', loginUrl);
+      console.log(
+        'process.env.REACT_APP_API_URL_SIGN_IN!:',
+        process.env.REACT_APP_API_URL_SIGN_IN!,
+      );
+      console.log(
+        'process.env.REACT_APP_API_URL_ALL_POST_DATAS!:',
+        process.env.REACT_APP_API_URL_ALL_POST_DATAS!,
+      );
+    }
 
     return fetch(loginUrl, { method, headers, body })
       .then((response) => {
         if (response.status == 200) {
           User.set('isLoggedIn', 'true');
-          console.log('isLoggedIn(sessionApi.tsx):', User.isLoggedIn());
+          if (process.env.NODE_ENV !== 'production') {
+            console.log('isLoggedIn(sessionApi.tsx):', User.isLoggedIn());
+          }
         } else {
           User.set('isLoggedIn', 'false');
-          console.log('isLoggedIn(else後):', User.isLoggedIn());
+          if (process.env.NODE_ENV !== 'production') {
+            console.log('isLoggedIn(else後):', User.isLoggedIn());
+          }
 
           throw new Error();
         }
       })
       .catch((error) => {
         User.set('isLoggedIn', 'false');
-        console.log('isLoggedIn(catch後):', User.isLoggedIn());
-
-        console.log('errorの内容', JSON.stringify(error.json));
+        if (process.env.NODE_ENV !== 'production') {
+          console.log('isLoggedIn(catch後):', User.isLoggedIn());
+          console.log('errorの内容', JSON.stringify(error.json));
+        }
       });
   },
 
@@ -58,9 +67,11 @@ export const sessionApi = {
     const logoutUrl: string = process.env.REACT_APP_API_URL + '/sign_out';
 
     await fetch(logoutUrl, { method: 'DELETE' }).then((response) => {
-      console.log('success');
-      console.log('reaponse(sessionApi.login)');
-      console.log(response);
+      if (process.env.NODE_ENV !== 'production') {
+        console.log('success');
+        console.log('reaponse(sessionApi.login)');
+        console.log(response);
+      }
       const loginStatus = 'false';
 
       return loginStatus;

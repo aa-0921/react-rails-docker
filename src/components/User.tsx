@@ -17,14 +17,15 @@ class User {
   // };
 
   login = async (email: string, password: string) => {
-    console.log(email);
-    console.log(password);
-
+    if (process.env.NODE_ENV !== 'production') {
+      console.log(email);
+      console.log(password);
+    }
     await sessionApi.login({ email, password });
-
-    console.log('isLoggedIn(User.tsxログイン処理後):' + this.isLoggedIn());
-    console.log('this.get(User.tsx):', this.get('isLoggedIn'));
-
+    if (process.env.NODE_ENV !== 'production') {
+      console.log('isLoggedIn(User.tsxログイン処理後):' + this.isLoggedIn());
+      console.log('this.get(User.tsx):', this.get('isLoggedIn'));
+    }
     return true;
   };
 

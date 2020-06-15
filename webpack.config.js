@@ -77,6 +77,7 @@ module.exports = {
         ),
         REACT_APP_API_URL: JSON.stringify(process.env.REACT_APP_API_URL),
       },
+      'process.env.NODE_ENV': JSON.stringify('production'),
     }),
   ],
   node: { fs: 'empty' },

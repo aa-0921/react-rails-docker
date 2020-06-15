@@ -11,7 +11,9 @@ import User from '../components/User';
 import { App } from '../../src/App';
 
 export const LoginApp = () => {
-  console.log('isLoggedIn(LoginApp.tsx):', User.isLoggedIn());
+  if (process.env.NODE_ENV !== 'production') {
+    console.log('isLoggedIn(LoginApp.tsx):', User.isLoggedIn());
+  }
 
   return (
     <Router>

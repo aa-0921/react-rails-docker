@@ -18,7 +18,9 @@ export const Logout = (props: LogoutProps) => {
     const userLogout = async () => {
       try {
         await User.logout();
-        console.log('Logout.tsx', User.isLoggedIn());
+        if (process.env.NODE_ENV !== 'production') {
+          console.log('Logout.tsx', User.isLoggedIn());
+        }
       } catch (e) {
         setErrMessage('ログアウトに失敗しました。');
       }

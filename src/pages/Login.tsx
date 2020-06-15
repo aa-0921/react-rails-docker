@@ -31,12 +31,16 @@ export const Login = (props: LoginProps) => {
 
   useEffect(() => {
     User.set('isLoggedIn', false.toString());
-    console.log('isLoggedIn(Login.tsx):', User.isLoggedIn());
+    if (process.env.NODE_ENV !== 'production') {
+      console.log('isLoggedIn(Login.tsx):', User.isLoggedIn());
+    }
   }, []);
   const onClickLogin = async () => {
     try {
       await User.login(email, password);
-      console.log(User.isLoggedIn());
+      if (process.env.NODE_ENV !== 'production') {
+        console.log(User.isLoggedIn());
+      }
       props.history.push({ pathname: 'list1' });
     } catch (e) {
       setErrMessage('メールアドレスかパスワードが違います');
