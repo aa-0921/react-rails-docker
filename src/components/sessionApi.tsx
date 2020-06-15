@@ -26,6 +26,7 @@ export const sessionApi = {
 
     const loginUrl: string = process.env.REACT_APP_API_URL + '/sign_in';
 
+    console.log('process.env.NODE_ENV:', process.env.NODE_ENV);
     console.log('loginUrl:', loginUrl);
     console.log('process.env.REACT_APP_API_URL_SIGN_IN!:', process.env.REACT_APP_API_URL_SIGN_IN!);
     console.log(

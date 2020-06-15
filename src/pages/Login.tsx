@@ -33,7 +33,7 @@ export const Login = (props: LoginProps) => {
     User.set('isLoggedIn', false.toString());
     console.log('isLoggedIn(Login.tsx):', User.isLoggedIn());
   }, []);
-  const userLogin = async () => {
+  const onClickLogin = async () => {
     try {
       await User.login(email, password);
       console.log(User.isLoggedIn());
@@ -78,7 +78,7 @@ export const Login = (props: LoginProps) => {
               value={props.password}
             />
           </div>
-          <Button type="success" ghost onClick={userLogin}>
+          <Button type="success" ghost onClick={onClickLogin}>
             ログイン
           </Button>
         </form>
