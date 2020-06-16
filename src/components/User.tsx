@@ -37,7 +37,7 @@ class User {
       console.log(password_confirmation);
       console.log(name);
     }
-    await registrationApiSignup({ email, password, password_confirmation, name });
+    await registrationApiSignup({ email, password, name });
     if (process.env.NODE_ENV !== 'production') {
       console.log('isLoggedIn(User.tsxサインアップ処理後):' + this.isLoggedIn());
     }

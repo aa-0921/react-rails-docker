@@ -17,6 +17,7 @@ import { App } from '../../src/App';
 import { Grid, Row, Note, Button } from '@zeit-ui/react';
 
 type SignupProps = {
+  name: '';
   email: '';
   password: '';
   errMessage: '';
@@ -50,6 +51,9 @@ export const Signup = (props: SignupProps) => {
     }
   };
 
+  const handleChangeName = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setName(e.target.value);
+  };
   const handleChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
   };
@@ -66,12 +70,19 @@ export const Signup = (props: SignupProps) => {
         <form>
           {props.errMessage && <Note type="warning">{props.message}</Note>}
           <p>
-            <b>ログイン</b>
+            <b>Signup</b>
           </p>
           <div className="form-group">
+            <label className="form-label">ニックネーム</label>
+            <input
+              type="name"
+              placeholder="ニックネームを入力"
+              onChange={handleChangeName}
+              value={props.name}
+            />
+          </div>
+          <div className="form-group">
             <label className="form-label">メールアドレス</label>
-            {/* <Form.Group controlId="email">
-            <Form.Label>メールアドレス</Form.Label> */}
             <input
               type="email"
               placeholder="メールアドレスを入力"
