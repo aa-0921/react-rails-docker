@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 
@@ -47,13 +49,30 @@ export const Login = (props: LoginProps) => {
     }
   };
 
+  // const onClickFacebook = async () => {
+  //   try {
+  //     await facebookLogin;
+  //     if (process.env.NODE_ENV !== 'production') {
+  //       console.log(User.isLoggedIn());
+  //     }
+  //     props.history.push('/');
+  //   } catch (e) {
+  //     setErrMessage('SNSログインに失敗しました。');
+  //   }
+  // };
   const handleChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
   };
   const handleChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
   };
+  const facebookUrl: string = process.env.REACT_APP_API_URL_SNS_LOGIN + '/facebook';
+  const githubUrl: string = process.env.REACT_APP_API_URL_SNS_LOGIN + '/github';
+  const twitterUrl: string = process.env.REACT_APP_API_URL_SNS_LOGIN + '/twitter';
 
+  if (process.env.NODE_ENV !== 'production') {
+    console.log('facebookUrl:', facebookUrl);
+  }
   return (
     <Grid.Container gap={-10} justify="center">
       <Row className="justify-content-md-center">
@@ -85,33 +104,25 @@ export const Login = (props: LoginProps) => {
           <Button type="success" ghost onClick={onClickLogin}>
             ログイン
           </Button>
-          <Link
-            to="/signup"
-            className="text-lg text-white ml-4 px-3 py-2 rounded-md text-sm font-medium hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
-          >
-            <Button type="secondary" ghost onClick={onClickLogin}>
+          <Link to="/signup">
+            <Button type="secondary" ghost>
               Signup
             </Button>
           </Link>
           <ul className="follow-button">
             <li className="fbpagebtn">
-              <a href="" title="Facebookページ">
-                {/* <i className="fab fa-facebook-square fa-5x"></i> */}
-              </a>
-            </li>
-            <li className="twbtn">
-              <a href="" title="Twitter">
-                <i className="fa fa-twitter-square fa-4x"></i>
+              <a href={facebookUrl} title="Facebookページ">
+                <i className="fa fa-facebook-square fa-4x"></i>
               </a>
             </li>
             <li className="gpbtn">
-              <a href="" title="Google+">
-                <i className="fa fa-google-plus-square fa-4x"></i>
+              <a href={githubUrl} title="Google+">
+                <i className="fa fa-github-square fa-4x"></i>
               </a>
             </li>
-            <li className="feedlybtn">
-              <a href="http://feedly.com/i/subscription/feed/feedのURL" title="feedly">
-                <i className="fa fa-rss-square fa-4x"></i>
+            <li className="twbtn">
+              <a href={twitterUrl} title="Twitter">
+                <i className="fa fa-twitter-square fa-4x"></i>
               </a>
             </li>
           </ul>
