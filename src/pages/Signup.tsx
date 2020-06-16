@@ -1,10 +1,10 @@
-import * as React from 'react';
-import { Link } from 'react-router-dom';
+// import * as React from 'react';
 
 // export const Login = () => {
 //   return <h1>hoge</h1>;
 // };
 
+import * as React from 'react';
 // import React, { Component } from 'react';
 // import { Form } from 'react-bootstrap';
 import { withRouter } from 'react-router-dom';
@@ -16,7 +16,7 @@ import * as H from 'history';
 import { App } from '../../src/App';
 import { Grid, Row, Note, Button } from '@zeit-ui/react';
 
-type LoginProps = {
+type SignupProps = {
   email: '';
   password: '';
   errMessage: '';
@@ -24,9 +24,12 @@ type LoginProps = {
   message: string;
 };
 
-export const Login = (props: LoginProps) => {
+export const Signup = (props: SignupProps) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [password_confirmation, setPassword_confirmation] = useState('');
+  const [name, setName] = useState('');
+
   const [errMessage, setErrMessage] = useState('');
 
   useEffect(() => {
@@ -35,15 +38,15 @@ export const Login = (props: LoginProps) => {
       console.log('isLoggedIn(Login.tsx):', User.isLoggedIn());
     }
   }, []);
-  const onClickLogin = async () => {
+  const onClickSignup = async () => {
     try {
-      await User.login(email, password);
+      await User.signup(email, password, password_confirmation, name);
       if (process.env.NODE_ENV !== 'production') {
         console.log(User.isLoggedIn());
       }
       props.history.push('/');
     } catch (e) {
-      setErrMessage('メールアドレスかパスワードが違います');
+      // setErrMessage('メールアドレスかパスワードが違います');
     }
   };
 
@@ -52,6 +55,9 @@ export const Login = (props: LoginProps) => {
   };
   const handleChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
+  };
+  const handleChangeConfirmationpass = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPassword_confirmation(e.target.value);
   };
 
   return (
@@ -82,48 +88,20 @@ export const Login = (props: LoginProps) => {
               value={props.password}
             />
           </div>
-          <Button type="success" ghost onClick={onClickLogin}>
-            ログイン
+          <div className="form-group">
+            <label className="form-label">確認用パスワード</label>
+            <input
+              type="password"
+              placeholder="パスワードを再入力"
+              onChange={handleChangeConfirmationpass}
+              value={props.password}
+            />
+          </div>
+          <Button type="success" ghost onClick={onClickSignup}>
+            Signup
           </Button>
-          <Link
-            to="/signup"
-            className="text-lg text-white ml-4 px-3 py-2 rounded-md text-sm font-medium hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
-          >
-            <Button type="secondary" ghost onClick={onClickLogin}>
-              Signup
-            </Button>
-          </Link>
         </form>
       </Row>
-      {/* 
-      <form>
-        <p>
-          <b>ログイン</b>
-        </p>
-        <div className="form-group">
-          <label className="form-label">メールアドレス</label>
-          <input
-            placeholder="メールアドレスを入力"
-            type="email"
-            id="email"
-            className="form-control"
-            value=""
-          />
-        </div>
-        <div className="form-group">
-          <label className="form-label">パスワード</label>
-          <input
-            placeholder="パスワードを入力"
-            type="password"
-            id="password"
-            className="form-control"
-            value=""
-          />
-        </div>
-        <Button type="success" ghost className="jsx-1491622555 btn ">
-          <div className="text">ログイン</div>
-        </Button>
-      </form> */}
     </Grid.Container>
   );
 };

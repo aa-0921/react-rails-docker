@@ -3,12 +3,15 @@ import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-d
 
 import { Login } from '../pages/Login';
 import { Logout } from '../pages/Logout';
+import { Signup } from '../pages/Signup';
+
 import { HomePage } from '../components/HomePage';
 
 import { Auth } from '../components/Auth';
 import User from '../components/User';
 // import { List } from './list';
 import { App } from '../../src/App';
+// import { UserButton } from '../components/UserButton';
 
 export const LoginApp = () => {
   if (process.env.NODE_ENV !== 'production') {
@@ -19,7 +22,10 @@ export const LoginApp = () => {
     <Router>
       <Switch>
         <Route exact path="/login" component={Login} />
+        {/* <Route exact path="/login" component={UserButton} /> */}
+
         <Route exact path="/logout" component={Logout} />
+        <Route exact path="/signup" component={Signup} />
 
         <Auth>
           <Switch>

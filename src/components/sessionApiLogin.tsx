@@ -20,7 +20,6 @@ export const sessionApiLogin = async ({ email, password }: LoginParams) => {
     'Content-Type': 'application/json',
   };
 
-  const loginUrl: string = process.env.REACT_APP_API_URL + '/sign_in';
   if (process.env.NODE_ENV !== 'production') {
     console.log('process.env.NODE_ENV:', process.env.NODE_ENV);
     console.log('loginUrl:', loginUrl);
@@ -31,6 +30,7 @@ export const sessionApiLogin = async ({ email, password }: LoginParams) => {
     );
   }
 
+  const loginUrl: string = process.env.REACT_APP_API_URL + '/sign_in';
   return fetch(loginUrl, { method, headers, body })
     .then((response) => {
       if (response.status == 200) {

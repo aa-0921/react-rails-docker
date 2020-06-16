@@ -1,5 +1,6 @@
 import { sessionApiLogin } from './sessionApiLogin';
 import { sessionApiLogout } from './sessionApiLogout';
+import { registrationApiSignup } from './registrationApiSignup';
 
 // import { useState } from 'react';
 import Cookies from 'js-cookie';
@@ -28,6 +29,19 @@ class User {
       this.set('isLoggedIn', false.toString());
       sessionApiLogout;
     }
+  };
+  signup = async (email: string, password: string, password_confirmation: string, name: string) => {
+    if (process.env.NODE_ENV !== 'production') {
+      console.log(email);
+      console.log(password);
+      console.log(password_confirmation);
+      console.log(name);
+    }
+    await registrationApiSignup({ email, password, password_confirmation, name });
+    if (process.env.NODE_ENV !== 'production') {
+      console.log('isLoggedIn(User.tsxサインアップ処理後):' + this.isLoggedIn());
+    }
+    return true;
   };
 }
 
