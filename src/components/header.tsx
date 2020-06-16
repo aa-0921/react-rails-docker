@@ -1,7 +1,18 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
+import User from '../components/User';
 
 export function Header() {
+  // ログアウト
+  const click = async () => {
+    try {
+      await User.logout;
+      User.logout();
+    } catch (e) {
+      // setErrMessage('メールアドレスかパスワードが違います');
+    }
+  };
+
   return (
     <header>
       <div>
@@ -110,6 +121,7 @@ export function Header() {
                           href="#"
                           className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                           role="menuitem"
+                          onClick={click}
                         >
                           Sign out
                         </a>

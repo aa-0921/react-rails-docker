@@ -1,7 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-require('dotenv').config({ path: __dirname + '/.env' });
+require('dotenv').config({ path: `${__dirname}/.env` });
 // module.config.resolve = { extensions: ['.js', '.scss'] };
 module.exports = {
   mode: 'development',
@@ -38,22 +38,15 @@ module.exports = {
           'css-loader', // translates CSS into CommonJS
           'sass-loader', // compiles Sass to CSS, using Node Sass by default
         ],
-        // loaders: [
-        //   require.resolve('style-loader'),
-        //   require.resolve('css-loader'),
-        //   require.resolve('sass-loader'),
-        // ],
       },
       {
         test: /\.css$/,
         use: ['style-loader', 'css-loader'],
-        // loaders: [
-        //   require.resolve('style-loader'),
-        //   require.resolve('css-loader'),
-        //   require.resolve('sass-loader'),
-        // ],
       },
-      // {
+      {
+        test: /\.(png|woff|woff2|eot|ttf|svg)$/,
+        loader: 'url-loader?limit=100000',
+      },
       //   use: [
       //     {
       //       loader: 'postcss-loader',
@@ -75,9 +68,13 @@ module.exports = {
         REACT_APP_API_URL_ALL_POST_DATAS: JSON.stringify(
           process.env.REACT_APP_API_URL_ALL_POST_DATAS,
         ),
+        REACT_APP_API_URL: JSON.stringify(process.env.REACT_APP_API_URL),
+        REACT_APP_API_URL_SNS_LOGIN: JSON.stringify(process.env.REACT_APP_API_URL_SNS_LOGIN),
       },
+      'process.env.NODE_ENV': JSON.stringify('production'),
     }),
   ],
+  node: { fs: 'empty' },
 
   resolve: {
     extensions: ['.js', '.ts', '.tsx'],
