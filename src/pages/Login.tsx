@@ -93,37 +93,30 @@ export const Login = (props: LoginProps) => {
               Signup
             </Button>
           </Link>
+          <ul className="follow-button">
+            <li className="fbpagebtn">
+              <a href="" title="Facebookページ">
+                {/* <i className="fab fa-facebook-square fa-5x"></i> */}
+              </a>
+            </li>
+            <li className="twbtn">
+              <a href="" title="Twitter">
+                <i className="fa fa-twitter-square fa-4x"></i>
+              </a>
+            </li>
+            <li className="gpbtn">
+              <a href="" title="Google+">
+                <i className="fa fa-google-plus-square fa-4x"></i>
+              </a>
+            </li>
+            <li className="feedlybtn">
+              <a href="http://feedly.com/i/subscription/feed/feedのURL" title="feedly">
+                <i className="fa fa-rss-square fa-4x"></i>
+              </a>
+            </li>
+          </ul>
         </form>
       </Row>
-      {/* 
-      <form>
-        <p>
-          <b>ログイン</b>
-        </p>
-        <div className="form-group">
-          <label className="form-label">メールアドレス</label>
-          <input
-            placeholder="メールアドレスを入力"
-            type="email"
-            id="email"
-            className="form-control"
-            value=""
-          />
-        </div>
-        <div className="form-group">
-          <label className="form-label">パスワード</label>
-          <input
-            placeholder="パスワードを入力"
-            type="password"
-            id="password"
-            className="form-control"
-            value=""
-          />
-        </div>
-        <Button type="success" ghost className="jsx-1491622555 btn ">
-          <div className="text">ログイン</div>
-        </Button>
-      </form> */}
     </Grid.Container>
   );
 };

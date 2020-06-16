@@ -38,22 +38,15 @@ module.exports = {
           'css-loader', // translates CSS into CommonJS
           'sass-loader', // compiles Sass to CSS, using Node Sass by default
         ],
-        // loaders: [
-        //   require.resolve('style-loader'),
-        //   require.resolve('css-loader'),
-        //   require.resolve('sass-loader'),
-        // ],
       },
       {
         test: /\.css$/,
         use: ['style-loader', 'css-loader'],
-        // loaders: [
-        //   require.resolve('style-loader'),
-        //   require.resolve('css-loader'),
-        //   require.resolve('sass-loader'),
-        // ],
       },
-      // {
+      {
+        test: /\.(png|woff|woff2|eot|ttf|svg)$/,
+        loader: 'url-loader?limit=100000',
+      },
       //   use: [
       //     {
       //       loader: 'postcss-loader',
