@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FetchData } from '../scripts/api/FetchData';
+import { DropZone } from '../components/DropZone';
 
 export const Posts = () => {
   const [hasError, setErrors] = useState(false);
@@ -14,6 +15,7 @@ export const Posts = () => {
       <span>{JSON.stringify(posts)}</span>
       <hr />
       <span>Has error: {JSON.stringify(hasError)}</span>
+      <DropZone />
     </div>
   );
 };
