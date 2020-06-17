@@ -12,7 +12,7 @@ export const Posts = () => {
   }, []);
   return (
     <div>
-      <span>{JSON.stringify(posts)}</span>
+      {/* <span>{JSON.stringify(posts)}</span> */}
       <hr />
       <span>Has error: {JSON.stringify(hasError)}</span>
       <DropZone />

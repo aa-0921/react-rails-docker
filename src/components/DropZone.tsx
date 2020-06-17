@@ -2,10 +2,9 @@
 import React from 'react';
 
 import Dropzone, { IDropzoneProps, ILayoutProps, defaultClassNames } from 'react-dropzone-uploader';
-// import * as Dropzone from 'react-dropzone';
+
 import 'react-dropzone-uploader/dist/styles.css';
 
-// add type defs to custom LayoutComponent prop to easily inspect props passed to injected components
 const Layout = ({
   input,
   previews,
@@ -24,12 +23,11 @@ const Layout = ({
     </div>
   );
 };
+const postUrl: string = process.env.REACT_APP_API_URL_ALL_POST_DATAS!;
 
 export const DropZone = () => {
-  // add type defs to function props to get TS support inside function bodies,
-  // and not just where functions are passed as props into Dropzone
   const getUploadParams: IDropzoneProps['getUploadParams'] = () => ({
-    url: 'https://httpbin.org/post',
+    url: postUrl,
   });
 
   const handleSubmit: IDropzoneProps['onSubmit'] = (files, allFiles) => {
