@@ -1,5 +1,5 @@
 import { sessionApiLogin } from './sessionApiLogin';
-import { sessionApiLogout } from './sessionApiLogout';
+import { sessionApiLogout } from './SessionApiLogout';
 import { registrationApiSignup } from './registrationApiSignup';
 
 // import { useState } from 'react';
