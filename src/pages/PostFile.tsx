@@ -5,28 +5,12 @@
 
 // import { Grid, Row, Note, Button } from '@zeit-ui/react';
 
-// // import { FileUploadState } from './module';
-// // import { ActionDispatcher } from './Container';
-
 // interface Props {
 //   // value: FileUploadState;
 //   // actions: ActionDispatcher;
 // }
 
 // export const FileUploadSample = (props: Props) => {
-//   // const handleChangeFile = (e: any) => {
-//   //   const target: HTMLInputElement = e.target as HTMLInputElement;
-//   //   if (target.files == null) {
-//   //     props.actions.updateFile(null);
-//   //   } else {
-//   //     const _file = target.files.item(0);
-//   //     props.actions.updateFile(_file);
-//   //   }
-//   // };
-
-//   // if (process.env.NODE_ENV !== 'production') {
-//   //   console.log('facebookUrl:', facebookUrl);
-//   // }
 //   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 //     setDescription(e.target.value);
 //   };

@@ -7,6 +7,9 @@ export const Posts = () => {
   const [posts, setPosts] = useState({});
   const url: string = process.env.REACT_APP_API_URL_ALL_POST_DATAS!;
 
+  if (process.env.NODE_ENV !== 'production') {
+    console.log('url:', url);
+  }
   useEffect(() => {
     FetchData(url).then((res) => setPosts(res));
   }, []);

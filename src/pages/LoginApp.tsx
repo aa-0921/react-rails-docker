@@ -21,7 +21,7 @@ export const LoginApp = () => {
   return (
     <Router>
       <Switch>
-        <Route exact path="/login" component={Login} />
+        {/* <Route exact path="/login" component={Login} /> */}
         {/* <Route exact path="/login" component={UserButton} /> */}
 
         <Route exact path="/logout" component={Logout} />
