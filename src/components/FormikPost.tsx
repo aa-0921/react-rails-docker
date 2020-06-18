@@ -4,8 +4,7 @@ import { useState } from 'react';
 import { useFormikContext, useField } from 'formik';
 import axios from 'axios';
 
-export const S3Post = () => {
-  // const { setFieldValue } = useFormikContext();
+export const FormikPost = () => {
   const [picpostImage, setPicpostImage] = useState('');
 
   type bodyProps = {
@@ -48,7 +47,6 @@ export const S3Post = () => {
     //   .catch((e) => alert(e.message));
   };
   const setImage = (e: any, setFieldValue: any) => {
-    // const setImage = (e: React.ChangeEvent<HTMLInputElement>, setFieldValue:any) => {
     let canvas: any = document.getElementById('canvas');
     let ctx = canvas!.getContext('2d');
     let maxW = 250;
@@ -61,7 +59,7 @@ export const S3Post = () => {
       let scale = Math.min(maxW / iw, maxH / ih);
       let iwScaled = iw * scale;
       let ihScaled = ih * scale;
-      canvas!.width = iwScaled;
+      canvas.width = iwScaled;
       canvas.height = ihScaled;
       ctx.drawImage(img, 0, 0, iwScaled, ihScaled);
       const resizeData = canvas.toDataURL('image/jpeg', 0.5);
@@ -86,7 +84,13 @@ export const S3Post = () => {
             <label>投稿画像</label>
             <img src={!picpostImage ? '' : picpostImage} />
             <React.Fragment>
-              <Field type="file" onChange={(e: any) => setImage(e, setFieldValue)} />
+              {/* ※※ */}
+              <Field
+                id="select_posts_image"
+                type="file"
+                name="post_image"
+                onChange={(e: any) => setImage(e, setFieldValue)}
+              />
               <Field type="hidden" name="profile_image" />
             </React.Fragment>
 

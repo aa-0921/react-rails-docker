@@ -49,7 +49,9 @@ export const DropZone = () => {
       'Content-Type': 'multipart/form-data',
     };
     const postUrl: string = process.env.REACT_APP_API_URL_ALL_POST_DATAS!;
-
+    if (process.env.NODE_ENV !== 'production') {
+      console.log('postUrl: ', postUrl);
+    }
     await fetch(postUrl, { method, headers, body })
       .then((response) => {
         if (response.status == 200) {

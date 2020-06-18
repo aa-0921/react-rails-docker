@@ -29,7 +29,10 @@
     /* Strict Type-Checking Options */
     "strict": true,
     /* Enable all strict type-checking options. */
-    "noImplicitAny": false,
+
+    // anyを許可する
+    // "noImplicitAny": false,
+    // anyを許可しない
     // "noImplicitAny": true,
 
     /* Raise error on expressions and declarations with an implied 'any' type. */
