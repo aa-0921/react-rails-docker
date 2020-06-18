@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { FetchData } from '../scripts/api/FetchData';
 import { DropZone } from '../components/DropZone';
+import { S3Post } from '../components/S3Post';
 
 export const Posts = () => {
   const [hasError, setErrors] = useState(false);
@@ -19,6 +20,7 @@ export const Posts = () => {
       <hr />
       <span>Has error: {JSON.stringify(hasError)}</span>
       <DropZone />
+      <S3Post />
     </div>
   );
 };

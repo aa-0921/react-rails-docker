@@ -2,9 +2,10 @@ import * as React from 'react';
 import { Formik, Form, Field } from 'formik';
 import { useState } from 'react';
 import { useFormikContext, useField } from 'formik';
+import axios from 'axios';
 
 export const S3Post = () => {
-  const { setFieldValue } = useFormikContext();
+  // const { setFieldValue } = useFormikContext();
   const [picpostImage, setPicpostImage] = useState('');
 
   type bodyProps = {
@@ -22,32 +23,33 @@ export const S3Post = () => {
     const headers = {
       'Content-Type': 'application/json',
     };
-    const loginUrl: string = process.env.REACT_APP_API_URL + '/sign_in';
     const [picpost, setPicpost] = useState('');
-    // axios
-    //   .post('http://localhost:3001/users', payload)
-    //   // .then(({ data, message }) => {
+
+    const postUrl: string = process.env.REACT_APP_API_URL_ALL_POST_DATAS!;
+    axios
+      .post(postUrl, body)
+
+      .then(({ data }) => {
+        if (data) {
+          setPicpost(data);
+        } else {
+          // throw new Error(message);
+        }
+      })
+      .catch((e) => alert(e.message));
+    // fetch(postUrl, { method, headers, body })
     //   .then(function (response) {
     //     if (response.data) {
-    //       this.setState({ user: data });
+    //       setPicpost(data);
     //     } else {
     //       throw new Error(response.message);
     //     }
     //   })
     //   .catch((e) => alert(e.message));
-    fetch('http://localhost:3001/users', { method, headers, body })
-      .then(function (response) {
-        if (response.data) {
-          setPicpost(data);
-        } else {
-          throw new Error(response.message);
-        }
-      })
-      .catch((e) => alert(e.message));
   };
-
-  const setImage = (e: React.ChangeEvent<HTMLInputElement>, setFieldValue?) => {
-    let canvas: HTMLElement | null = document.getElementById('canvas');
+  const setImage = (e: any, setFieldValue: any) => {
+    // const setImage = (e: React.ChangeEvent<HTMLInputElement>, setFieldValue:any) => {
+    let canvas: any = document.getElementById('canvas');
     let ctx = canvas!.getContext('2d');
     let maxW = 250;
     let maxH = 250;
@@ -59,7 +61,7 @@ export const S3Post = () => {
       let scale = Math.min(maxW / iw, maxH / ih);
       let iwScaled = iw * scale;
       let ihScaled = ih * scale;
-      canvas.width = iwScaled;
+      canvas!.width = iwScaled;
       canvas.height = ihScaled;
       ctx.drawImage(img, 0, 0, iwScaled, ihScaled);
       const resizeData = canvas.toDataURL('image/jpeg', 0.5);
@@ -68,24 +70,23 @@ export const S3Post = () => {
     };
     img.src = URL.createObjectURL(e.target.files[0]);
   };
+  // interface FormValues {
+  //   picpost_image: string;
+  //   name: string;
+  // }
+  const initialValues: any = {
+    picpost_image: '',
+    name: '',
+  };
   return (
-    <Formik
-      initialValues={{
-        picpost_image: '',
-        name: '',
-      }}
-      onSubmit={updateUser}
-    >
+    <Formik initialValues={initialValues} onSubmit={createPicpost}>
       {({ setFieldValue: setFieldValue, isSubmitting }) => {
         return (
           <Form>
             <label>投稿画像</label>
             <img src={!picpostImage ? '' : picpostImage} />
             <React.Fragment>
-              <Field
-                type="file"
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setImage(e, setFieldValue)}
-              />
+              <Field type="file" onChange={(e: any) => setImage(e, setFieldValue)} />
               <Field type="hidden" name="profile_image" />
             </React.Fragment>
 

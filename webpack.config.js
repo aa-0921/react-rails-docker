@@ -17,6 +17,9 @@ module.exports = {
     hot: true,
     open: true,
     historyApiFallback: true,
+    watchOptions: {
+      ignored: /node_modules/,
+    },
   },
 
   module: {

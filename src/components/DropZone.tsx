@@ -33,7 +33,7 @@ export const DropZone = () => {
     const submitData = new FormData();
 
     // submitData.append('formData', JSON.stringify(content));
-
+    // submitData.append('formData', JSON.user_id(c1);
     // submitData.append('image', fileInput!.current.files[0]);
     submitData.append('picture', postData);
     submitData.append('content', content);
