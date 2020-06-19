@@ -16,34 +16,30 @@ export const FormikPost = () => {
   //   picture: picpostImage,
   //   content: '',
   // };
-  const createPicpost = async (values: any) => {
+  const createPicpost = async (body: any) => {
     if (process.env.NODE_ENV !== 'production') {
-      console.log('values:', values);
+      console.log('body:', body);
     }
     // values.user_id = 1;
     const method = 'POST';
     // const body = JSON.stringify(values);
-    const headers = {
-      'Content-Type': 'application/json',
-    };
     // const [picpost, setPicpost] = useState('');
-
+    const headers = { 'content-type': 'multipart/form-data' };
     const postUrl: string = process.env.REACT_APP_API_URL_ALL_POST_DATAS!;
     if (process.env.NODE_ENV !== 'production') {
       console.log('postUrl:', postUrl);
     }
-    await axios
-      .post(postUrl, values)
-      // .post(postUrl, body)
+    await axios.post(postUrl, body, { headers });
+    // .post(postUrl, body)
 
-      .then(({ data }) => {
-        if (data) {
-          // setPicpost(data);
-        } else {
-          // throw new Error(message);
-        }
-      })
-      .catch((e) => alert(e.message));
+    // .then(({ data }) => {
+    // if (data) {
+    // setPicpost(data);
+    // } else {
+    // throw new Error(message);
+    // }
+    // })
+    // .catch((e) => alert(e.message));
     // fetch(postUrl, { method, headers, body })
     //   .then(function (response) {
     //     if (response.data) {
@@ -92,8 +88,19 @@ export const FormikPost = () => {
       onSubmit={(values) => {
         values.user_id = 1;
 
-        // console.log(values);
-        createPicpost(values);
+        console.log('values: ', values);
+        console.log('values.picture: ', values.picture);
+        const submitData = new FormData();
+
+        // submitData.append('formData', JSON.stringify(content));
+        // submitData.append('formData', JSON.user_id(c1);
+        // submitData.append('image', fileInput!.current.files[0]);
+        submitData.append('picture', values.picture);
+        submitData.append('content', values.content);
+        submitData.append('user_id', '1');
+        const body = submitData;
+
+        createPicpost(body);
       }}
       render={({ values, handleSubmit, handleChange, setFieldValue }) => {
         return (
