@@ -13,63 +13,57 @@ import { Grid, Row, Input, Button } from '@zeit-ui/react';
 // const postUrl: string = process.env.REACT_APP_API_URL_ALL_POST_DATAS!;
 
 export const DropZone = () => {
-  const [postData, setpostData] = useState('');
+  // const [postData, setpostData] = useState('');
 
   const handleSubmit: IDropzoneProps['onSubmit'] = (Files, allFiles) => {
-    if (process.env.NODE_ENV !== 'production') {
-      console.log('handleSubmit直後:', Files);
-    }
-    console.log(Files.map((f) => f.meta));
+    console.log('Files: ', Files);
+    console.log(
+      'Files.map((f) => f.meta',
+      Files.map((f) => f.meta),
+    );
     allFiles.forEach((f) => f.remove());
-    Files.map((f) => setpostData(f.meta.name));
+    // Files.map((f) => setpostData(f.meta.name));
     // setpostData(Files);
-    if (process.env.NODE_ENV !== 'production') {
-      console.log('postDataの内容:', postData);
-    }
+    // console.log('postData: ', postData);
   };
 
   const postSubmit = async () => {
     // event.preventDefault();
-    const submitData = new FormData();
-
+    // const submitData = new FormData();
     // submitData.append('formData', JSON.stringify(content));
     // submitData.append('formData', JSON.user_id(c1);
     // submitData.append('image', fileInput!.current.files[0]);
-    submitData.append('picture', postData);
-    submitData.append('content', content);
-    submitData.append('user_id', '1');
-
-    if (process.env.NODE_ENV !== 'production') {
-      console.log('submitData:', submitData);
-    }
-    const method = 'POST';
-    const body = submitData;
-
-    const headers = {
-      'Content-Type': 'multipart/form-data',
-    };
-    const postUrl: string = process.env.REACT_APP_API_URL_ALL_POST_DATAS!;
-    if (process.env.NODE_ENV !== 'production') {
-      console.log('postUrl: ', postUrl);
-    }
-    await fetch(postUrl, { method, headers, body })
-      .then((response) => {
-        if (response.status == 200) {
-          if (process.env.NODE_ENV !== 'production') {
-            console.log('投稿成功');
-          }
-        } else {
-          if (process.env.NODE_ENV !== 'production') {
-            console.log('投稿失敗');
-          }
-          throw new Error();
-        }
-      })
-      .catch((error) => {
-        if (process.env.NODE_ENV !== 'production') {
-          console.log('投稿失敗');
-        }
-      });
+    // submitData.append('picture', postData);
+    // submitData.append('content', content);
+    // submitData.append('user_id', '1');
+    // if (process.env.NODE_ENV !== 'production') {
+    //   console.log('submitData:', submitData);
+    // }
+    // const method = 'POST';
+    // const body = submitData;
+    // const headers = {
+    //   'Content-Type': 'multipart/form-data',
+    // };
+    // const postUrl: string = process.env.REACT_APP_API_URL_ALL_POST_DATAS!;
+    // console.log('postUrl: ', postUrl);
+    // await fetch(postUrl, { method, headers, body })
+    //   .then((response) => {
+    //     if (response.status == 200) {
+    //       if (process.env.NODE_ENV !== 'production') {
+    //         console.log('投稿成功');
+    //       }
+    //     } else {
+    //       if (process.env.NODE_ENV !== 'production') {
+    //         console.log('投稿失敗');
+    //       }
+    //       throw new Error();
+    //     }
+    //   })
+    //   .catch((error) => {
+    //     if (process.env.NODE_ENV !== 'production') {
+    //       console.log('投稿失敗');
+    //     }
+    //   });
   };
   const [content, setContent] = useState('');
   // const fileInput: RefObject<HTMLInputElement> = React.createRef();
@@ -80,8 +74,8 @@ export const DropZone = () => {
   };
   // const handleChangeStatus = ({ meta }, status: any) => {
   const handleChangeStatus: IDropzoneProps['onChangeStatus'] = ({ meta }, status) => {
-    console.log('status: ', status);
-    console.log('meta: ', meta);
+    console.log('status-handleChangeStatus: ', status);
+    console.log('meta-handleChangeStatus: ', meta);
   };
 
   const Layout = ({
@@ -145,10 +139,10 @@ export const DropZone = () => {
               onChange={handleChange}
             />
 
-            <Input type="file" name="image" ref={fileInput} accept="image/*" />
-            <Button type="success" ghost onClick={postSubmit}>
+            {/* <Input type="file" name="image" ref={fileInput} accept="image/*" /> */}
+            {/* <Button type="success" ghost onClick={postSubmit}>
               Post
-            </Button>
+            </Button> */}
           </div>
         </form>
       </Row>
