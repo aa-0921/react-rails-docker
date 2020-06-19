@@ -95,28 +95,41 @@ export const FormikPost = () => {
         createPicpost(values);
       }}
       render={(props) => (
-        <form onSubmit={props.handleSubmit}>
-          <div>
-            <label>投稿画像</label>
-            <input
-              name="picture"
-              value={props.values.picture}
-              onChange={props.handleChange}
-              id="select_posts_image"
-              type="file"
+        <Form onSubmit={props.handleSubmit}>
+          <Field>
+            <div>
+              <label>投稿画像</label>
+              <input
+                name="picture"
+                value={props.values.picture}
+                onChange={(event) => {
+                  setFieldValue('file', event.currentTarget.files[0]);
+                }}
+                // onChange={props.handleChange}
+                id="select_posts_image"
+                type="file"
+              />
+            </div>
+            <canvas
+              id="canvas"
+              style={{
+                display: 'none',
+              }}
+              width="64"
+              height="64"
             />
-          </div>
-          <div>
-            <label>comment</label>
-            <input
-              type="text"
-              name="content"
-              value={props.values.content}
-              onChange={props.handleChange}
-            />
-          </div>
-          <button type="submit">送信</button>
-        </form>
+            <div>
+              <label>comment</label>
+              <input
+                type="text"
+                name="content"
+                value={props.values.content}
+                onChange={props.handleChange}
+              />
+            </div>
+            <button type="submit">送信</button>
+          </Field>
+        </Form>
       )}
     />
   );
