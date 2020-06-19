@@ -7,30 +7,38 @@ import axios from 'axios';
 export const FormikPost = () => {
   const [picpostImage, setPicpostImage] = useState('');
 
-  type bodyProps = {
-    firstName: string;
-    lastName: string;
-  };
+  // type bodyProps = {
+  //   picture: string;
+  //   content: string;
+  // };
 
-  const obj = {
-    firstName: 'Fred',
-    lastName: 'Flintstone',
-  };
-  const createPicpost = (obj: bodyProps) => {
+  // const values = {
+  //   picture: picpostImage,
+  //   content: '',
+  // };
+  const createPicpost = async (values: any) => {
+    if (process.env.NODE_ENV !== 'production') {
+      console.log('values:', values);
+    }
+    // values.user_id = 1;
     const method = 'POST';
-    const body = JSON.stringify(obj);
+    // const body = JSON.stringify(values);
     const headers = {
       'Content-Type': 'application/json',
     };
-    const [picpost, setPicpost] = useState('');
+    // const [picpost, setPicpost] = useState('');
 
     const postUrl: string = process.env.REACT_APP_API_URL_ALL_POST_DATAS!;
-    axios
-      .post(postUrl, body)
+    if (process.env.NODE_ENV !== 'production') {
+      console.log('postUrl:', postUrl);
+    }
+    await axios
+      .post(postUrl, values)
+      // .post(postUrl, body)
 
       .then(({ data }) => {
         if (data) {
-          setPicpost(data);
+          // setPicpost(data);
         } else {
           // throw new Error(message);
         }
@@ -72,44 +80,80 @@ export const FormikPost = () => {
   //   picpost_image: string;
   //   name: string;
   // }
-  const initialValues: any = {
-    picpost_image: '',
-    name: '',
-  };
+  // 初期値は必要なさそうなので、後々消す。
+  // const initialValues: any = {
+  //   picpost_image: '',
+  //   constent: '',
+  // };
   return (
-    <Formik initialValues={initialValues} onSubmit={createPicpost}>
-      {({ setFieldValue: setFieldValue, isSubmitting }) => {
-        return (
-          <Form>
-            <label>投稿画像</label>
-            <img src={!picpostImage ? '' : picpostImage} />
-            <React.Fragment>
-              {/* ※※ */}
-              <Field
-                id="select_posts_image"
-                type="file"
-                name="post_image"
-                onChange={(e: any) => setImage(e, setFieldValue)}
-              />
-              <Field type="hidden" name="profile_image" />
-            </React.Fragment>
+    <Formik
+      initialValues={{ picture: '', content: '', user_id: 0 }}
+      onSubmit={(values) => {
+        values.user_id = 1;
 
-            <canvas
-              id="canvas"
-              style={{
-                display: 'none',
-              }}
-              width="64"
-              height="64"
-            />
-            <label>コメント</label>
-            <Field className="input" type="text" name="comment" />
-            <button className="submit-button" type="submit" disabled={isSubmitting}>
-              送信
-            </button>
-          </Form>
-        );
+        // console.log(values);
+        createPicpost(values);
       }}
-    </Formik>
+      render={(props) => (
+        <form onSubmit={props.handleSubmit}>
+          <div>
+            <label>投稿画像</label>
+            <input
+              name="picture"
+              value={props.values.picture}
+              onChange={props.handleChange}
+              id="select_posts_image"
+              type="file"
+            />
+          </div>
+          <div>
+            <label>comment</label>
+            <input
+              type="text"
+              name="content"
+              value={props.values.content}
+              onChange={props.handleChange}
+            />
+          </div>
+          <button type="submit">送信</button>
+        </form>
+      )}
+    />
   );
+  // return (
+  // <Formik initialValues={initialValues} onSubmit={createPicpost}>
+  //   {({ setFieldValue, isSubmitting }) => {
+  //     return (
+  //       <Form>
+  //         <label>投稿画像</label>
+  //         <img src={!picpostImage ? '' : picpostImage} />
+  //         <React.Fragment>
+  //           {/* ※※ */}
+  //           <Field
+  //             id="select_posts_image"
+  //             type="file"
+  //             name="picture"
+  //             onChange={(e: any) => setImage(e, setFieldValue)}
+  //           />
+  //           <Field type="hidden" name="post_image" />
+  //         </React.Fragment>
+
+  //         <canvas
+  //           id="canvas"
+  //           style={{
+  //             display: 'none',
+  //           }}
+  //           width="64"
+  //           height="64"
+  //         />
+  //         <label>コメント</label>
+  //         <Field className="input" type="text" name="content" />
+  //         <button className="submit-button" type="submit" disabled={isSubmitting}>
+  //           送信
+  //         </button>
+  //       </Form>
+  //     );
+  //   }}
+  // </Formik>
+  // );
 };
