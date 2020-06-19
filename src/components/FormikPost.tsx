@@ -94,43 +94,44 @@ export const FormikPost = () => {
         // console.log(values);
         createPicpost(values);
       }}
-      render={(props) => (
-        <Form onSubmit={props.handleSubmit}>
-          <Field>
-            <div>
-              <label>投稿画像</label>
-              <input
-                name="picture"
-                value={props.values.picture}
-                onChange={(event) => {
-                  setFieldValue('file', event.currentTarget.files[0]);
+      render={({ values, handleSubmit, handleChange, setFieldValue }) => {
+        return (
+          <Form onSubmit={handleSubmit}>
+            <Field>
+              <div>
+                <label>投稿画像</label>
+                <input
+                  name="picture"
+                  value={values.picture}
+                  onChange={(event) => {
+                    setFieldValue(
+                      'file',
+                      event.currentTarget.files !== null ? event.currentTarget.files[0] : null,
+                    );
+                    // setFieldValue('file', event.currentTarget.files[0]);
+                  }}
+                  // onChange={props.handleChange}
+                  id="select_posts_image"
+                  type="file"
+                />
+              </div>
+              <canvas
+                id="canvas"
+                style={{
+                  display: 'none',
                 }}
-                // onChange={props.handleChange}
-                id="select_posts_image"
-                type="file"
+                width="64"
+                height="64"
               />
-            </div>
-            <canvas
-              id="canvas"
-              style={{
-                display: 'none',
-              }}
-              width="64"
-              height="64"
-            />
-            <div>
-              <label>comment</label>
-              <input
-                type="text"
-                name="content"
-                value={props.values.content}
-                onChange={props.handleChange}
-              />
-            </div>
-            <button type="submit">送信</button>
-          </Field>
-        </Form>
-      )}
+              <div>
+                <label>comment</label>
+                <input type="text" name="content" value={values.content} onChange={handleChange} />
+              </div>
+              <button type="submit">送信</button>
+            </Field>
+          </Form>
+        );
+      }}
     />
   );
   // return (
