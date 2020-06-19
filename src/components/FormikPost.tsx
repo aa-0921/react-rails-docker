@@ -5,7 +5,7 @@ import { useFormikContext, useField } from 'formik';
 import axios from 'axios';
 
 export const FormikPost = () => {
-  const [picpostImage, setPicpostImage] = useState('');
+  // const [picpostImage, setPicpostImage] = useState('');
 
   // type bodyProps = {
   //   picture: string;
@@ -71,8 +71,9 @@ export const FormikPost = () => {
       canvas.height = ihScaled;
       ctx.drawImage(img, 0, 0, iwScaled, ihScaled);
       const resizeData = canvas.toDataURL('image/jpeg', 0.5);
-      setPicpostImage(resizeData);
-      setFieldValue('picpost_image', resizeData);
+      // setPicpostImage(resizeData);
+      // setFieldValue('picpost_image', resizeData);
+      // setFieldValue('picture', resizeData);
     };
     img.src = URL.createObjectURL(e.target.files[0]);
   };
@@ -97,38 +98,57 @@ export const FormikPost = () => {
       render={({ values, handleSubmit, handleChange, setFieldValue }) => {
         return (
           <Form onSubmit={handleSubmit}>
-            <Field>
-              <div>
-                <label>投稿画像</label>
-                <input
-                  name="picture"
-                  value={values.picture}
-                  onChange={(event) => {
-                    setFieldValue(
-                      'file',
-                      event.currentTarget.files !== null ? event.currentTarget.files[0] : null,
-                    );
-                    // setFieldValue('file', event.currentTarget.files[0]);
-                  }}
-                  // onChange={props.handleChange}
-                  id="select_posts_image"
-                  type="file"
-                />
-              </div>
-              <canvas
-                id="canvas"
-                style={{
-                  display: 'none',
+            <div>
+              <label>投稿画像</label>
+              {/* <input */}
+              <Field
+                type="file"
+                // name="picture"
+                id="file"
+                name="file"
+                // value={values.picture}
+                // onChange={(e: any) => setImage(e, setFieldValue)}
+                // onChange={(event: any) => {
+                //   setFieldValue(
+                //     'file',
+                //     event.currentTarget.files !== null ? event.currentTarget.files[0] : null,
+                //   );
+                // }}
+                onChange={(e: any) => {
+                  var file = e.target.files[0];
+                  var reader = new FileReader();
+                  // setFieldValue('attachment_filename', file.name);
+                  reader.onload = function (item) {
+                    setFieldValue('picture', item.target !== null ? item.target.result : null);
+
+                    // setFieldValue('attachment_data', item.target.result);
+                  };
+
+                  reader.readAsDataURL(file);
                 }}
-                width="64"
-                height="64"
+                // onChange={(event: any) => {
+                //   handleChange;
+                //   setFieldValue('file', event.currentTarget.files[0]);
+                // }}
+                // onChange={handleChange}
+                // id="select_posts_image"
               />
-              <div>
-                <label>comment</label>
-                <input type="text" name="content" value={values.content} onChange={handleChange} />
-              </div>
-              <button type="submit">送信</button>
-            </Field>
+            </div>
+            <canvas
+              id="canvas"
+              style={{
+                display: 'none',
+              }}
+              width="64"
+              height="64"
+            />
+            <div>
+              <label>comment</label>
+              {/* <input */}
+              <Field type="text" name="content" value={values.content} onChange={handleChange} />
+            </div>
+            <button type="submit">送信</button>
+            {/* </Field> */}
           </Form>
         );
       }}

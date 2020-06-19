@@ -10,7 +10,7 @@ import Dropzone, {
 import 'react-dropzone-uploader/dist/styles.css';
 import { Grid, Row, Input, Button } from '@zeit-ui/react';
 
-const postUrl: string = process.env.REACT_APP_API_URL_ALL_POST_DATAS!;
+// const postUrl: string = process.env.REACT_APP_API_URL_ALL_POST_DATAS!;
 
 export const DropZone = () => {
   const [postData, setpostData] = useState('');
@@ -102,21 +102,21 @@ export const DropZone = () => {
       </div>
     );
   };
-  const Preview = ({ meta }: IPreviewProps) => {
-    // const Preview = ({ meta }) => {
-    const { name, percent, status } = meta;
-    return (
-      <span
-        style={{
-          alignSelf: 'flex-start',
-          margin: '10px 3%',
-          fontFamily: 'Helvetica',
-        }}
-      >
-        {name}, {Math.round(percent)}%, {status}
-      </span>
-    );
-  };
+  // const Preview = ({ meta }: IPreviewProps) => {
+  //   // const Preview = ({ meta }) => {
+  //   const { name, percent, status } = meta;
+  //   return (
+  //     <span
+  //       style={{
+  //         alignSelf: 'flex-start',
+  //         margin: '10px 3%',
+  //         fontFamily: 'Helvetica',
+  //       }}
+  //     >
+  //       {name}, {Math.round(percent)}%, {status}
+  //     </span>
+  //   );
+  // };
   return (
     <Grid.Container gap={-10} justify="center">
       <Row className="justify-content-md-center">
