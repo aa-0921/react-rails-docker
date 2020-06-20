@@ -30,25 +30,6 @@ export const FormikPost = () => {
       console.log('postUrl:', postUrl);
     }
     await axios.post(postUrl, body, { headers });
-    // .post(postUrl, body)
-
-    // .then(({ data }) => {
-    // if (data) {
-    // setPicpost(data);
-    // } else {
-    // throw new Error(message);
-    // }
-    // })
-    // .catch((e) => alert(e.message));
-    // fetch(postUrl, { method, headers, body })
-    //   .then(function (response) {
-    //     if (response.data) {
-    //       setPicpost(data);
-    //     } else {
-    //       throw new Error(response.message);
-    //     }
-    //   })
-    //   .catch((e) => alert(e.message));
   };
   const setImage = (e: any, setFieldValue: any) => {
     let canvas: any = document.getElementById('canvas');
