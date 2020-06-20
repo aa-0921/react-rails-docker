@@ -17,6 +17,9 @@ module.exports = {
     hot: true,
     open: true,
     historyApiFallback: true,
+    watchOptions: {
+      ignored: /node_modules/,
+    },
   },
 
   module: {
@@ -27,9 +30,11 @@ module.exports = {
         exclude: /node_modules/,
       },
       {
-        test: /\.ts(x?)$/,
+        // test: /\.ts(x?)$/,
+        test: /\.(ts|tsx)$/,
         loader: 'ts-loader',
         exclude: /node_modules/,
+        // exclude: /node_modules\/(?!(camelcase)\/).*/,
       },
       {
         test: /\.scss$/,

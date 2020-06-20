@@ -28,9 +28,11 @@ export function Header() {
                   /> */}
                   <span className="font-semibold text-xl tracking-tight text-white">SUGOMORI</span>
                 </div>
-                <div className="hidden md:block">
+                <div>
+                  {/* <div className="hidden md:block"> */}
+
                   <div className="ml-10 flex items-baseline">
-                    <a
+                    {/* <a
                       href="#"
                       className="px-3 py-2 rounded-md text-sm font-medium text-white bg-gray-900 focus:outline-none focus:text-white focus:bg-gray-700"
                     >
@@ -48,8 +50,8 @@ export function Header() {
                       className="text-lg text-white ml-4 px-3 py-2 rounded-md text-sm font-medium  hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
                     >
                       Pickup
-                    </Link>
-                    <Link
+                    </Link> */}
+                    {/* <Link
                       to="/zeit-sample"
                       className="text-lg text-white ml-4 px-3 py-2 rounded-md text-sm font-medium hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
                     >
@@ -60,7 +62,7 @@ export function Header() {
                       className="text-lg text-white ml-4 px-3 py-2 rounded-md text-sm font-medium hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
                     >
                       About
-                    </Link>
+                    </Link> */}
                     <Link
                       to="/posts"
                       className="text-lg text-white ml-4 px-3 py-2 rounded-md text-sm font-medium hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"

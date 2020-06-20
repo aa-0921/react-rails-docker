@@ -21,11 +21,13 @@ export const LoginApp = () => {
   return (
     <Router>
       <Switch>
-        <Route exact path="/login" component={Login} />
+        {/* <Route exact path="/login" component={Login} /> */}
         {/* <Route exact path="/login" component={UserButton} /> */}
 
         <Route exact path="/logout" component={Logout} />
         <Route exact path="/signup" component={Signup} />
+        {/* 本番では削除（このままでは非ログイン状態でもAppにアクセスできてしまう。） */}
+        <Route exact path="/app" component={App} />
 
         <Auth>
           <Switch>
