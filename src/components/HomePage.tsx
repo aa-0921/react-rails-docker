@@ -8,6 +8,8 @@ import { Header } from './header';
 import { About } from '../pages/About';
 // import { ShowPost } from './ShowPost';
 import { Posts } from '../pages/Posts';
+import { Profile } from '../pages/Profile';
+
 import User from './User';
 
 // import './tailwind.css';
@@ -24,9 +26,10 @@ export const HomePage = () => {
       <Route path="/pickup" component={Pickup} />
       <Route path="/zeit-sample" component={ZeitSample} />
       <Route path="/about" component={About} />
+      <Route path="/profile" component={Profile} />
+
       {/* <Route path="/showpost" component={ShowPost} /> */}
       <Route path="/posts" component={Posts} />
-
       {/* <Footer /> */}
     </BrowserRouter>
   );
