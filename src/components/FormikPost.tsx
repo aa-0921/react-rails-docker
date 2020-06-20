@@ -161,40 +161,4 @@ export const FormikPost = () => {
       }}
     />
   );
-  // return (
-  // <Formik initialValues={initialValues} onSubmit={createPicpost}>
-  //   {({ setFieldValue, isSubmitting }) => {
-  //     return (
-  //       <Form>
-  //         <label>投稿画像</label>
-  //         <img src={!picpostImage ? '' : picpostImage} />
-  //         <React.Fragment>
-  //           {/* ※※ */}
-  //           <Field
-  //             id="select_posts_image"
-  //             type="file"
-  //             name="picture"
-  //             onChange={(e: any) => setImage(e, setFieldValue)}
-  //           />
-  //           <Field type="hidden" name="post_image" />
-  //         </React.Fragment>
-
-  //         <canvas
-  //           id="canvas"
-  //           style={{
-  //             display: 'none',
-  //           }}
-  //           width="64"
-  //           height="64"
-  //         />
-  //         <label>コメント</label>
-  //         <Field className="input" type="text" name="content" />
-  //         <button className="submit-button" type="submit" disabled={isSubmitting}>
-  //           送信
-  //         </button>
-  //       </Form>
-  //     );
-  //   }}
-  // </Formik>
-  // );
 };
