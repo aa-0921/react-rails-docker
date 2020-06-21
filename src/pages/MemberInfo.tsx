@@ -4,57 +4,55 @@ import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import { FetchData } from '../scripts/api/FetchData';
 
-export const MemberInfo = () => {
-  const Show = ({ match }: { match: any }) => {
-    let params = match.params;
-    return (
-      <div>
-        UserName,Email is
-        <div>
-          <strong>{params.id}</strong>
-        </div>
-      </div>
-    );
-  };
-
-  const Users = () => {
-    const [hasError, setErrors] = useState(false);
-    const [users, setUsers] = useState({});
-
-    const url: string = process.env.REACT_APP_API_URL_USERS!;
-    console.log('url:', url);
-
-    useEffect(() => {
-      FetchData(url).then((res) => setUsers(res));
-    }, []);
-    return (
-      <div>
-        <span>{JSON.stringify(users)}</span>
-        <hr />
-        <span>Has error: {JSON.stringify(hasError)}</span>
-      </div>
-    );
-  };
+export const MemberInfo = ({ match }: { match: any }) => {
+  let params = match.params;
   return (
-    <Router>
+    <div>
+      UserName,Email is
       <div>
-        <Users />
-
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">UserName1</Link>
-            </li>
-            <li>
-              <Link to="/post/2">UserName2</Link>
-            </li>
-          </ul>
-        </nav>
-        <Switch>
-          <Route path="/post/:id" component={Show} />
-          <Route path="/"></Route>
-        </Switch>
+        <strong>{params.id}</strong>
+        <MemberList />
       </div>
-    </Router>
+    </div>
+  );
+};
+
+// const Users = () => {
+//   const [hasError, setErrors] = useState(false);
+//   const [fetchUsers, setFetchUsers] = useState({});
+//   const url: string = process.env.REACT_APP_API_URL_USERS!;
+//   console.log('url:', url);
+
+//   useEffect(() => {
+//     FetchData(url).then((res) => setFetchUsers(res));
+//   }, []);
+// };
+const MemberList = () => {
+  const [hasError, setErrors] = useState(false);
+  const [fetchUsers, setFetchUsers] = useState({});
+  const url: string = process.env.REACT_APP_API_URL_USERS!;
+  console.log('url:', url);
+
+  useEffect(() => {
+    // FetchData(url).then((res) => setFetchUsers(res.data)
+    FetchData(url)
+      .then((res) => res.json())
+      .then((responseJson) => setFetchUsers(responseJson.data));
+  }, []);
+  console.log('fetchUsers:', fetchUsers);
+  // const userList as any[] = JSON.stringify(fetchUsers);
+  const userList = fetchUsers as [];
+
+  // console.log('userList:', userList);
+
+  const memberList = userList.map((e: any) => (
+    <li key={e.id}>
+      <Link to={'/user/' + e.id}>{e.name}</Link>
+    </li>
+  ));
+  return (
+    <div>
+      <ul>{memberList}</ul>
+    </div>
   );
 };
