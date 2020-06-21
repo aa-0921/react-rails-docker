@@ -3,13 +3,14 @@ require('dotenv').config();
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import { FetchData } from '../scripts/api/FetchData';
-
+import { Grid, Row, Note, Button } from '@zeit-ui/react';
+import * as Icon from '@zeit-ui/react-icons';
 export const MemberInfo = () => {
   const Show = ({ match }: { match: any }) => {
     let params = match.params;
     return (
       <div>
-        UserName,Email is
+        UserName,Email is{' '}
         <div>
           <strong>{params.id}</strong>
         </div>
@@ -32,9 +33,22 @@ export const MemberInfo = () => {
 
     console.log('Array.isArray(fetchUsers):', Array.isArray(fetchUsers));
     // const strUsers = JSON.stringify(fetchUsers[0]);
+    const onClickFollow = async () => {
+      const body = 'body';
+      const method = 'PUT';
+      // const headers = { 'content-type': 'multipart/form-data' };
+      const postUrl: string = process.env.REACT_APP_API_URL_ALL_POST_DATAS!;
+
+      await fetch(postUrl, { body });
+    };
+
     const memberList = fetchUsers.map((e: any) => (
       <li key={e.id}>
         <Link to={'/user/' + e.id}>{e.name}</Link>
+        <Button type="success" size="mini" auto ghost onClick={onClickFollow}>
+          <Icon.Eye size={16} />
+          FOLLOW
+        </Button>
       </li>
     ));
     return (
@@ -48,6 +62,8 @@ export const MemberInfo = () => {
   return (
     <Router>
       <div>
+        {/* <Show /> */}
+
         <Users />
 
         <Switch>
