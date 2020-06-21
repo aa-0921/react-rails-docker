@@ -46,6 +46,12 @@ export function Header() {
                         Profile
                       </Link>
                       <Link
+                        to="/memberindex"
+                        className="text-lg text-white ml-4 px-3 py-2 rounded-md text-sm font-medium hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
+                      >
+                        MemberInfo
+                      </Link>
+                      <Link
                         to="/zeit-sample"
                         className="text-lg text-white ml-4 px-3 py-2 rounded-md text-sm font-medium hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
                       >

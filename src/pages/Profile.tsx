@@ -6,7 +6,7 @@ export const Profile = () => {
     if (process.env.NODE_ENV !== 'production') {
       console.log('followUserId:', followUserId);
     }
-    const method = 'POST';
+    const method = 'PUT';
     const body = JSON.stringify(followUserId);
     const headers = {
       'Content-Type': 'application/json',
@@ -83,9 +83,9 @@ export const Profile = () => {
           </div>
         </div>
       </div>
-      <Button type="success" ghost onClick={clickFollowUser}>
-        FOLLOW
-      </Button>
+      {/* <Button type="success" ghost onClick={clickFollowUser(followUserId)}> */}
+      {/* FOLLOW */}
+      {/* </Button> */}
     </section>
   );
 };
