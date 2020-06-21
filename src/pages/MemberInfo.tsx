@@ -3,7 +3,7 @@ require('dotenv').config();
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import { FetchData } from '../scripts/api/FetchData';
-import { Grid, Row, Note, Button } from '@zeit-ui/react';
+import { Grid, Row, Note, Button, Divider } from '@zeit-ui/react';
 import * as Icon from '@zeit-ui/react-icons';
 export const MemberInfo = () => {
   const Show = ({ match }: { match: any }) => {
@@ -43,13 +43,16 @@ export const MemberInfo = () => {
     };
 
     const memberList = fetchUsers.map((e: any) => (
-      <li key={e.id}>
-        <Link to={'/user/' + e.id}>{e.name}</Link>
-        <Button type="success" size="mini" auto ghost onClick={onClickFollow}>
-          <Icon.Eye size={16} />
-          FOLLOW
-        </Button>
-      </li>
+      <>
+        <li key={e.id}>
+          <Link to={'/user/' + e.id}>{e.name}&emsp; </Link>
+          <Button type="success" size="mini" auto ghost onClick={onClickFollow}>
+            <Icon.Eye size={16} />
+            FOLLOW
+          </Button>
+        </li>
+        <Divider />
+      </>
     ));
     return (
       <div>
