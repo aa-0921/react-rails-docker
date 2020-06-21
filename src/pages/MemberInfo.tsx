@@ -5,6 +5,7 @@ import React, { useState, useEffect } from 'react';
 import { FetchData } from '../scripts/api/FetchData';
 import { Grid, Row, Note, Button, Divider } from '@zeit-ui/react';
 import * as Icon from '@zeit-ui/react-icons';
+
 export const MemberInfo = () => {
   const Show = ({ match }: { match: any }) => {
     let params = match.params;
@@ -30,30 +31,35 @@ export const MemberInfo = () => {
     }, []);
     console.log('fetchUsers[0]:', fetchUsers[0]);
     console.log('typeof fetchUsers:', typeof fetchUsers);
-
     console.log('Array.isArray(fetchUsers):', Array.isArray(fetchUsers));
     // const strUsers = JSON.stringify(fetchUsers[0]);
-    const onClickFollow = async () => {
-      const body = 'body';
+
+    const onClickFollow = async (userId: any) => {
+      console.log('userId:', userId);
+
       const method = 'PUT';
-      // const headers = { 'content-type': 'multipart/form-data' };
-      const postUrl: string = process.env.REACT_APP_API_URL_ALL_POST_DATAS!;
-
-      await fetch(postUrl, { body });
+      const postUrl: string = process.env.REACT_APP_API_URL_USERS + '/follow/' + userId;
+      await fetch(postUrl, { method });
     };
+    // const [userId, setUserId] = useState('');
 
-    const memberList = fetchUsers.map((e: any) => (
-      <>
-        <li key={e.id}>
-          <Link to={'/user/' + e.id}>{e.name}&emsp; </Link>
-          <Button type="success" size="mini" auto ghost onClick={onClickFollow}>
-            <Icon.Eye size={16} />
-            FOLLOW
-          </Button>
-        </li>
-        <Divider />
-      </>
-    ));
+    const memberList = fetchUsers.map((e: any) => {
+      // setUserId(e.id);
+
+      return (
+        <>
+          <li key={e.id}>
+            <Link to={'/user/' + e.id}>{e.name}&emsp; </Link>
+            <Button type="success" size="mini" auto ghost onClick={() => onClickFollow(e.id)}>
+              <Icon.Eye size={16} />
+              FOLLOW
+            </Button>
+          </li>
+          <Divider />
+        </>
+      );
+    });
+
     return (
       <div>
         <span>{memberList}</span>
