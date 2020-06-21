@@ -4,55 +4,57 @@ import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import { FetchData } from '../scripts/api/FetchData';
 
-export const MemberInfo = ({ match }: { match: any }) => {
-  let params = match.params;
-  return (
-    <div>
-      UserName,Email is
+export const MemberInfo = () => {
+  const Show = ({ match }: { match: any }) => {
+    let params = match.params;
+    return (
       <div>
-        <strong>{params.id}</strong>
-        <MemberList />
+        UserName,Email is
+        <div>
+          <strong>{params.id}</strong>
+        </div>
       </div>
-    </div>
-  );
-};
+    );
+  };
 
-// const Users = () => {
-//   const [hasError, setErrors] = useState(false);
-//   const [fetchUsers, setFetchUsers] = useState({});
-//   const url: string = process.env.REACT_APP_API_URL_USERS!;
-//   console.log('url:', url);
+  const Users = () => {
+    const [hasError, setErrors] = useState(false);
+    const [fetchUsers, setFetchUsers] = useState([]);
 
-//   useEffect(() => {
-//     FetchData(url).then((res) => setFetchUsers(res));
-//   }, []);
-// };
-const MemberList = () => {
-  const [hasError, setErrors] = useState(false);
-  const [fetchUsers, setFetchUsers] = useState({});
-  const url: string = process.env.REACT_APP_API_URL_USERS!;
-  console.log('url:', url);
+    const url: string = process.env.REACT_APP_API_URL_USERS!;
+    console.log('url:', url);
 
-  useEffect(() => {
-    // FetchData(url).then((res) => setFetchUsers(res.data)
-    FetchData(url)
-      .then((res) => res.json())
-      .then((responseJson) => setFetchUsers(responseJson.data));
-  }, []);
-  console.log('fetchUsers:', fetchUsers);
-  // const userList as any[] = JSON.stringify(fetchUsers);
-  const userList = fetchUsers as [];
+    useEffect(() => {
+      FetchData(url).then((res) => setFetchUsers(res.data));
+    }, []);
+    console.log('fetchUsers[0]:', fetchUsers[0]);
+    console.log('typeof fetchUsers:', typeof fetchUsers);
 
-  // console.log('userList:', userList);
-
-  const memberList = userList.map((e: any) => (
-    <li key={e.id}>
-      <Link to={'/user/' + e.id}>{e.name}</Link>
-    </li>
-  ));
+    console.log('Array.isArray(fetchUsers):', Array.isArray(fetchUsers));
+    // const strUsers = JSON.stringify(fetchUsers[0]);
+    const memberList = fetchUsers.map((e: any) => (
+      <li key={e.id}>
+        <Link to={'/user/' + e.id}>{e.name}</Link>
+      </li>
+    ));
+    return (
+      <div>
+        <span>{memberList}</span>
+        <hr />
+        <span>Has error: {JSON.stringify(hasError)}</span>
+      </div>
+    );
+  };
   return (
-    <div>
-      <ul>{memberList}</ul>
-    </div>
+    <Router>
+      <div>
+        <Users />
+
+        <Switch>
+          <Route path="/post/:id" component={Show} />
+          <Route path="/"></Route>
+        </Switch>
+      </div>
+    </Router>
   );
 };
