@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 export const MemberInfo = () => {
-  function Show({ match }: { match: any }) {
+  const Show = ({ match }: { match: any }) => {
     let params = match.params;
     return (
       <div>
@@ -11,7 +11,8 @@ export const MemberInfo = () => {
         </div>
       </div>
     );
-  }
+  };
+
   return (
     <Router>
       <div>
