@@ -75,6 +75,7 @@ module.exports = {
         ),
         REACT_APP_API_URL: JSON.stringify(process.env.REACT_APP_API_URL),
         REACT_APP_API_URL_SNS_LOGIN: JSON.stringify(process.env.REACT_APP_API_URL_SNS_LOGIN),
+        REACT_APP_API_URL_USERS: JSON.stringify(process.env.REACT_APP_API_URL_USERS),
       },
       'process.env.NODE_ENV': JSON.stringify('production'),
     }),

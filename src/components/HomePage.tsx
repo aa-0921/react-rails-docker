@@ -28,7 +28,7 @@ export const HomePage = () => {
       <Route path="/zeit-sample" component={ZeitSample} />
       <Route path="/about" component={About} />
       <Route path="/profile" component={Profile} />
-      <Route path="/memberindex" component={MemberInfo} />
+      <Route path="/memberinfo" component={MemberInfo} />
 
       {/* <Route path="/showpost" component={ShowPost} /> */}
       <Route path="/posts" component={Posts} />
