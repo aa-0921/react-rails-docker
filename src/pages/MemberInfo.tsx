@@ -50,7 +50,22 @@ export const MemberInfo = () => {
 
       await fetch(postUrl, { method, body });
     };
-    // const [userId, setUserId] = useState('');
+
+    const onClickUnFollow = async (userId: any) => {
+      console.log('userId:', userId);
+      const obj = {
+        current_user_id: User.get('currentUserId'),
+      };
+      console.log('userId:', userId);
+
+      const body = JSON.stringify(obj);
+      console.log('body:', body);
+
+      const method = 'PUT';
+      const postUrl: string = process.env.REACT_APP_API_URL_USERS + '/unfollow/' + userId;
+
+      await fetch(postUrl, { method, body });
+    };
 
     const memberList = fetchUsers.map((e: any) => {
       // setUserId(e.id);
@@ -59,7 +74,8 @@ export const MemberInfo = () => {
         <>
           <li key={e.id}>
             <Link to={'/user/' + e.id}>{e.name}&emsp; </Link>
-            <Button type="success" size="mini" auto ghost onClick={() => onClickFollow(e.id)}>
+            {/* <Button type="success" size="mini" auto ghost onClick={() => onClickFollow(e.id)}> */}
+            <Button type="success" size="mini" auto ghost onClick={() => onClickUnFollow(e.id)}>
               <Icon.Eye size={16} />
               FOLLOW
             </Button>
