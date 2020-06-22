@@ -2,14 +2,14 @@ import * as React from 'react';
 import { Home } from '../pages/Home';
 import { Pickup } from '../pages/Pickup';
 import { ZeitSample } from '../pages/zeit-sample';
-import { BrowserRouter, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
 import { Header } from './header';
 // import { Footer } from './footer';
 import { About } from '../pages/About';
 // import { ShowPost } from './ShowPost';
 import { Posts } from '../pages/Posts';
-import { Profile } from '../pages/Profile';
-import { MemberInfo } from '../pages/MemberInfo';
+import ProfilePage from '../pages/ProfilePage';
+import { MemberListApp } from '../pages/MemberListApp';
 
 import User from './User';
 
@@ -23,15 +23,17 @@ export const HomePage = () => {
     <BrowserRouter>
       <Header />
       {/* <header style={{ height: 100, background: '#ddd' }}>head</header> */}
-      <Route exact path="/" component={Home} />
-      <Route path="/pickup" component={Pickup} />
-      <Route path="/zeit-sample" component={ZeitSample} />
-      <Route path="/about" component={About} />
-      <Route path="/profile" component={Profile} />
-      <Route path="/memberinfo" component={MemberInfo} />
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route exact path="/pickup" component={Pickup} />
+        <Route exact path="/zeit-sample" component={ZeitSample} />
+        <Route exact path="/about" component={About} />
+        <Route exact path="/profilepage/:id" component={ProfilePage} />
+        <Route exact path="/memberinfo" component={MemberListApp} />
 
-      {/* <Route path="/showpost" component={ShowPost} /> */}
-      <Route path="/posts" component={Posts} />
+        {/* <Route path="/showpost" component={ShowPost} /> */}
+        <Route exact path="/posts" component={Posts} />
+      </Switch>
       {/* <Footer /> */}
     </BrowserRouter>
   );

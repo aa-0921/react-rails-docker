@@ -7,7 +7,7 @@ import { Grid, Row, Note, Button, Divider } from '@zeit-ui/react';
 import * as Icon from '@zeit-ui/react-icons';
 import User from '../components/User';
 
-export const MemberInfo = () => {
+export const MemberListApp = () => {
   const Show = ({ match }: { match: any }) => {
     let params = match.params;
     return (
@@ -69,11 +69,11 @@ export const MemberInfo = () => {
 
     const memberList = fetchUsers.map((e: any) => {
       // setUserId(e.id);
-
+      // const [relationShip, setRelationShip] = useState();
       return (
         <>
           <li key={e.id}>
-            <Link to={'/user/' + e.id}>{e.name}&emsp; </Link>
+            <Link to={'/profilepage/' + e.id}>{e.name}&emsp; </Link>
             {/* <Button type="success" size="mini" auto ghost onClick={() => onClickFollow(e.id)}> */}
             <Button type="success" size="mini" auto ghost onClick={() => onClickUnFollow(e.id)}>
               <Icon.Eye size={16} />
