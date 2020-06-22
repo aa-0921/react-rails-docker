@@ -12,11 +12,20 @@ class User {
   get = (key: string) => Cookies.get(key);
 
   login = async (email: string, password: string) => {
+    console.log('user.Login');
+
     if (process.env.NODE_ENV !== 'production') {
       console.log(email);
       console.log(password);
     }
-    await sessionApiLogin({ email, password });
+    await sessionApiLogin({ email, password }).then((res) => {
+      console.log('res:' + res);
+
+      // this.set('responseData', JSON.stringify(res));
+
+      console.log("this.get('responseData'):" + this.get('responseData'));
+    });
+
     if (process.env.NODE_ENV !== 'production') {
       console.log('isLoggedIn(User.tsxログイン処理後):' + this.isLoggedIn());
       console.log('this.get(User.tsx):', this.get('isLoggedIn'));

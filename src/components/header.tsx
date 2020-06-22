@@ -4,7 +4,7 @@ import User from '../components/User';
 
 export function Header() {
   // ログアウト
-  const click = async () => {
+  const onClickLogout = async () => {
     try {
       await User.logout;
       User.logout();
@@ -128,7 +128,7 @@ export function Header() {
                             href="#"
                             className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                             role="menuitem"
-                            onClick={click}
+                            onClick={onClickLogout}
                           >
                             Sign out
                           </a>

@@ -5,7 +5,7 @@ import { FormikPost } from '../components/FormikPost';
 
 export const Posts = () => {
   const [hasError, setErrors] = useState(false);
-  const [posts, setPosts] = useState({});
+  const [posts, setPosts] = useState([]);
   const url: string = process.env.REACT_APP_API_URL_ALL_POST_DATAS!;
 
   if (process.env.NODE_ENV !== 'production') {

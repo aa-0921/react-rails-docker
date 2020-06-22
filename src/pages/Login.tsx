@@ -38,6 +38,8 @@ export const Login = (props: LoginProps) => {
     }
   }, []);
   const onClickLogin = async () => {
+    console.log(User.isLoggedIn());
+
     try {
       await User.login(email, password);
       if (process.env.NODE_ENV !== 'production') {
