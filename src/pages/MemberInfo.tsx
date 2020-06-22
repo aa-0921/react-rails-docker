@@ -5,6 +5,7 @@ import React, { useState, useEffect } from 'react';
 import { FetchData } from '../scripts/api/FetchData';
 import { Grid, Row, Note, Button, Divider } from '@zeit-ui/react';
 import * as Icon from '@zeit-ui/react-icons';
+import User from '../components/User';
 
 export const MemberInfo = () => {
   const Show = ({ match }: { match: any }) => {
@@ -36,10 +37,18 @@ export const MemberInfo = () => {
 
     const onClickFollow = async (userId: any) => {
       console.log('userId:', userId);
+      const obj = {
+        current_user_id: User.get('currentUserId'),
+      };
+      console.log('userId:', userId);
+
+      const body = JSON.stringify(obj);
+      console.log('body:', body);
 
       const method = 'PUT';
       const postUrl: string = process.env.REACT_APP_API_URL_USERS + '/follow/' + userId;
-      await fetch(postUrl, { method });
+
+      await fetch(postUrl, { method, body });
     };
     // const [userId, setUserId] = useState('');
 

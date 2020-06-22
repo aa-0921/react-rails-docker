@@ -23,7 +23,7 @@ class User {
 
       // this.set('responseData', JSON.stringify(res));
 
-      console.log("this.get('responseData'):" + this.get('responseData'));
+      console.log("this.get('currentUserId'):" + this.get('currentUserId'));
     });
 
     if (process.env.NODE_ENV !== 'production') {

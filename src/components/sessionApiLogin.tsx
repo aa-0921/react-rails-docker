@@ -48,10 +48,10 @@ export const sessionApiLogin = async ({ email, password }: LoginParams) => {
         //   console.log('responseData:', responseData);
         // });
         return response.json().then((response) => {
-          const responseData = response.data.id;
-          console.log('responseData:', responseData);
+          const currentUserId = response.data.id;
+          console.log('currentUserId:', currentUserId);
           // setResponseUserData(responseData);
-          User.set('responseData', JSON.stringify(responseData));
+          User.set('currentUserId', JSON.stringify(currentUserId));
         });
       } else {
         User.set('isLoggedIn', 'false');
