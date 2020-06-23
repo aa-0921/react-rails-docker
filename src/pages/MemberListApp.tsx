@@ -10,7 +10,16 @@ import { MemberList } from '../components/memberList';
 
 export const MemberListApp = () => {
   const [fetchUsers, setFetchUsers] = useState([]);
+  const [followUsers, setFollowUsers] = useState<any[]>([]);
+  const currentUserId = 1;
+  const getFollowListUrl: string =
+    process.env.REACT_APP_API_URL_USERS + '/follow_list/' + currentUserId;
 
+  FetchData(getFollowListUrl).then((res) => {
+    useEffect(() => {
+      setFollowUsers(res.data);
+    }, []);
+  });
   // const Show = ({ match }: { match: any }) => {
   //   let params = match.params;
   //   return (
@@ -32,7 +41,7 @@ export const MemberListApp = () => {
       <div>
         {/* <Show /> */}
         <span>
-          <MemberList fetchUsers={fetchUsers} />
+          <MemberList fetchUsers={fetchUsers} followUsers={followUsers} />
         </span>
 
         <Switch>
