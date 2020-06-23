@@ -15,6 +15,7 @@ export const List = (props: any) => {
   useEffect(() => {
     setIdArrayFollowUsers(props.followUsersList);
   }, [props.followUsersList]);
+  // }, [idArrayFollowUsers]);
 
   console.log('idArrayFollowUsers: ', idArrayFollowUsers);
   const reloadIsFollow = () => {
@@ -42,13 +43,16 @@ export const List = (props: any) => {
             console.log('投稿成功');
           }
           console.log('idArrayFollowUsers: ', idArrayFollowUsers);
-          const copyIdArrayFollowUsers = [...idArrayFollowUsers];
 
-          copyIdArrayFollowUsers.push(userId);
+          // const copyIdArrayFollowUsers = [...idArrayFollowUsers];
+          // copyIdArrayFollowUsers.push(userId);
+
+          const copyIdArrayFollowUsers = [...idArrayFollowUsers, userId];
+
           // useEffect(() => {
           setIdArrayFollowUsers(copyIdArrayFollowUsers);
           // }, []);
-          reloadIsFollow();
+          // reloadIsFollow();
 
           console.log('idPushedArray: ', idArrayFollowUsers);
           // const isFollow = true;
@@ -82,7 +86,7 @@ export const List = (props: any) => {
     <>
       <li key={props.user.id}>
         <Link to={'/profilepage/' + props.user.id}>{props.user.name}&emsp; </Link>
-        {reloadIsFollow() ? (
+        {idArrayFollowUsers.some((u) => u === props.user.id) ? (
           <Button
             type="warning"
             size="mini"
