@@ -71,7 +71,7 @@ export const MemberListApp = () => {
     const method = '';
     const getFollowListUrl: string =
       process.env.REACT_APP_API_URL_USERS + '/follow_list/' + currentUserId;
-    const [followUsers, setFollowUsers] = useState([]);
+    const [followUsers, setFollowUsers] = useState<any[]>([]);
 
     useEffect(() => {
       FetchData(getFollowListUrl).then((res) => setFollowUsers(res.data));
@@ -82,10 +82,18 @@ export const MemberListApp = () => {
       //   console.log('followUsers:', followUsers);
       // });
     }, []);
-    console.log('followUsers:', followUsers);
+    // console.log('followUsers:', followUsers);
+    // console.log('followUsers[0]:', followUsers[0]);
+    // console.log('Array.isArray(followUsers):', Array.isArray(followUsers));
+    // console.log('followUsers[0][0]:', followUsers[0]['id']);
+    const idArrayFollowUsersList = followUsers.map((e: any) => {
+      return e['id'];
+    });
+    // console.log('idArrayFollowUsersList:', idArrayFollowUsersList);
+    // followUsers.map((u) => console.log('u[id]', u['id']));
 
     // ここはfollowUserListの確認用!!必ず削除
-    const followUserList = followUsers.map((e: any) => {
+    const followUsersList = followUsers.map((e: any) => {
       // const currentUserId = User.get('currentUserId');
 
       return (
@@ -124,7 +132,7 @@ export const MemberListApp = () => {
     return (
       <div>
         {/* <span>{memberList}</span> */}
-        <span>{followUserList}</span>
+        <span>{followUsersList}</span>
 
         <hr />
         <span>Has error: {JSON.stringify(hasError)}</span>
