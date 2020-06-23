@@ -75,51 +75,22 @@ export const MemberListApp = () => {
 
     useEffect(() => {
       FetchData(getFollowListUrl).then((res) => setFollowUsers(res.data));
-      // FetchData(getFollowListUrl).then((res) => {
-      //   console.log('res.data: ', res.data);
-      //   setFollowUsers(res.data);
-      //   console.log('res.class: ', res.class);
-      //   console.log('followUsers:', followUsers);
-      // });
     }, []);
-    // console.log('followUsers:', followUsers);
-    // console.log('followUsers[0]:', followUsers[0]);
-    // console.log('Array.isArray(followUsers):', Array.isArray(followUsers));
-    // console.log('followUsers[0][0]:', followUsers[0]['id']);
-    const idArrayFollowUsersList = followUsers.map((e: any) => {
+    const idArrayFollowUsers = followUsers.map((e: any) => {
       return e['id'];
     });
-    // console.log('idArrayFollowUsersList:', idArrayFollowUsersList);
-    // followUsers.map((u) => console.log('u[id]', u['id']));
-
-    // ここはfollowUserListの確認用!!必ず削除
-    const followUsersList = followUsers.map((e: any) => {
-      // const currentUserId = User.get('currentUserId');
-
-      return (
-        <>
-          <li key={e.id}>
-            <Link to={'/profilepage/' + e.id}>
-              {e.id}&emsp;{e.name}&emsp;{' '}
-            </Link>
-          </li>
-          <Divider />
-        </>
-      );
-    });
-    // ここはfollowUserListの確認用!!必ず削除
 
     // ここでfollowUsersのIDのみを抽出した配列の中にe.idがあるかを確認して、合った場合はすでにフォローしていることになるので、relationをtrueにする。
 
-    const memberList = fetchUsers.map((e: any) => {
+    const memberList = fetchUsers.map((user: any) => {
       // const currentUserId = User.get('currentUserId');
-
+      const isFollow = idArrayFollowUsers.some((u) => u === user.id);
       return (
         <>
-          <li key={e.id}>
-            <Link to={'/profilepage/' + e.id}>{e.name}&emsp; </Link>
+          <li key={user.id}>
+            <Link to={'/profilepage/' + user.id}>{user.name}&emsp; </Link>
             {/* <Button type="success" size="mini" auto ghost onClick={() => onClickFollow(e.id)}> */}
-            <Button type="success" size="mini" auto ghost onClick={() => onClickFollow(e.id)}>
+            <Button type="success" size="mini" auto ghost onClick={() => onClickFollow(user.id)}>
               <Icon.Eye size={16} />
               FOLLOW
             </Button>
@@ -128,16 +99,6 @@ export const MemberListApp = () => {
         </>
       );
     });
-
-    return (
-      <div>
-        {/* <span>{memberList}</span> */}
-        <span>{followUsersList}</span>
-
-        <hr />
-        <span>Has error: {JSON.stringify(hasError)}</span>
-      </div>
-    );
   };
   return (
     <Router>
