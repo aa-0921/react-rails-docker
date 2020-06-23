@@ -9,6 +9,8 @@ import { Number } from 'core-js';
 import { MemberList } from '../components/memberList';
 
 export const MemberListApp = () => {
+  const [fetchUsers, setFetchUsers] = useState([]);
+
   // const Show = ({ match }: { match: any }) => {
   //   let params = match.params;
   //   return (
@@ -20,13 +22,17 @@ export const MemberListApp = () => {
   //     </div>
   //   );
   // };
+  const url: string = process.env.REACT_APP_API_URL_USERS!;
 
+  useEffect(() => {
+    FetchData(url).then((res) => setFetchUsers(res.data));
+  }, []);
   return (
     <Router>
       <div>
         {/* <Show /> */}
         <span>
-          <MemberList />
+          <MemberList fetchUsers={fetchUsers} />
         </span>
 
         <Switch>

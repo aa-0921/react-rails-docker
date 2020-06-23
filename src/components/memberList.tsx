@@ -7,11 +7,9 @@ import * as Icon from '@zeit-ui/react-icons';
 import User from '../components/User';
 import { FetchData } from '../scripts/api/FetchData';
 
-const [fetchUsers, setFetchUsers] = useState([]);
-const [idArrayFollowUsers, setIdArrayFollowUsers] = useState([] as number[]);
-const [followUsers, setFollowUsers] = useState<any[]>([]);
-
-export const MemberList = () => {
+export const MemberList = (props: any): any => {
+  const [idArrayFollowUsers, setIdArrayFollowUsers] = useState([] as number[]);
+  const [followUsers, setFollowUsers] = useState<any[]>([]);
   const onClickFollow = async (userId: any) => {
     const obj = {
       current_user_id: User.get('currentUserId'),
@@ -61,32 +59,25 @@ export const MemberList = () => {
 
     await fetch(postUrl, { method, body });
   };
-  fetchUsers.map((user: any) => {
-    const url: string = process.env.REACT_APP_API_URL_USERS!;
 
+  const currentUserId = 1;
+  const getFollowListUrl: string =
+    process.env.REACT_APP_API_URL_USERS + '/follow_list/' + currentUserId;
+
+  FetchData(getFollowListUrl).then((res) => {
     useEffect(() => {
-      FetchData(url).then((res) => setFetchUsers(res.data));
+      setFollowUsers(res.data);
     }, []);
+  });
 
-    const currentUserId = 1;
-    const getFollowListUrl: string =
-      process.env.REACT_APP_API_URL_USERS + '/follow_list/' + currentUserId;
-
-    FetchData(getFollowListUrl).then((res) => {
-      useEffect(() => {
-        setFollowUsers(res.data);
-      }, []);
-    });
-
-    const followUsersList: any = followUsers.map((e: any) => {
-      return e['id'];
-    });
-    useEffect(() => {
-      setIdArrayFollowUsers(followUsersList);
-    }, []);
-
+  const followUsersList: any = followUsers.map((e: any) => {
+    return e['id'];
+  });
+  useEffect(() => {
+    setIdArrayFollowUsers(followUsersList);
+  }, []);
+  props.fetchUsers.map((user: any) => {
     const isFollow = idArrayFollowUsers.some((u) => u === user.id);
-
     return (
       <>
         <li key={user.id}>
