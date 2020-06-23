@@ -14,12 +14,12 @@ export const MemberListApp = () => {
   const currentUserId = 1;
   const getFollowListUrl: string =
     process.env.REACT_APP_API_URL_USERS + '/follow_list/' + currentUserId;
-
-  FetchData(getFollowListUrl).then((res) => {
-    useEffect(() => {
+  useEffect(() => {
+    FetchData(getFollowListUrl).then((res) => {
       setFollowUsers(res.data);
-    }, []);
-  });
+    });
+  }, []);
+
   // const Show = ({ match }: { match: any }) => {
   //   let params = match.params;
   //   return (
@@ -37,18 +37,20 @@ export const MemberListApp = () => {
     FetchData(url).then((res) => setFetchUsers(res.data));
   }, []);
   return (
-    <Router>
-      <div>
-        {/* <Show /> */}
-        <span>
-          <MemberList fetchUsers={fetchUsers} followUsers={followUsers} />
-        </span>
+    <>
+      <Router>
+        <div>
+          {/* <Show /> */}
+          <span>
+            <MemberList fetchUsers={fetchUsers} followUsers={followUsers} />
+          </span>
 
-        <Switch>
-          {/* <Route path="/post/:id" component={Show} /> */}
-          <Route path="/"></Route>
-        </Switch>
-      </div>
-    </Router>
+          <Switch>
+            {/* <Route path="/post/:id" component={Show} /> */}
+            <Route path="/"></Route>
+          </Switch>
+        </div>
+      </Router>
+    </>
   );
 };

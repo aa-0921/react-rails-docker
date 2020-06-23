@@ -16,10 +16,13 @@ export const MemberList = (props: any): any => {
   // const List = props.fetchUsers.map((user: any) => {
 
   return (
-    <>
+    // <>
+    <div>
       {props.fetchUsers.map((user: any) => (
         <List user={user} followUsersList={followUsersList} />
+        // <List followUsersList={followUsersList} />
       ))}
-    </>
+    </div>
+    // </>
   );
 };

@@ -29,7 +29,7 @@ export const HomePage = () => {
         <Route exact path="/zeit-sample" component={ZeitSample} />
         <Route exact path="/about" component={About} />
         <Route exact path="/profilepage/:id" component={ProfilePage} />
-        <Route exact path="/memberinfo" component={MemberListApp} />
+        <Route exact path="/MemberListApp" component={MemberListApp} />
 
         {/* <Route path="/showpost" component={ShowPost} /> */}
         <Route exact path="/posts" component={Posts} />
