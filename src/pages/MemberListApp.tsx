@@ -85,20 +85,43 @@ export const MemberListApp = () => {
     const memberList = fetchUsers.map((user: any) => {
       // const currentUserId = User.get('currentUserId');
       const isFollow = idArrayFollowUsers.some((u) => u === user.id);
+      // const isFollow = idArrayFollowUsers.includes(user.id);
+
       return (
         <>
           <li key={user.id}>
             <Link to={'/profilepage/' + user.id}>{user.name}&emsp; </Link>
-            {/* <Button type="success" size="mini" auto ghost onClick={() => onClickFollow(e.id)}> */}
-            <Button type="success" size="mini" auto ghost onClick={() => onClickFollow(user.id)}>
-              <Icon.Eye size={16} />
-              FOLLOW
-            </Button>
+            {isFollow ? (
+              <Button
+                type="warning"
+                size="mini"
+                auto
+                ghost
+                onClick={() => onClickUnFollow(user.id)}
+              >
+                <Icon.Eye size={16} />
+                UnFollow
+              </Button>
+            ) : (
+              <Button type="success" size="mini" auto ghost onClick={() => onClickFollow(user.id)}>
+                <Icon.Eye size={16} />
+                Follow
+              </Button>
+            )}
           </li>
           <Divider />
         </>
       );
     });
+
+    return (
+      <div>
+        <span>{memberList}</span>
+
+        <hr />
+        <span>Has error: {JSON.stringify(hasError)}</span>
+      </div>
+    );
   };
   return (
     <Router>
