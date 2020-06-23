@@ -8,15 +8,23 @@ import User from '../components/User';
 
 export const List = (props: any) => {
   const [idArrayFollowUsers, setIdArrayFollowUsers] = useState([] as number[]);
+  const [isFollow, setIsFollow] = useState(Boolean);
+
   console.log('props.followUsersList: ', props.followUsersList);
 
   useEffect(() => {
     setIdArrayFollowUsers(props.followUsersList);
-  }, []);
-  console.log('idArrayFollowUsers: ', idArrayFollowUsers);
+  }, [props.followUsersList]);
 
-  const isFollow = idArrayFollowUsers.some((u) => u === props.user.id);
-  console.log('isFollow: ', isFollow);
+  console.log('idArrayFollowUsers: ', idArrayFollowUsers);
+  const reloadIsFollow = () => {
+    // setIsFollow(idArrayFollowUsers.some((u) => u === props.user.id));
+
+    const isFollow = idArrayFollowUsers.some((u) => u === props.user.id);
+    return isFollow;
+  };
+  reloadIsFollow();
+  // console.log('isFollow: ', isFollow);
 
   const onClickFollow = async (userId: any) => {
     console.log('onClickFollow直後userId: ', userId);
@@ -40,9 +48,10 @@ export const List = (props: any) => {
           // useEffect(() => {
           setIdArrayFollowUsers(copyIdArrayFollowUsers);
           // }, []);
+          reloadIsFollow();
 
           console.log('idPushedArray: ', idArrayFollowUsers);
-
+          // const isFollow = true;
           // setIdArrayFollowUsers(idPushedArray);
         } else {
           if (process.env.NODE_ENV !== 'production') {
@@ -73,7 +82,7 @@ export const List = (props: any) => {
     <>
       <li key={props.user.id}>
         <Link to={'/profilepage/' + props.user.id}>{props.user.name}&emsp; </Link>
-        {isFollow ? (
+        {reloadIsFollow() ? (
           <Button
             type="warning"
             size="mini"
@@ -87,7 +96,7 @@ export const List = (props: any) => {
         ) : (
           <Button
             type="success"
-            size="mini"
+            size="small"
             auto
             ghost
             onClick={() => onClickFollow(props.user.id)}
