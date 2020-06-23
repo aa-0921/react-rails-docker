@@ -8,13 +8,18 @@ import User from '../components/User';
 
 export const List = (props: any) => {
   const [idArrayFollowUsers, setIdArrayFollowUsers] = useState([] as number[]);
+  console.log('props.followUsersList: ', props.followUsersList);
 
   useEffect(() => {
     setIdArrayFollowUsers(props.followUsersList);
   }, []);
+  console.log('idArrayFollowUsers: ', idArrayFollowUsers);
+
   const isFollow = idArrayFollowUsers.some((u) => u === props.user.id);
+  console.log('isFollow: ', isFollow);
 
   const onClickFollow = async (userId: any) => {
+    console.log('onClickFollow直後userId: ', userId);
     const obj = {
       current_user_id: User.get('currentUserId'),
     };
