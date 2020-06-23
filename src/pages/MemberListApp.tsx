@@ -8,6 +8,8 @@ import * as Icon from '@zeit-ui/react-icons';
 import User from '../components/User';
 
 export const MemberListApp = () => {
+  const [isFollow, setIsFollow] = useState(Boolean);
+
   const Show = ({ match }: { match: any }) => {
     let params = match.params;
     return (
@@ -36,19 +38,32 @@ export const MemberListApp = () => {
     // const strUsers = JSON.stringify(fetchUsers[0]);
 
     const onClickFollow = async (userId: any) => {
-      console.log('userId:', userId);
       const obj = {
         current_user_id: User.get('currentUserId'),
       };
-      console.log('userId:', userId);
-
       const body = JSON.stringify(obj);
-      console.log('body:', body);
-
       const method = 'PUT';
       const postUrl: string = process.env.REACT_APP_API_URL_USERS + '/follow/' + userId;
 
-      await fetch(postUrl, { method, body });
+      await fetch(postUrl, { method, body })
+        .then((response) => {
+          if (response.status == 200) {
+            if (process.env.NODE_ENV !== 'production') {
+              console.log('投稿成功');
+            }
+            setIsFollow(true);
+          } else {
+            if (process.env.NODE_ENV !== 'production') {
+              console.log('投稿失敗');
+            }
+            throw new Error();
+          }
+        })
+        .catch((error) => {
+          if (process.env.NODE_ENV !== 'production') {
+            console.log('投稿失敗');
+          }
+        });
     };
 
     const onClickUnFollow = async (userId: any) => {
@@ -84,8 +99,10 @@ export const MemberListApp = () => {
 
     const memberList = fetchUsers.map((user: any) => {
       // const currentUserId = User.get('currentUserId');
-      const isFollow = idArrayFollowUsers.some((u) => u === user.id);
-      // const isFollow = idArrayFollowUsers.includes(user.id);
+      // setIsFollow(idArrayFollowUsers.some((u) => u === user.id));
+
+      // idArrayFollowUsers.some((u) => u === user.id);
+      const isFollow = idArrayFollowUsers.includes(user.id);
 
       return (
         <>
@@ -123,18 +140,4 @@ export const MemberListApp = () => {
       </div>
     );
   };
-  return (
-    <Router>
-      <div>
-        {/* <Show /> */}
-
-        <Users />
-
-        <Switch>
-          <Route path="/post/:id" component={Show} />
-          <Route path="/"></Route>
-        </Switch>
-      </div>
-    </Router>
-  );
 };
