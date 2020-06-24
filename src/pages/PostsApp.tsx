@@ -18,6 +18,7 @@ export const PostsApp = () => {
       setLikeList(res.data.map((like: any) => like.id));
     });
   }, []);
+
   const pushToLikelist = (picpost_id: number) => {
     console.log(picpost_id, 'ma');
     const arr = Array.from(likeList);
@@ -31,7 +32,7 @@ export const PostsApp = () => {
     setLikeList(nextFollowUsers);
   };
 
-  const getAllPostUrl: string = process.env.REACT_APP_API_URL_ALL_POST_DATAS!;
+  const getAllPostUrl: string = process.env.REACT_APP_API_URL_POSTS!;
 
   console.log('getAllPostUrl:', getAllPostUrl);
 

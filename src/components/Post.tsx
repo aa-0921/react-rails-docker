@@ -13,7 +13,7 @@ export const Post = (props: any) => {
     };
     const body = JSON.stringify(obj);
     const method = 'PUT';
-    const postUrl: string = process.env.REACT_APP_API_URL_USERS + '/Like/' + postId;
+    const postUrl: string = process.env.REACT_APP_API_URL_POSTS + '/like/' + postId;
 
     await fetch(postUrl, { method, body })
       .then((response) => {
@@ -41,7 +41,7 @@ export const Post = (props: any) => {
 
     const body = JSON.stringify(obj);
     const method = 'PUT';
-    const postUrl: string = process.env.REACT_APP_API_URL_USERS + '/unLike/' + postId;
+    const postUrl: string = process.env.REACT_APP_API_URL_POSTS + '/unlike/' + postId;
 
     await fetch(postUrl, { method, body })
       .then((response) => {
@@ -74,6 +74,7 @@ export const Post = (props: any) => {
               <Link to={'/profilepage/' + props.post.id}>
                 post_id__{props.post.id} &emsp;{props.post.content}&emsp;
               </Link>
+              {/* このbuttonの部分は削除 */}
               <Button
                 type="success"
                 size="small"
