@@ -26,7 +26,7 @@ export const LoginApp = () => {
         <Route exact path="/signup" component={Signup} />
 
         {/* 本番では削除（このままでは非ログイン状態でもAppにアクセスできてしまう。） */}
-        <Route exact path="/app" component={App} />
+        {/* <Route exact path="/app" component={App} /> */}
 
         <Auth>
           <Switch>
