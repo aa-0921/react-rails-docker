@@ -7,7 +7,6 @@ export const MemberList = (props: any): any => {
   return (
     <>
       <Spacer y={1.5} />
-
       <div>
         {props.fetchUsers.map((user: any) => (
           <List
