@@ -11,9 +11,9 @@ export const PostList = (props: any): any => {
         {props.fetchPosts.map((post: any) => (
           <Post
             post={post}
-            // followUsersList={props.followUsers}
-            // pushToFollowUsers={props.pushToFollowUsers}
-            // removeFromFollowUsers={props.removeFromFollowUsers}
+            likeList={props.likeList}
+            pushToLikelist={props.pushToLikelist}
+            removeFromLikelist={props.removeFromLikelist}
           />
         ))}
       </div>
