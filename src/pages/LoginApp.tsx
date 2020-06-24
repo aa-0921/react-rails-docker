@@ -12,7 +12,7 @@ import User from '../components/User';
 // import { List } from './list';
 import { App } from '../../src/App';
 // import { UserButton } from '../components/UserButton';
-import { Posts } from '../pages/Posts';
+import { PostsApp } from './PostsApp';
 
 export const LoginApp = () => {
   if (process.env.NODE_ENV !== 'production') {
@@ -29,7 +29,7 @@ export const LoginApp = () => {
         {/* 本番では削除（このままでは非ログイン状態でもAppにアクセスできてしまう。） */}
         {/* <Route exact path="/app" component={App} /> */}
         {/* いいね機能実装の為、一時的に/appのコンポーネント変更 */}
-        <Route exact path="/app" component={Posts} />
+        <Route exact path="/app" component={PostsApp} />
 
         <Auth>
           <Switch>

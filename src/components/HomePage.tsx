@@ -1,23 +1,23 @@
-import * as React from "react";
-import { Home } from "../pages/Home";
-import { Pickup } from "../pages/Pickup";
-import { ZeitSample } from "../pages/zeit-sample";
-import { BrowserRouter, Route, Switch, Link } from "react-router-dom";
-import { Header } from "./header";
+import * as React from 'react';
+import { Home } from '../pages/Home';
+import { Pickup } from '../pages/Pickup';
+import { ZeitSample } from '../pages/zeit-sample';
+import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
+import { Header } from './header';
 // import { Footer } from './footer';
-import { About } from "../pages/About";
+import { About } from '../pages/About';
 // import { ShowPost } from './ShowPost';
-import { Posts } from "../pages/Posts";
-import ProfilePage from "../pages/ProfilePage";
-import { MemberListApp } from "../pages/MemberListApp";
+import { PostsApp } from '../pages/PostsApp';
+import ProfilePage from '../pages/ProfilePage';
+import { MemberListApp } from '../pages/MemberListApp';
 
-import User from "./User";
+import User from './User';
 
 // import './tailwind.css';
 
 export const HomePage = () => {
-  if (process.env.NODE_ENV !== "production") {
-    console.log("isLoggedIn(HomePage.tsx):", User.isLoggedIn());
+  if (process.env.NODE_ENV !== 'production') {
+    console.log('isLoggedIn(HomePage.tsx):', User.isLoggedIn());
   }
   return (
     <BrowserRouter>
@@ -32,7 +32,7 @@ export const HomePage = () => {
         <Route exact path="/MemberListApp" component={MemberListApp} />
 
         {/* <Route path="/showpost" component={ShowPost} /> */}
-        <Route exact path="/posts" component={Posts} />
+        <Route exact path="/posts" component={PostsApp} />
       </Switch>
       {/* <Footer /> */}
     </BrowserRouter>
