@@ -43,7 +43,24 @@ export const List = (props: any) => {
     const method = 'PUT';
     const postUrl: string = process.env.REACT_APP_API_URL_USERS + '/unfollow/' + userId;
 
-    await fetch(postUrl, { method, body });
+    await fetch(postUrl, { method, body })
+      .then((response) => {
+        console.log(response.status);
+        // if (response.status == 204) {
+        if (response.status == 200) {
+          props.removeFromFollowUsers(props.user.id);
+        } else {
+          if (process.env.NODE_ENV !== 'production') {
+            console.log('投稿失敗');
+          }
+          throw new Error();
+        }
+      })
+      .catch((error) => {
+        if (process.env.NODE_ENV !== 'production') {
+          console.log('投稿失敗');
+        }
+      });
   };
 
   return (
