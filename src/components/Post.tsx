@@ -71,7 +71,9 @@ export const Post = (props: any) => {
         <div className="flex items-center">
           <div className="flex-1  text-center">
             <li key={props.post.id} className="flex items-center m-auto">
-              <Link to={'/profilepage/' + props.post.id}>{props.post.content}&emsp;</Link>
+              <Link to={'/profilepage/' + props.post.id}>
+                post_id__{props.post.id} &emsp;{props.post.content}&emsp;
+              </Link>
               <Button
                 type="success"
                 size="small"
