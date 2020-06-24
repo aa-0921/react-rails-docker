@@ -10,15 +10,28 @@ import { MemberList } from '../components/memberList';
 
 export const MemberListApp = () => {
   const [fetchUsers, setFetchUsers] = useState([]);
-  const [followUsers, setFollowUsers] = useState<any[]>([]);
+  const [followUsers, setFollowUsers] = useState<number[]>([]);
   const currentUserId = 1;
   const getFollowListUrl: string =
     process.env.REACT_APP_API_URL_USERS + '/follow_list/' + currentUserId;
   useEffect(() => {
     FetchData(getFollowListUrl).then((res) => {
-      setFollowUsers(res.data);
+      setFollowUsers(res.data.map((el: any) => el.id));
     });
   }, []);
+
+  const pushToFollowUsers = (target: number) => {
+    console.log(target, 'ma');
+    const arr = Array.from(followUsers);
+    arr.push(target);
+    setFollowUsers(arr);
+  };
+
+  const removeFromFollowUsers = (target: number) => {
+    const arr = Array.from(followUsers);
+    const nextFollowUsers = arr.filter((el) => el !== target);
+    setFollowUsers(nextFollowUsers);
+  };
 
   // const Show = ({ match }: { match: any }) => {
   //   let params = match.params;
@@ -42,7 +55,12 @@ export const MemberListApp = () => {
         <div>
           {/* <Show /> */}
           <span>
-            <MemberList fetchUsers={fetchUsers} followUsers={followUsers} />
+            <MemberList
+              fetchUsers={fetchUsers}
+              followUsers={followUsers}
+              pushToFollowUsers={pushToFollowUsers}
+              removeFromFollowUsers={removeFromFollowUsers}
+            />
           </span>
 
           <Switch>
