@@ -80,24 +80,24 @@ export const Post = (props: any) => {
               {props.likeList.includes(props.post.id) ? (
                 <Button
                   type="warning"
-                  size="small"
+                  size="mini"
                   auto
                   ghost
                   onClick={() => onClickUnLike(props.post.id)}
                   className="m-auto"
                 >
-                  <Icon.Heart size={16} />
+                  <Icon.HeartFill size={12} />
                   UnLike
                 </Button>
               ) : (
                 <Button
                   type="success"
-                  size="small"
+                  size="mini"
                   auto
                   ghost
                   onClick={() => onClickLike(props.post.id)}
                 >
-                  <Icon.Heart size={16} />
+                  <Icon.Heart size={8} />
                   Like
                 </Button>
               )}
