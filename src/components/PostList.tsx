@@ -12,8 +12,8 @@ export const PostList = (props: any): any => {
           <Post
             post={post}
             likeList={props.likeList}
-            pushToLikelist={props.pushToLikelist}
-            removeFromLikelist={props.removeFromLikelist}
+            pushToLikeList={props.pushToLikeList}
+            removeFromLikeList={props.removeFromLikeList}
           />
         ))}
       </div>

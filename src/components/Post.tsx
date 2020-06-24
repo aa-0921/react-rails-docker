@@ -20,7 +20,9 @@ export const Post = (props: any) => {
         console.log(response.status);
         // if (response.status == 204) {
         if (response.status == 200) {
-          props.pushToLikePosts(props.post.id);
+          console.log('response.status:200???: ', response.status);
+
+          props.pushToLikeList(props.post.id);
         } else {
           if (process.env.NODE_ENV !== 'production') {
             console.log('投稿失敗');
@@ -48,7 +50,7 @@ export const Post = (props: any) => {
         console.log(response.status);
         // if (response.status == 204) {
         if (response.status == 200) {
-          props.removeFromLikePosts(props.post.id);
+          props.removeFromLikeList(props.post.id);
         } else {
           if (process.env.NODE_ENV !== 'production') {
             console.log('投稿失敗');
@@ -74,27 +76,17 @@ export const Post = (props: any) => {
               <Link to={'/profilepage/' + props.post.id}>
                 post_id__{props.post.id} &emsp;{props.post.content}&emsp;
               </Link>
-              {/* このbuttonの部分は削除 */}
-              <Button
-                type="success"
-                size="small"
-                auto
-                ghost
-                onClick={() => onClickLike(props.post.id)}
-              >
-                Like
-                <Icon.Heart size={16} />
-              </Button>
-              {/* {props.LikePostsList.includes(props.post.id) ? (
+
+              {props.likeList.includes(props.post.id) ? (
                 <Button
                   type="warning"
                   size="small"
                   auto
                   ghost
-                  // onClick={() => onClickUnLike(props.post.id)}
+                  onClick={() => onClickUnLike(props.post.id)}
                   className="m-auto"
                 >
-                  <Icon.EyeOff size={16} />
+                  <Icon.Heart size={16} />
                   UnLike
                 </Button>
               ) : (
@@ -103,12 +95,12 @@ export const Post = (props: any) => {
                   size="small"
                   auto
                   ghost
-                  // onClick={() => onClickLike(props.post.id)}
+                  onClick={() => onClickLike(props.post.id)}
                 >
-                  <Icon.Eye size={16} />
+                  <Icon.Heart size={16} />
                   Like
                 </Button>
-              )} */}
+              )}
             </li>{' '}
           </div>
         </div>

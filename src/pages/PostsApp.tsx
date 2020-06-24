@@ -12,21 +12,21 @@ export const PostsApp = () => {
   // 開発時点ではログイン処理を飛ばしている為、ID1で固定。後々修正
   const currentUserId = 1;
   const getLikeListUrl: string =
-    process.env.REACT_APP_API_URL_USERS + '/like_list/' + currentUserId;
+    process.env.REACT_APP_API_URL_POSTS + '/like_list/' + currentUserId;
   useEffect(() => {
     FetchData(getLikeListUrl).then((res) => {
       setLikeList(res.data.map((like: any) => like.id));
     });
   }, []);
 
-  const pushToLikelist = (picpost_id: number) => {
+  const pushToLikeList = (picpost_id: number) => {
     console.log(picpost_id, 'ma');
     const arr = Array.from(likeList);
     arr.push(picpost_id);
     setLikeList(arr);
   };
 
-  const removeFromLikelist = (picpost_id: number) => {
+  const removeFromLikeList = (picpost_id: number) => {
     const arr = Array.from(likeList);
     const nextFollowUsers = arr.filter((el) => el !== picpost_id);
     setLikeList(nextFollowUsers);
@@ -50,8 +50,8 @@ export const PostsApp = () => {
               <PostList
                 fetchPosts={fetchPosts}
                 likeList={likeList}
-                pushToLikelist={pushToLikelist}
-                removeFromLikelist={removeFromLikelist}
+                pushToLikeList={pushToLikeList}
+                removeFromLikeList={removeFromLikeList}
               />
             </span>
             {/* <span>{JSON.stringify(fetchPosts)}</span> */}
