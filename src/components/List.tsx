@@ -7,28 +7,7 @@ import * as Icon from '@zeit-ui/react-icons';
 import User from '../components/User';
 
 export const List = (props: any) => {
-  const [idArrayFollowUsers, setIdArrayFollowUsers] = useState([] as number[]);
-  const [isFollow, setIsFollow] = useState(Boolean);
-
-  console.log('props.followUsersList: ', props.followUsersList);
-
-  useEffect(() => {
-    setIdArrayFollowUsers(props.followUsersList);
-  }, [props.followUsersList]);
-  // }, [idArrayFollowUsers]);
-
-  console.log('idArrayFollowUsers: ', idArrayFollowUsers);
-  const reloadIsFollow = () => {
-    // setIsFollow(idArrayFollowUsers.some((u) => u === props.user.id));
-
-    const isFollow = idArrayFollowUsers.some((u) => u === props.user.id);
-    return isFollow;
-  };
-  reloadIsFollow();
-  // console.log('isFollow: ', isFollow);
-
   const onClickFollow = async (userId: any) => {
-    console.log('onClickFollow直後userId: ', userId);
     const obj = {
       current_user_id: User.get('currentUserId'),
     };
@@ -38,25 +17,10 @@ export const List = (props: any) => {
 
     await fetch(postUrl, { method, body })
       .then((response) => {
+        console.log(response.status);
+        // if (response.status == 204) {
         if (response.status == 200) {
-          if (process.env.NODE_ENV !== 'production') {
-            console.log('投稿成功');
-          }
-          console.log('idArrayFollowUsers: ', idArrayFollowUsers);
-
-          // const copyIdArrayFollowUsers = [...idArrayFollowUsers];
-          // copyIdArrayFollowUsers.push(userId);
-
-          const copyIdArrayFollowUsers = [...idArrayFollowUsers, userId];
-
-          // useEffect(() => {
-          setIdArrayFollowUsers(copyIdArrayFollowUsers);
-          // }, []);
-          // reloadIsFollow();
-
-          console.log('idPushedArray: ', idArrayFollowUsers);
-          // const isFollow = true;
-          // setIdArrayFollowUsers(idPushedArray);
+          props.pushToFollowUsers(props.user.id);
         } else {
           if (process.env.NODE_ENV !== 'production') {
             console.log('投稿失敗');
@@ -85,8 +49,8 @@ export const List = (props: any) => {
   return (
     <>
       <li key={props.user.id}>
-        <Link to={'/profilepage/' + props.user.id}>{props.user.name}&emsp; </Link>
-        {idArrayFollowUsers.some((u) => u === props.user.id) ? (
+        <Link to={'/profilepage/' + props.user.id}>{props.user.name}&emsp;</Link>
+        {props.followUsersList.includes(props.user.id) ? (
           <Button
             type="warning"
             size="mini"
