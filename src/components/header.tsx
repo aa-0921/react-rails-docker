@@ -1,6 +1,6 @@
-import * as React from 'react';
-import { Link } from 'react-router-dom';
-import User from '../components/User';
+import * as React from "react";
+import { Link } from "react-router-dom";
+import User from "../components/User";
 
 export function Header() {
   // ログアウト
@@ -21,7 +21,11 @@ export function Header() {
             <div className="flex items-center justify-between h-16">
               <div className="flex items-center">
                 <div className="flex-shrink-0">
-                  <span className="font-semibold text-xl tracking-tight text-white">SUGOMORI</span>
+                  <span
+                    className="font-semibold text-xl tracking-tight text-white"
+                  >
+                    SUGOMORI
+                  </span>
                 </div>
                 <div>
                   <div className="hidden md:block">
@@ -100,10 +104,13 @@ export function Header() {
                           id="user-menu"
                           aria-label="User menu"
                           aria-haspopup="true"
-                        ></button>
+                        >
+                        </button>
                       </div>
 
-                      <div className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg">
+                      <div
+                        className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg"
+                      >
                         <div
                           className="py-1 rounded-md bg-white shadow-xs"
                           role="menu"
@@ -139,7 +146,9 @@ export function Header() {
                 </div>
                 <div className="-mr-2 flex md:hidden">
                   {/* <!-- Mobile menu button --> */}
-                  <button className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:bg-gray-700 focus:text-white">
+                  <button
+                    className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:bg-gray-700 focus:text-white"
+                  >
                     {/* <!-- Menu open: "hidden", Menu closed: "block" --> */}
                     <svg
                       className="block h-6 w-6"
@@ -216,8 +225,14 @@ export function Header() {
                     />
                   </div>
                   <div className="ml-3">
-                    <div className="text-base font-medium leading-none text-white">Tom Cook</div>
-                    <div className="mt-1 text-sm font-medium leading-none text-gray-400">
+                    <div
+                      className="text-base font-medium leading-none text-white"
+                    >
+                      Tom Cook
+                    </div>
+                    <div
+                      className="mt-1 text-sm font-medium leading-none text-gray-400"
+                    >
                       tom@example.com
                     </div>
                   </div>

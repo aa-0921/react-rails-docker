@@ -1,8 +1,8 @@
-import * as React from 'react';
-import { Formik, Form, Field } from 'formik';
-import { useState } from 'react';
-import { useFormikContext, useField } from 'formik';
-import axios from 'axios';
+import * as React from "react";
+import { Formik, Form, Field } from "formik";
+import { useState } from "react";
+import { useFormikContext, useField } from "formik";
+import axios from "axios";
 
 export const FormikPost = () => {
   // const [picpostImage, setPicpostImage] = useState('');
@@ -17,23 +17,23 @@ export const FormikPost = () => {
   //   content: '',
   // };
   const createPicpost = async (body: any) => {
-    if (process.env.NODE_ENV !== 'production') {
-      console.log('body:', body);
+    if (process.env.NODE_ENV !== "production") {
+      console.log("body:", body);
     }
     // values.user_id = 1;
-    const method = 'POST';
+    const method = "POST";
     // const body = JSON.stringify(values);
     // const [picpost, setPicpost] = useState('');
-    const headers = { 'content-type': 'multipart/form-data' };
+    const headers = { "content-type": "multipart/form-data" };
     const postUrl: string = process.env.REACT_APP_API_URL_ALL_POST_DATAS!;
-    if (process.env.NODE_ENV !== 'production') {
-      console.log('postUrl:', postUrl);
+    if (process.env.NODE_ENV !== "production") {
+      console.log("postUrl:", postUrl);
     }
     await axios.post(postUrl, body, { headers });
   };
   const setImage = (e: any, setFieldValue: any) => {
-    let canvas: any = document.getElementById('canvas');
-    let ctx = canvas!.getContext('2d');
+    let canvas: any = document.getElementById("canvas");
+    let ctx = canvas!.getContext("2d");
     let maxW = 250;
     let maxH = 250;
 
@@ -47,7 +47,7 @@ export const FormikPost = () => {
       canvas.width = iwScaled;
       canvas.height = ihScaled;
       ctx.drawImage(img, 0, 0, iwScaled, ihScaled);
-      const resizeData = canvas.toDataURL('image/jpeg', 0.5);
+      const resizeData = canvas.toDataURL("image/jpeg", 0.5);
       // setPicpostImage(resizeData);
       // setFieldValue('picpost_image', resizeData);
       // setFieldValue('picture', resizeData);
@@ -65,20 +65,20 @@ export const FormikPost = () => {
   // };
   return (
     <Formik
-      initialValues={{ picture: '', content: '', user_id: 0 }}
+      initialValues={{ picture: "", content: "", user_id: 0 }}
       onSubmit={(values) => {
         values.user_id = 1;
 
-        console.log('values: ', values);
-        console.log('values.picture: ', values.picture);
+        console.log("values: ", values);
+        console.log("values.picture: ", values.picture);
         const submitData = new FormData();
 
         // submitData.append('formData', JSON.stringify(content));
         // submitData.append('formData', JSON.user_id(c1);
         // submitData.append('image', fileInput!.current.files[0]);
-        submitData.append('picture', values.picture);
-        submitData.append('content', values.content);
-        submitData.append('user_id', '1');
+        submitData.append("picture", values.picture);
+        submitData.append("content", values.content);
+        submitData.append("user_id", "1");
         const body = submitData;
 
         createPicpost(body);
@@ -107,25 +107,29 @@ export const FormikPost = () => {
                   var reader = new FileReader();
                   // setFieldValue('attachment_filename', file.name);
                   reader.onload = function (item) {
-                    setFieldValue('picture', item.target !== null ? item.target.result : null);
+                    setFieldValue(
+                      "picture",
+                      item.target !== null ? item.target.result : null,
+                    );
 
                     // setFieldValue('attachment_data', item.target.result);
                   };
 
                   reader.readAsDataURL(file);
                 }}
-                // onChange={(event: any) => {
-                //   handleChange;
-                //   setFieldValue('file', event.currentTarget.files[0]);
-                // }}
-                // onChange={handleChange}
-                // id="select_posts_image"
-              />
+              /> 
+              {// onChange={(event: any) => {
+              //   handleChange;
+              //   setFieldValue('file', event.currentTarget.files[0]);
+              // }}
+              // onChange={handleChange}
+              // id="select_posts_image"
+              }
             </div>
             <canvas
               id="canvas"
               style={{
-                display: 'none',
+                display: "none",
               }}
               width="64"
               height="64"
@@ -133,7 +137,12 @@ export const FormikPost = () => {
             <div>
               <label>comment</label>
               {/* <input */}
-              <Field type="text" name="content" value={values.content} onChange={handleChange} />
+              <Field
+                type="text"
+                name="content"
+                value={values.content}
+                onChange={handleChange}
+              />
             </div>
             <button type="submit">送信</button>
             {/* </Field> */}
