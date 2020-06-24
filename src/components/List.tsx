@@ -2,7 +2,7 @@ require('dotenv').config();
 
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
-import { Grid, Row, Note, Button, Divider } from '@zeit-ui/react';
+import { Grid, Row, Note, Button, Divider, Spacer } from '@zeit-ui/react';
 import * as Icon from '@zeit-ui/react-icons';
 import User from '../components/User';
 
@@ -62,35 +62,43 @@ export const List = (props: any) => {
         }
       });
   };
-
+  // var listyle = {
+  //   list-style-type: none;
+  // };
   return (
     <>
-      <li key={props.user.id}>
-        <Link to={'/profilepage/' + props.user.id}>{props.user.name}&emsp;</Link>
-        {props.followUsersList.includes(props.user.id) ? (
-          <Button
-            type="warning"
-            size="mini"
-            auto
-            ghost
-            onClick={() => onClickUnFollow(props.user.id)}
-          >
-            <Icon.Eye size={16} />
-            UnFollow
-          </Button>
-        ) : (
-          <Button
-            type="success"
-            size="small"
-            auto
-            ghost
-            onClick={() => onClickFollow(props.user.id)}
-          >
-            <Icon.Eye size={16} />
-            Follow
-          </Button>
-        )}
-      </li>
+      <Row>
+        {/* <ul className="list-none"> */}
+        {/* <ul> */}
+        {/* <li key={props.user.id} className="list-none" style={{ color: 'gray' }}> */}
+        <li key={props.user.id} style={{ color: 'white' }}>
+          <Link to={'/profilepage/' + props.user.id}>{props.user.name}&emsp;</Link>
+          {props.followUsersList.includes(props.user.id) ? (
+            <Button
+              type="warning"
+              size="small"
+              auto
+              ghost
+              onClick={() => onClickUnFollow(props.user.id)}
+            >
+              <Icon.EyeOff size={16} />
+              UnFollow
+            </Button>
+          ) : (
+            <Button
+              type="success"
+              size="small"
+              auto
+              ghost
+              onClick={() => onClickFollow(props.user.id)}
+            >
+              <Icon.Eye size={16} />
+              Follow
+            </Button>
+          )}
+        </li>{' '}
+        {/* </ul> */}
+      </Row>
       <Divider />
     </>
   );

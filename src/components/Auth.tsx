@@ -7,6 +7,6 @@ interface AuthProps {
 }
 
 export const Auth = (props: AuthProps) => {
-  return User.isLoggedIn() ? props.children : <Redirect to={'/login'} />;
-  // return User.isLoggedIn() ? props.children : <Redirect to={"/app"} />;
+  // return User.isLoggedIn() ? props.children : <Redirect to={'/login'} />;
+  return User.isLoggedIn() ? props.children : <Redirect to={'/app'} />;
 };
