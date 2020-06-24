@@ -11,6 +11,8 @@ import { MemberList } from '../components/memberList';
 export const MemberListApp = () => {
   const [fetchUsers, setFetchUsers] = useState([]);
   const [followUsers, setFollowUsers] = useState<number[]>([]);
+
+  // 開発時点ではログイン処理を飛ばしている為、ID1で固定。後々修正
   const currentUserId = 1;
   const getFollowListUrl: string =
     process.env.REACT_APP_API_URL_USERS + '/follow_list/' + currentUserId;

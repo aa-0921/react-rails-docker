@@ -6,15 +6,37 @@ import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import { PostList } from '../components/PostList';
 
 export const PostsApp = () => {
-  const [hasError, setErrors] = useState(false);
   const [fetchPosts, setFetchPosts] = useState([]);
-  const url: string = process.env.REACT_APP_API_URL_ALL_POST_DATAS!;
+  const [likeList, setLikeList] = useState<number[]>([]);
 
-  if (process.env.NODE_ENV !== 'production') {
-    console.log('url:', url);
-  }
+  // 開発時点ではログイン処理を飛ばしている為、ID1で固定。後々修正
+  const currentUserId = 1;
+  const getLikeListUrl: string =
+    process.env.REACT_APP_API_URL_USERS + '/like_list/' + currentUserId;
   useEffect(() => {
-    FetchData(url).then((res) => setFetchPosts(res.data));
+    FetchData(getLikeListUrl).then((res) => {
+      setLikeList(res.data.map((like: any) => like.id));
+    });
+  }, []);
+  const pushToLikelist = (picpost_id: number) => {
+    console.log(picpost_id, 'ma');
+    const arr = Array.from(likeList);
+    arr.push(picpost_id);
+    setLikeList(arr);
+  };
+
+  const removeFromLikelist = (picpost_id: number) => {
+    const arr = Array.from(likeList);
+    const nextFollowUsers = arr.filter((el) => el !== picpost_id);
+    setLikeList(nextFollowUsers);
+  };
+
+  const getAllPostUrl: string = process.env.REACT_APP_API_URL_ALL_POST_DATAS!;
+
+  console.log('getAllPostUrl:', getAllPostUrl);
+
+  useEffect(() => {
+    FetchData(getAllPostUrl).then((res) => setFetchPosts(res.data));
   }, []);
   return (
     <>
@@ -26,15 +48,17 @@ export const PostsApp = () => {
             <span>
               <PostList
                 fetchPosts={fetchPosts}
-                // followUsers={followUsers}
-                // pushToFollowUsers={pushToFollowUsers}
-                // removeFromFollowUsers={removeFromFollowUsers}
+                likeList={likeList}
+                pushToLikelist={pushToLikelist}
+                removeFromLikelist={removeFromLikelist}
               />
             </span>
             {/* <span>{JSON.stringify(fetchPosts)}</span> */}
 
-            {/* <hr /> */}
-            {/* <span>Has error: {JSON.stringify(hasError)}</span> */}
+            <hr />
+            <hr />
+            <hr />
+
             {/* <DropZone /> */}
             {/* <FormikPost /> */}
           </div>
