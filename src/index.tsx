@@ -1,10 +1,10 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { App } from './App';
-import './scss/index.scss';
-import { LoginApp } from './pages/LoginApp';
+import React from "react";
+import ReactDOM from "react-dom";
+import { App } from "./App";
+import "./scss/index.scss";
+import { LoginApp } from "./pages/LoginApp";
 
-import 'font-awesome/css/font-awesome.min.css';
+import "font-awesome/css/font-awesome.min.css";
 // require('./index.scss');
 
 // import createSagaMiddleware from 'redux-saga';
@@ -18,7 +18,7 @@ import 'font-awesome/css/font-awesome.min.css';
 
 // sagaMiddleware.run(rootSaga);
 
-const target = document.getElementById('app');
+const target = document.getElementById("app");
 ReactDOM.render(
   // <Provider store={store}>
   <LoginApp />,

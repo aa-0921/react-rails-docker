@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 
 import { Login } from '../pages/Login';
-import { Logout } from '../pages/Logout';
+// import { Logout } from '../pages/Logout';
 import { Signup } from '../pages/Signup';
 
 import { HomePage } from '../components/HomePage';
@@ -21,11 +21,10 @@ export const LoginApp = () => {
   return (
     <Router>
       <Switch>
-        {/* <Route exact path="/login" component={Login} /> */}
-        {/* <Route exact path="/login" component={UserButton} /> */}
-
-        <Route exact path="/logout" component={Logout} />
+        <Route exact path="/login" component={Login} />
+        {/* <Route exact path="/logout" component={Logout} /> */}
         <Route exact path="/signup" component={Signup} />
+
         {/* 本番では削除（このままでは非ログイン状態でもAppにアクセスできてしまう。） */}
         <Route exact path="/app" component={App} />
 

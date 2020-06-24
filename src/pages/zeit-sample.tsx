@@ -1,13 +1,13 @@
-import * as React from 'react';
+import * as React from "react";
 // import HomePage from '../HomePage';
-import { useState } from 'react';
-import { Text } from '../components/Text';
-import { ZeitBtn } from '../components/ZeitBtn';
-import { ZeitToast } from '../components/ZeitToast';
-import { SiteImage } from '../components/SiteImage';
+import { useState } from "react";
+import { Text } from "../components/Text";
+import { ZeitBtn } from "../components/ZeitBtn";
+import { ZeitToast } from "../components/ZeitToast";
+import { SiteImage } from "../components/SiteImage";
 
 export function ZeitSample() {
-  const [text, setText] = useState('');
+  const [text, setText] = useState("");
 
   return (
     <div>
