@@ -14,10 +14,15 @@ import * as Icon from '@zeit-ui/react-icons';
 export const PostsApp = () => {
   const [fetchPosts, setFetchPosts] = useState([]);
   const [likeList, setLikeList] = useState<number[]>([]);
+  const [clickedPostUser, setClickedPostUser] = useState({
+    id: 0,
+    name: '',
+  });
   const [clickedPost, setClickedPost] = useState({
     id: 0,
     picture: '',
     content: '',
+    user_id: 0,
   });
 
   const [modalOpen, setModalOpen] = useState(false);
@@ -32,6 +37,20 @@ export const PostsApp = () => {
     setModalOpen(false);
     console.log('modal-closed');
   };
+  // clickedPost.idからそのpostの投稿者を取得
+  const getClickedPostUserUrl: string =
+    process.env.REACT_APP_API_URL_USERS + '/' + clickedPost.user_id;
+
+  console.log('getClickedPostUserUrl:', getClickedPostUserUrl);
+  console.log('clickedPost.user_id:', clickedPost.user_id);
+
+  useEffect(() => {
+    FetchData(getClickedPostUserUrl).then((res) => setClickedPostUser(res.data));
+  }, [clickedPost]);
+  console.log('post: ', clickedPost.id);
+
+  console.log('clickedPostUser.name: ', clickedPostUser.name);
+  console.log('clickedPostUser.id: ', clickedPostUser.id);
 
   // 開発時点ではログイン処理を飛ばしている為、ID1で固定。後々修正
   const currentUserId = 1;
@@ -68,21 +87,20 @@ export const PostsApp = () => {
     await fetch(postUrl, { method, body })
       .then((response) => {
         console.log(response.status);
-        // if (response.status == 204) {
         if (response.status == 200) {
           console.log('response.status:200???: ', response.status);
 
           pushToLikeList(clickedPost.id);
         } else {
           if (process.env.NODE_ENV !== 'production') {
-            console.log('投稿失敗');
+            console.log('いいね失敗');
           }
           throw new Error();
         }
       })
       .catch((error) => {
         if (process.env.NODE_ENV !== 'production') {
-          console.log('投稿失敗');
+          console.log('いいね失敗');
         }
       });
   };
@@ -103,14 +121,14 @@ export const PostsApp = () => {
           removeFromLikeList(clickedPost.id);
         } else {
           if (process.env.NODE_ENV !== 'production') {
-            console.log('投稿失敗');
+            console.log('いいね失敗');
           }
           throw new Error();
         }
       })
       .catch((error) => {
         if (process.env.NODE_ENV !== 'production') {
-          console.log('投稿失敗');
+          console.log('いいね失敗');
         }
       });
   };
@@ -123,6 +141,7 @@ export const PostsApp = () => {
   useEffect(() => {
     FetchData(getAllPostUrl).then((res) => setFetchPosts(res.data));
   }, []);
+
   return (
     <>
       <Router>
@@ -141,10 +160,10 @@ export const PostsApp = () => {
             </span>
             <Modal width="35rem" open={modalOpen} onClose={closeHandler}>
               <>
-                <Modal.Title>{clickedPost.id}</Modal.Title>
+                {/* <Modal.Title>{clickedPost.id}</Modal.Title> */}
                 {/* <Modal.Title>modal-title</Modal.Title> */}
 
-                <Modal.Subtitle>{clickedPost.content}</Modal.Subtitle>
+                {/* <Modal.Subtitle>{clickedPost.content}</Modal.Subtitle> */}
                 <Grid.Container justify="center">
                   <Grid>
                     <Modal.Content>
@@ -153,11 +172,10 @@ export const PostsApp = () => {
                         <Divider />
                         <div className="flex-1  text-center">
                           {/* <li key={clickedPost.id} className="flex items-center m-auto"> */}
+                          <span>{clickedPostUser.name}</span>
                           <Link to={'/profilepage/' + clickedPost.id}>
-                            post_id__{clickedPost.id} &emsp;
-                            {clickedPost.content}&emsp;
+                            &emsp; {clickedPost.content}&emsp;
                           </Link>
-
                           {likeList.includes(clickedPost.id) ? (
                             <Button
                               type="warning"

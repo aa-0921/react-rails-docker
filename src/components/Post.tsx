@@ -112,8 +112,6 @@ export const Post = (props: any) => {
           </li>{' '}
         </div>
       </div>
-      {/* </Row> */}
-      {/* <Divider /> */}
     </>
   );
 };

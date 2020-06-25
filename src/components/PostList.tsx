@@ -17,7 +17,7 @@ export const PostList = (props: any): any => {
           columnWidth={300}
           gutterWidth={20}
           gutterHeight={40}
-          // appearDelay={40000}
+          appearDelay={30}
           appear={scaleDown.appear}
           appeared={scaleDown.appeared}
           enter={scaleDown.enter}
