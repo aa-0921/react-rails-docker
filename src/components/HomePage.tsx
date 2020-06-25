@@ -10,6 +10,7 @@ import { About } from '../pages/About';
 import { PostsApp } from '../pages/PostsApp';
 import ProfilePage from '../pages/ProfilePage';
 import { MemberListApp } from '../pages/MemberListApp';
+import { modal } from '../components/Modal';
 
 import User from './User';
 
@@ -30,6 +31,7 @@ export const HomePage = () => {
         <Route exact path="/about" component={About} />
         <Route exact path="/profilepage/:id" component={ProfilePage} />
         <Route exact path="/MemberListApp" component={MemberListApp} />
+        <Route exact path="/modal" component={modal} />
 
         {/* <Route path="/showpost" component={ShowPost} /> */}
         <Route exact path="/posts" component={PostsApp} />
