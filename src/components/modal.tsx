@@ -5,14 +5,14 @@ import { Modal, Button } from '@zeit-ui/react';
 
 export const modal = () => {
   const [modalOpen, setModalOpen] = useState(false);
-  const handler = () => setModalOpen(true);
+  const modalOpenHandler = () => setModalOpen(true);
   const closeHandler = () => {
     setModalOpen(false);
-    console.log('closed');
+    console.log('modal-closed');
   };
   return (
     <div>
-      <Button auto onClick={handler}>
+      <Button auto onClick={modalOpenHandler}>
         Show Modal
       </Button>
       <Modal open={modalOpen} onClose={closeHandler}>
