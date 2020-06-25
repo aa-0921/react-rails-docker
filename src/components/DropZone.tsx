@@ -1,24 +1,24 @@
-require("dotenv").config();
-import * as React from "react";
-import { useState } from "react";
+require('dotenv').config();
+import * as React from 'react';
+import { useState } from 'react';
 import Dropzone, {
   IDropzoneProps,
   ILayoutProps,
   defaultClassNames,
   IPreviewProps,
-} from "react-dropzone-uploader";
-import "react-dropzone-uploader/dist/styles.css";
-import { Grid, Row, Input, Button } from "@zeit-ui/react";
+} from 'react-dropzone-uploader';
+import 'react-dropzone-uploader/dist/styles.css';
+import { Grid, Row, Input, Button } from '@zeit-ui/react';
 
-// const postUrl: string = process.env.REACT_APP_API_URL_ALL_POST_DATAS!;
+// const postUrl: string = process.env.REACT_APP_API_URL_POSTS!;
 
 export const DropZone = () => {
   // const [postData, setpostData] = useState('');
 
-  const handleSubmit: IDropzoneProps["onSubmit"] = (Files, allFiles) => {
-    console.log("Files: ", Files);
+  const handleSubmit: IDropzoneProps['onSubmit'] = (Files, allFiles) => {
+    console.log('Files: ', Files);
     console.log(
-      "Files.map((f) => f.meta",
+      'Files.map((f) => f.meta',
       Files.map((f) => f.meta),
     );
     allFiles.forEach((f) => f.remove());
@@ -44,7 +44,7 @@ export const DropZone = () => {
     // const headers = {
     //   'Content-Type': 'multipart/form-data',
     // };
-    // const postUrl: string = process.env.REACT_APP_API_URL_ALL_POST_DATAS!;
+    // const postUrl: string = process.env.REACT_APP_API_URL_POSTS!;
     // console.log('postUrl: ', postUrl);
     // await fetch(postUrl, { method, headers, body })
     //   .then((response) => {
@@ -65,7 +65,7 @@ export const DropZone = () => {
     //     }
     //   });
   };
-  const [content, setContent] = useState("");
+  const [content, setContent] = useState('');
   // const fileInput: RefObject<HTMLInputElement> = React.createRef();
   const fileInput = React.createRef<HTMLInputElement>();
 
@@ -73,12 +73,9 @@ export const DropZone = () => {
     setContent(e.target.value);
   };
   // const handleChangeStatus = ({ meta }, status: any) => {
-  const handleChangeStatus: IDropzoneProps["onChangeStatus"] = (
-    { meta },
-    status,
-  ) => {
-    console.log("status-handleChangeStatus: ", status);
-    console.log("meta-handleChangeStatus: ", meta);
+  const handleChangeStatus: IDropzoneProps['onChangeStatus'] = ({ meta }, status) => {
+    console.log('status-handleChangeStatus: ', status);
+    console.log('meta-handleChangeStatus: ', meta);
   };
 
   const Layout = ({

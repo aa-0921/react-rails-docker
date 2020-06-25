@@ -1,19 +1,19 @@
-import * as React from "react";
-import { Grid, Row, Note, Button } from "@zeit-ui/react";
+import * as React from 'react';
+import { Grid, Row, Note, Button } from '@zeit-ui/react';
 
 export const Profile = () => {
   const clickFollowUser = async (followUserId: any) => {
-    if (process.env.NODE_ENV !== "production") {
-      console.log("followUserId:", followUserId);
+    if (process.env.NODE_ENV !== 'production') {
+      console.log('followUserId:', followUserId);
     }
-    const method = "PUT";
+    const method = 'PUT';
     const body = JSON.stringify(followUserId);
     const headers = {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     };
-    const postUrl: string = process.env.REACT_APP_API_URL_ALL_POST_DATAS!;
-    if (process.env.NODE_ENV !== "production") {
-      console.log("postUrl:", postUrl);
+    const postUrl: string = process.env.REACT_APP_API_URL_POSTS!;
+    if (process.env.NODE_ENV !== 'production') {
+      console.log('postUrl:', postUrl);
     }
     await fetch(postUrl, { method, headers, body });
   };
@@ -24,11 +24,7 @@ export const Profile = () => {
         <p className="text-sm font-hairline text-gray-600 mt-1">Subtitle</p>
       </div>
       <div className="flex justify-center mt-4">
-        <img
-          className="shadow sm:w-12 sm:h-12 w-10 h-10 rounded-full"
-          src=""
-          alt="Avatar"
-        />
+        <img className="shadow sm:w-12 sm:h-12 w-10 h-10 rounded-full" src="" alt="Avatar" />
       </div>
       <div className="mt-6 flex justify-between text-center">
         <div>
@@ -45,9 +41,7 @@ export const Profile = () => {
         </div>
       </div>
       <div className="mt-6">
-        <button
-          className="rounded shadow-md w-full items-center shadow bg-blue-500 px-4 py-2 text-white hover:bg-blue-400"
-        >
+        <button className="rounded shadow-md w-full items-center  bg-blue-500 px-4 py-2 text-white hover:bg-blue-400">
           Follow
         </button>
       </div>

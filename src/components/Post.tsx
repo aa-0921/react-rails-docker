@@ -4,23 +4,25 @@ import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import { Grid, Row, Note, Button, Divider, Spacer } from '@zeit-ui/react';
 import * as Icon from '@zeit-ui/react-icons';
-import User from '../components/User';
+import User from './User';
 
-export const List = (props: any) => {
-  const onClickFollow = async (userId: any) => {
+export const Post = (props: any) => {
+  const onClickLike = async (postId: any) => {
     const obj = {
       current_user_id: User.get('currentUserId'),
     };
     const body = JSON.stringify(obj);
     const method = 'PUT';
-    const postUrl: string = process.env.REACT_APP_API_URL_USERS + '/follow/' + userId;
+    const postUrl: string = process.env.REACT_APP_API_URL_POSTS + '/like/' + postId;
 
     await fetch(postUrl, { method, body })
       .then((response) => {
         console.log(response.status);
         // if (response.status == 204) {
         if (response.status == 200) {
-          props.pushToFollowUsers(props.user.id);
+          console.log('response.status:200???: ', response.status);
+
+          props.pushToLikeList(props.post.id);
         } else {
           if (process.env.NODE_ENV !== 'production') {
             console.log('投稿失敗');
@@ -34,21 +36,21 @@ export const List = (props: any) => {
         }
       });
   };
-  const onClickUnFollow = async (userId: any) => {
+  const onClickUnLike = async (postId: any) => {
     const obj = {
       current_user_id: User.get('currentUserId'),
     };
 
     const body = JSON.stringify(obj);
     const method = 'PUT';
-    const postUrl: string = process.env.REACT_APP_API_URL_USERS + '/unfollow/' + userId;
+    const postUrl: string = process.env.REACT_APP_API_URL_POSTS + '/unlike/' + postId;
 
     await fetch(postUrl, { method, body })
       .then((response) => {
         console.log(response.status);
         // if (response.status == 204) {
         if (response.status == 200) {
-          props.removeFromFollowUsers(props.user.id);
+          props.removeFromLikeList(props.post.id);
         } else {
           if (process.env.NODE_ENV !== 'production') {
             console.log('投稿失敗');
@@ -70,30 +72,34 @@ export const List = (props: any) => {
       <Row>
         <div className="flex items-center">
           <div className="flex-1  text-center">
-            <li key={props.user.id} style={{ color: 'white' }} className="flex items-center m-auto">
-              <Link to={'/profilepage/' + props.user.id}>{props.user.name}&emsp;</Link>
-              {props.followUsersList.includes(props.user.id) ? (
+            <li key={props.post.id} className="flex items-center m-auto">
+              <Link to={'/profilepage/' + props.post.id}>
+                post_id__{props.post.id} &emsp;{props.post.content}&emsp;
+              </Link>
+
+              {props.likeList.includes(props.post.id) ? (
                 <Button
                   type="warning"
-                  size="small"
+                  size="mini"
                   auto
                   ghost
-                  onClick={() => onClickUnFollow(props.user.id)}
-                  className="m-auto"
+                  onClick={() => onClickUnLike(props.post.id)}
+                  // className="m-auto transition duration-500 ease-in-out bg-blue-500 hover:bg-red-500 transform hover:-translate-y-1 hover:scale-110"
                 >
-                  <Icon.EyeOff size={16} />
-                  UnFollow
+                  <Icon.HeartFill size={12} />
+                  UnLike
                 </Button>
               ) : (
                 <Button
                   type="success"
-                  size="small"
+                  size="mini"
                   auto
                   ghost
-                  onClick={() => onClickFollow(props.user.id)}
+                  onClick={() => onClickLike(props.post.id)}
+                  // className="m-auto transition duration-500 ease-in-out bg-blue-500 hover:bg-red-500 transform hover:-translate-y-1 hover:scale-110"
                 >
-                  <Icon.Eye size={16} />
-                  Follow
+                  <Icon.Heart size={8} />
+                  Like
                 </Button>
               )}
             </li>{' '}
