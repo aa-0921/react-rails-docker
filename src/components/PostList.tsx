@@ -15,6 +15,8 @@ export const PostList = (props: any): any => {
       <div>
         <StackGrid
           columnWidth={300}
+          gutterWidth={20}
+          gutterHeight={40}
           // appearDelay={40000}
           appear={scaleDown.appear}
           appeared={scaleDown.appeared}
