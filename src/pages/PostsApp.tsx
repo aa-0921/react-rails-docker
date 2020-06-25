@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { FetchData } from '../scripts/api/FetchData';
-import { DropZone } from '../components/DropZone';
-import { FormikPost } from '../components/FormikPost';
+
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import { PostList } from '../components/PostList';
 import User from '../components/User';
 
-import { Modal, Button } from '@zeit-ui/react';
+import { Modal, Button, Grid, Divider } from '@zeit-ui/react';
 
 require('dotenv').config();
 
@@ -146,47 +145,50 @@ export const PostsApp = () => {
                 {/* <Modal.Title>modal-title</Modal.Title> */}
 
                 <Modal.Subtitle>{clickedPost.content}</Modal.Subtitle>
-                <Modal.Content>
-                  <div>
-                    <div>
-                      {/* <div className="flex items-center">
-        <div className="flex-1  text-center"> */}
-                      <li key={clickedPost.id} className="flex items-center m-auto">
+                <Grid.Container justify="center">
+                  <Grid>
+                    <Modal.Content>
+                      <div className=" flex flex-col items-center">
                         <img src={clickedPost.picture} className="rounded-lg" />
-                        <Link to={'/profilepage/' + clickedPost.id}>
-                          post_id__{clickedPost.id} &emsp;
-                          {clickedPost.content}&emsp;
-                        </Link>
+                        <Divider />
+                        <div className="flex-1  text-center">
+                          {/* <li key={clickedPost.id} className="flex items-center m-auto"> */}
+                          <Link to={'/profilepage/' + clickedPost.id}>
+                            post_id__{clickedPost.id} &emsp;
+                            {clickedPost.content}&emsp;
+                          </Link>
 
-                        {likeList.includes(clickedPost.id) ? (
-                          <Button
-                            type="warning"
-                            size="mini"
-                            auto
-                            ghost
-                            onClick={() => onClickUnLike(clickedPost.id)}
-                            // className="m-auto transition duration-500 ease-in-out bg-blue-500 hover:bg-red-500 transform hover:-translate-y-1 hover:scale-110"
-                          >
-                            <Icon.HeartFill size={12} />
-                            UnLike
-                          </Button>
-                        ) : (
-                          <Button
-                            type="success"
-                            size="mini"
-                            auto
-                            ghost
-                            onClick={() => onClickLike(clickedPost.id)}
-                            // className="m-auto transition duration-500 ease-in-out bg-blue-500 hover:bg-red-500 transform hover:-translate-y-1 hover:scale-110"
-                          >
-                            <Icon.Heart size={8} />
-                            Like
-                          </Button>
-                        )}
-                      </li>{' '}
-                    </div>
-                  </div>
-                </Modal.Content>
+                          {likeList.includes(clickedPost.id) ? (
+                            <Button
+                              type="warning"
+                              size="mini"
+                              auto
+                              ghost
+                              onClick={() => onClickUnLike(clickedPost.id)}
+                              // className="m-auto transition duration-500 ease-in-out bg-blue-500 hover:bg-red-500 transform hover:-translate-y-1 hover:scale-110"
+                            >
+                              <Icon.HeartFill size={12} />
+                              UnLike
+                            </Button>
+                          ) : (
+                            <Button
+                              type="success"
+                              size="mini"
+                              auto
+                              ghost
+                              onClick={() => onClickLike(clickedPost.id)}
+                              // className="m-auto transition duration-500 ease-in-out bg-blue-500 hover:bg-red-500 transform hover:-translate-y-1 hover:scale-110"
+                            >
+                              <Icon.Heart size={8} />
+                              Like
+                            </Button>
+                          )}
+                          {/* </li>{' '} */}
+                        </div>
+                      </div>
+                    </Modal.Content>
+                  </Grid>
+                </Grid.Container>
                 <Modal.Action passive onClick={() => setModalOpen(false)}>
                   Cancel
                 </Modal.Action>
