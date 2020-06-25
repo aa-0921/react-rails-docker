@@ -1,5 +1,3 @@
-require('dotenv').config();
-
 import React, { useState, useEffect } from 'react';
 import { Modal, Button } from '@zeit-ui/react';
 

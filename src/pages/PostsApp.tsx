@@ -4,15 +4,31 @@ import { DropZone } from '../components/DropZone';
 import { FormikPost } from '../components/FormikPost';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import { PostList } from '../components/PostList';
+import User from '../components/User';
 
 import { Modal, Button } from '@zeit-ui/react';
+
+require('dotenv').config();
+
+import * as Icon from '@zeit-ui/react-icons';
 
 export const PostsApp = () => {
   const [fetchPosts, setFetchPosts] = useState([]);
   const [likeList, setLikeList] = useState<number[]>([]);
+  const [clickedPost, setClickedPost] = useState({
+    id: 0,
+    picture: '',
+    content: '',
+  });
 
   const [modalOpen, setModalOpen] = useState(false);
-  const modalOpenHandler = () => setModalOpen(true);
+  const modalOpenHandler = (post: any) => {
+    setClickedPost(post);
+    console.log('post: ', clickedPost.id);
+    console.log('post: ', clickedPost.picture);
+
+    setModalOpen(true);
+  };
   const closeHandler = () => {
     setModalOpen(false);
     console.log('modal-closed');
@@ -41,6 +57,66 @@ export const PostsApp = () => {
     setLikeList(nextFollowUsers);
   };
 
+  // clickLike,unlike
+  const onClickLike = async (postId: any) => {
+    const obj = {
+      current_user_id: User.get('currentUserId'),
+    };
+    const body = JSON.stringify(obj);
+    const method = 'PUT';
+    const postUrl: string = process.env.REACT_APP_API_URL_POSTS + '/like/' + postId;
+
+    await fetch(postUrl, { method, body })
+      .then((response) => {
+        console.log(response.status);
+        // if (response.status == 204) {
+        if (response.status == 200) {
+          console.log('response.status:200???: ', response.status);
+
+          pushToLikeList(clickedPost.id);
+        } else {
+          if (process.env.NODE_ENV !== 'production') {
+            console.log('投稿失敗');
+          }
+          throw new Error();
+        }
+      })
+      .catch((error) => {
+        if (process.env.NODE_ENV !== 'production') {
+          console.log('投稿失敗');
+        }
+      });
+  };
+  const onClickUnLike = async (postId: any) => {
+    const obj = {
+      current_user_id: User.get('currentUserId'),
+    };
+
+    const body = JSON.stringify(obj);
+    const method = 'PUT';
+    const postUrl: string = process.env.REACT_APP_API_URL_POSTS + '/unlike/' + postId;
+
+    await fetch(postUrl, { method, body })
+      .then((response) => {
+        console.log(response.status);
+        // if (response.status == 204) {
+        if (response.status == 200) {
+          removeFromLikeList(clickedPost.id);
+        } else {
+          if (process.env.NODE_ENV !== 'production') {
+            console.log('投稿失敗');
+          }
+          throw new Error();
+        }
+      })
+      .catch((error) => {
+        if (process.env.NODE_ENV !== 'production') {
+          console.log('投稿失敗');
+        }
+      });
+  };
+  // clickLike,unlike
+
   const getAllPostUrl: string = process.env.REACT_APP_API_URL_POSTS!;
 
   console.log('getAllPostUrl:', getAllPostUrl);
@@ -64,16 +140,58 @@ export const PostsApp = () => {
                 modalOpenHandler={modalOpenHandler}
               />
             </span>
-            <Modal open={modalOpen} onClose={closeHandler}>
-              <Modal.Title>Modal</Modal.Title>
-              <Modal.Subtitle>This is a modal</Modal.Subtitle>
-              <Modal.Content>
-                <p>Some content contained within the modal.</p>
-              </Modal.Content>
-              <Modal.Action passive onClick={() => setModalOpen(false)}>
-                Cancel
-              </Modal.Action>
-              {/* <Modal.Action>Submit</Modal.Action> */}
+            <Modal width="35rem" open={modalOpen} onClose={closeHandler}>
+              <>
+                <Modal.Title>{clickedPost.id}</Modal.Title>
+                {/* <Modal.Title>modal-title</Modal.Title> */}
+
+                <Modal.Subtitle>{clickedPost.content}</Modal.Subtitle>
+                <Modal.Content>
+                  <div>
+                    <div>
+                      {/* <div className="flex items-center">
+        <div className="flex-1  text-center"> */}
+                      <li key={clickedPost.id} className="flex items-center m-auto">
+                        <img src={clickedPost.picture} className="rounded-lg" />
+                        <Link to={'/profilepage/' + clickedPost.id}>
+                          post_id__{clickedPost.id} &emsp;
+                          {clickedPost.content}&emsp;
+                        </Link>
+
+                        {likeList.includes(clickedPost.id) ? (
+                          <Button
+                            type="warning"
+                            size="mini"
+                            auto
+                            ghost
+                            onClick={() => onClickUnLike(clickedPost.id)}
+                            // className="m-auto transition duration-500 ease-in-out bg-blue-500 hover:bg-red-500 transform hover:-translate-y-1 hover:scale-110"
+                          >
+                            <Icon.HeartFill size={12} />
+                            UnLike
+                          </Button>
+                        ) : (
+                          <Button
+                            type="success"
+                            size="mini"
+                            auto
+                            ghost
+                            onClick={() => onClickLike(clickedPost.id)}
+                            // className="m-auto transition duration-500 ease-in-out bg-blue-500 hover:bg-red-500 transform hover:-translate-y-1 hover:scale-110"
+                          >
+                            <Icon.Heart size={8} />
+                            Like
+                          </Button>
+                        )}
+                      </li>{' '}
+                    </div>
+                  </div>
+                </Modal.Content>
+                <Modal.Action passive onClick={() => setModalOpen(false)}>
+                  Cancel
+                </Modal.Action>
+                {/* <Modal.Action>Submit</Modal.Action> */}
+              </>
             </Modal>
             {/* <span>{JSON.stringify(fetchPosts)}</span> */}
 
