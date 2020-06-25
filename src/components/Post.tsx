@@ -84,7 +84,7 @@ export const Post = (props: any) => {
                   auto
                   ghost
                   onClick={() => onClickUnLike(props.post.id)}
-                  className="m-auto"
+                  // className="m-auto transition duration-500 ease-in-out bg-blue-500 hover:bg-red-500 transform hover:-translate-y-1 hover:scale-110"
                 >
                   <Icon.HeartFill size={12} />
                   UnLike
@@ -96,6 +96,7 @@ export const Post = (props: any) => {
                   auto
                   ghost
                   onClick={() => onClickLike(props.post.id)}
+                  // className="m-auto transition duration-500 ease-in-out bg-blue-500 hover:bg-red-500 transform hover:-translate-y-1 hover:scale-110"
                 >
                   <Icon.Heart size={8} />
                   Like
