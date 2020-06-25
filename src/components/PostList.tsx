@@ -30,6 +30,7 @@ export const PostList = (props: any): any => {
               likeList={props.likeList}
               pushToLikeList={props.pushToLikeList}
               removeFromLikeList={props.removeFromLikeList}
+              modalOpenHandler={props.modalOpenHandler}
             />
           ))}
         </StackGrid>
