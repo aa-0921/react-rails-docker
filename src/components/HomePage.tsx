@@ -32,7 +32,7 @@ export const HomePage = () => {
         <Route exact path="/MemberListApp" component={MemberListApp} />
 
         {/* <Route path="/showpost" component={ShowPost} /> */}
-        <Route exact path="/posts" component={PostsApp} />
+        <Route exact path="/postsApp" component={PostsApp} />
       </Switch>
       {/* <Footer /> */}
     </BrowserRouter>

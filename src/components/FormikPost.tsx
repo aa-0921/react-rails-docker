@@ -5,7 +5,7 @@ import { useFormikContext, useField } from 'formik';
 import axios from 'axios';
 
 export const FormikPost = () => {
-  // const [picpostImage, setPicpostImage] = useState('');
+  const [postImage, setPostImage] = useState('');
 
   // type bodyProps = {
   //   picture: string;
@@ -33,6 +33,8 @@ export const FormikPost = () => {
   };
   const setImage = (e: any, setFieldValue: any) => {
     let canvas: any = document.getElementById('canvas');
+    console.log('canvas:', canvas);
+
     let ctx = canvas!.getContext('2d');
     let maxW = 250;
     let maxH = 250;
@@ -48,11 +50,16 @@ export const FormikPost = () => {
       canvas.height = ihScaled;
       ctx.drawImage(img, 0, 0, iwScaled, ihScaled);
       const resizeData = canvas.toDataURL('image/jpeg', 0.5);
-      // setPicpostImage(resizeData);
-      // setFieldValue('picpost_image', resizeData);
-      // setFieldValue('picture', resizeData);
+      setPostImage(resizeData);
+      console.log('postImage:', postImage);
+
+      setFieldValue('post_image', resizeData);
+      console.log('resizeData:', resizeData);
     };
+    console.log('img:', img);
+
     img.src = URL.createObjectURL(e.target.files[0]);
+    console.log('img.src :', img.src);
   };
   // interface FormValues {
   //   picpost_image: string;
@@ -73,9 +80,6 @@ export const FormikPost = () => {
         console.log('values.picture: ', values.picture);
         const submitData = new FormData();
 
-        // submitData.append('formData', JSON.stringify(content));
-        // submitData.append('formData', JSON.user_id(c1);
-        // submitData.append('image', fileInput!.current.files[0]);
         submitData.append('picture', values.picture);
         submitData.append('content', values.content);
         submitData.append('user_id', '1');
@@ -83,38 +87,47 @@ export const FormikPost = () => {
 
         createPicpost(body);
       }}
-      render={({ values, handleSubmit, handleChange, setFieldValue }) => {
+      render={({ values, handleSubmit, handleChange, setFieldValue, isSubmitting }) => {
         return (
           <Form onSubmit={handleSubmit}>
             <div>
-              <label>投稿画像</label>
-              {/* <input */}
-              <Field
-                type="file"
-                // name="picture"
-                id="file"
-                name="file"
-                // value={values.picture}
-                // onChange={(e: any) => setImage(e, setFieldValue)}
-                // onChange={(event: any) => {
-                //   setFieldValue(
-                //     'file',
-                //     event.currentTarget.files !== null ? event.currentTarget.files[0] : null,
-                //   );
-                // }}
-                onChange={(e: any) => {
-                  var file = e.target.files[0];
-                  var reader = new FileReader();
-                  // setFieldValue('attachment_filename', file.name);
-                  reader.onload = function (item) {
-                    setFieldValue('picture', item.target !== null ? item.target.result : null);
+              <img
+                src="http://localhost:8000/d8ccdf6e-f571-4761-852c-79752ed7b71c"
 
-                    // setFieldValue('attachment_data', item.target.result);
-                  };
-
-                  reader.readAsDataURL(file);
-                }}
+                // src={props.post.picture}
+                // className="rounded-lg"
+                // onClick={() => props.modalOpenHandler(props.post)}
               />
+              <label>投稿画像</label>
+              <React.Fragment>
+                <Field
+                  type="file"
+                  // name="picture"
+                  id="file"
+                  name="file"
+                  // value={values.picture}
+                  // onChange={(e: any) => setImage(e, setFieldValue)}
+                  // onChange={(event: any) => {
+                  //   setFieldValue(
+                  //     'file',
+                  //     event.currentTarget.files !== null ? event.currentTarget.files[0] : null,
+                  //   );
+                  // }}
+                  onChange={(e: any) => {
+                    setImage(e, setFieldValue);
+
+                    var file = e.target.files[0];
+                    var reader = new FileReader();
+
+                    reader.onload = function (item) {
+                      setFieldValue('picture', item.target !== null ? item.target.result : null);
+                    };
+
+                    reader.readAsDataURL(file);
+                  }}
+                />
+                <Field type="hidden" name="post_image" />
+              </React.Fragment>
               {
                 // onChange={(event: any) => {
                 //   handleChange;
@@ -132,12 +145,11 @@ export const FormikPost = () => {
               width="64"
               height="64"
             />
-            <div>
-              <label>comment</label>
-              {/* <input */}
-              <Field type="text" name="content" value={values.content} onChange={handleChange} />
-            </div>
-            <button type="submit">送信</button>
+            <label>コメント</label>
+            <Field className="input" type="text" name="name" />
+            <button className="submit-button" type="submit" disabled={isSubmitting}>
+              送信
+            </button>
             {/* </Field> */}
           </Form>
         );

@@ -27,44 +27,7 @@ export const DropZone = () => {
     // console.log('postData: ', postData);
   };
 
-  const postSubmit = async () => {
-    // event.preventDefault();
-    // const submitData = new FormData();
-    // submitData.append('formData', JSON.stringify(content));
-    // submitData.append('formData', JSON.user_id(c1);
-    // submitData.append('image', fileInput!.current.files[0]);
-    // submitData.append('picture', postData);
-    // submitData.append('content', content);
-    // submitData.append('user_id', '1');
-    // if (process.env.NODE_ENV !== 'production') {
-    //   console.log('submitData:', submitData);
-    // }
-    // const method = 'POST';
-    // const body = submitData;
-    // const headers = {
-    //   'Content-Type': 'multipart/form-data',
-    // };
-    // const postUrl: string = process.env.REACT_APP_API_URL_POSTS!;
-    // console.log('postUrl: ', postUrl);
-    // await fetch(postUrl, { method, headers, body })
-    //   .then((response) => {
-    //     if (response.status == 200) {
-    //       if (process.env.NODE_ENV !== 'production') {
-    //         console.log('投稿成功');
-    //       }
-    //     } else {
-    //       if (process.env.NODE_ENV !== 'production') {
-    //         console.log('投稿失敗');
-    //       }
-    //       throw new Error();
-    //     }
-    //   })
-    //   .catch((error) => {
-    //     if (process.env.NODE_ENV !== 'production') {
-    //       console.log('投稿失敗');
-    //     }
-    //   });
-  };
+  const postSubmit = async () => {};
   const [content, setContent] = useState('');
   // const fileInput: RefObject<HTMLInputElement> = React.createRef();
   const fileInput = React.createRef<HTMLInputElement>();
