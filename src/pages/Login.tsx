@@ -1,7 +1,7 @@
-require("dotenv").config();
+require('dotenv').config();
 
-import * as React from "react";
-import { Link } from "react-router-dom";
+import * as React from 'react';
+import { Link } from 'react-router-dom';
 
 // export const Login = () => {
 //   return <h1>hoge</h1>;
@@ -9,32 +9,32 @@ import { Link } from "react-router-dom";
 
 // import React, { Component } from 'react';
 // import { Form } from 'react-bootstrap';
-import { withRouter } from "react-router-dom";
-import User from "../components/User";
-import { useState, useEffect } from "react";
+import { withRouter } from 'react-router-dom';
+import User from '../components/User';
+import { useState, useEffect } from 'react';
 
 // import { Button } from '@zeit-ui/react'
-import * as H from "history";
-import { App } from "../../src/App";
-import { Grid, Row, Note, Button } from "@zeit-ui/react";
+import * as H from 'history';
+import { App } from '../../src/App';
+import { Grid, Row, Note, Button } from '@zeit-ui/react';
 
 type LoginProps = {
-  email: "";
-  password: "";
-  errMessage: "";
+  email: '';
+  password: '';
+  errMessage: '';
   history: H.History;
   message: string;
 };
 
 export const Login = (props: LoginProps) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [errMessage, setErrMessage] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [errMessage, setErrMessage] = useState('');
 
   useEffect(() => {
-    User.set("isLoggedIn", false.toString());
-    if (process.env.NODE_ENV !== "production") {
-      console.log("isLoggedIn(Login.tsx):", User.isLoggedIn());
+    User.set('isLoggedIn', false.toString());
+    if (process.env.NODE_ENV !== 'production') {
+      console.log('isLoggedIn(Login.tsx):', User.isLoggedIn());
     }
   }, []);
   const onClickLogin = async () => {
@@ -42,12 +42,12 @@ export const Login = (props: LoginProps) => {
 
     try {
       await User.login(email, password);
-      if (process.env.NODE_ENV !== "production") {
+      if (process.env.NODE_ENV !== 'production') {
         console.log(User.isLoggedIn());
       }
-      props.history.push("/");
+      props.history.push('/');
     } catch (e) {
-      setErrMessage("メールアドレスかパスワードが違います");
+      setErrMessage('メールアドレスかパスワードが違います');
     }
   };
 
@@ -68,14 +68,12 @@ export const Login = (props: LoginProps) => {
   const handleChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
   };
-  const facebookUrl: string = process.env.REACT_APP_API_URL_SNS_LOGIN +
-    "/facebook";
-  const githubUrl: string = process.env.REACT_APP_API_URL_SNS_LOGIN + "/github";
-  const twitterUrl: string = process.env.REACT_APP_API_URL_SNS_LOGIN +
-    "/twitter";
+  const facebookUrl: string = process.env.REACT_APP_API_URL_SNS_LOGIN + '/facebook';
+  const githubUrl: string = process.env.REACT_APP_API_URL_SNS_LOGIN + '/github';
+  const twitterUrl: string = process.env.REACT_APP_API_URL_SNS_LOGIN + '/twitter';
 
-  if (process.env.NODE_ENV !== "production") {
-    console.log("facebookUrl:", facebookUrl);
+  if (process.env.NODE_ENV !== 'production') {
+    console.log('facebookUrl:', facebookUrl);
   }
   return (
     <Grid.Container gap={-10} justify="center">

@@ -1,0 +1,7 @@
+scss/
+src/scss
+
+
+src/@types
+@types/
+*.css
