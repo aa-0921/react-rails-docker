@@ -1,9 +1,6 @@
 name: Staging Deploy
-on:
-  push
-  # push:
-  #   branches:
-  #     - release/**
+on: push
+
 env:
   project-name: ga-test-project
 
