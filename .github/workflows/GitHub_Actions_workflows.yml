@@ -1,6 +1,6 @@
 name: Staging Deploy
 on:
-  [push]
+  push
   # push:
   #   branches:
   #     - release/**
