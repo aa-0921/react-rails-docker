@@ -155,13 +155,13 @@ export const PostsApp = () => {
               <FormikPost />
               <Divider />
 
-              {/* <PostList
+              <PostList
                 fetchPosts={fetchPosts}
                 likeList={likeList}
                 pushToLikeList={pushToLikeList}
                 removeFromLikeList={removeFromLikeList}
                 modalOpenHandler={modalOpenHandler}
-              /> */}
+              />
             </div>
             <Modal width="35rem" open={modalOpen} onClose={closeHandler}>
               <>
