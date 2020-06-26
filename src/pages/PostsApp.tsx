@@ -4,6 +4,7 @@ import { FetchData } from '../scripts/api/FetchData';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import { PostList } from '../components/PostList';
 import User from '../components/User';
+import { FormikPost } from '../components/FormikPost';
 
 import { Modal, Button, Grid, Divider } from '@zeit-ui/react';
 
@@ -150,22 +151,20 @@ export const PostsApp = () => {
 
           <div>
             <div>
-              {/* <span> */}
-              <PostList
+              {/* <DropZone /> */}
+              <FormikPost />
+              <Divider />
+
+              {/* <PostList
                 fetchPosts={fetchPosts}
                 likeList={likeList}
                 pushToLikeList={pushToLikeList}
                 removeFromLikeList={removeFromLikeList}
                 modalOpenHandler={modalOpenHandler}
-              />
+              /> */}
             </div>
-            {/* </span> */}
             <Modal width="35rem" open={modalOpen} onClose={closeHandler}>
               <>
-                {/* <Modal.Title>{clickedPost.id}</Modal.Title> */}
-                {/* <Modal.Title>modal-title</Modal.Title> */}
-
-                {/* <Modal.Subtitle>{clickedPost.content}</Modal.Subtitle> */}
                 <Grid.Container justify="center">
                   <Grid>
                     <Modal.Content>
@@ -173,7 +172,6 @@ export const PostsApp = () => {
                         <img src={clickedPost.picture} className="rounded-lg" />
                         <Divider />
                         <div className="flex-1  text-center">
-                          {/* <li key={clickedPost.id} className="flex items-center m-auto"> */}
                           <span>{clickedPostUser.name}</span>
                           <Link to={'/profilepage/' + clickedPost.id}>
                             &emsp; {clickedPost.content}&emsp;
@@ -185,7 +183,6 @@ export const PostsApp = () => {
                               auto
                               ghost
                               onClick={() => onClickUnLike(clickedPost.id)}
-                              // className="m-auto transition duration-500 ease-in-out bg-blue-500 hover:bg-red-500 transform hover:-translate-y-1 hover:scale-110"
                             >
                               <Icon.HeartFill size={12} />
                               UnLike
@@ -197,13 +194,11 @@ export const PostsApp = () => {
                               auto
                               ghost
                               onClick={() => onClickLike(clickedPost.id)}
-                              // className="m-auto transition duration-500 ease-in-out bg-blue-500 hover:bg-red-500 transform hover:-translate-y-1 hover:scale-110"
                             >
                               <Icon.Heart size={8} />
                               Like
                             </Button>
                           )}
-                          {/* </li>{' '} */}
                         </div>
                       </div>
                     </Modal.Content>
@@ -212,17 +207,8 @@ export const PostsApp = () => {
                 <Modal.Action passive onClick={() => setModalOpen(false)}>
                   Cancel
                 </Modal.Action>
-                {/* <Modal.Action>Submit</Modal.Action> */}
               </>
             </Modal>
-            {/* <span>{JSON.stringify(fetchPosts)}</span> */}
-
-            {/* <hr />
-            <hr />
-            <hr /> */}
-
-            {/* <DropZone /> */}
-            {/* <FormikPost /> */}
           </div>
           <Switch>
             {/* <Route path="/post/:id" component={Show} /> */}
