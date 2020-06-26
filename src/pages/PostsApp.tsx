@@ -149,7 +149,8 @@ export const PostsApp = () => {
           {/* <Show /> */}
 
           <div>
-            <span>
+            <div>
+              {/* <span> */}
               <PostList
                 fetchPosts={fetchPosts}
                 likeList={likeList}
@@ -157,7 +158,8 @@ export const PostsApp = () => {
                 removeFromLikeList={removeFromLikeList}
                 modalOpenHandler={modalOpenHandler}
               />
-            </span>
+            </div>
+            {/* </span> */}
             <Modal width="35rem" open={modalOpen} onClose={closeHandler}>
               <>
                 {/* <Modal.Title>{clickedPost.id}</Modal.Title> */}
@@ -215,9 +217,9 @@ export const PostsApp = () => {
             </Modal>
             {/* <span>{JSON.stringify(fetchPosts)}</span> */}
 
+            {/* <hr />
             <hr />
-            <hr />
-            <hr />
+            <hr /> */}
 
             {/* <DropZone /> */}
             {/* <FormikPost /> */}

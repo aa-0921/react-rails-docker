@@ -70,17 +70,17 @@ export const Post = (props: any) => {
   return (
     <>
       {/* <Row> */}
-      <div>
-        <div>
-          {/* <div className="flex items-center">
+      {/* <div> */}
+      {/* <div> */}
+      {/* <div className="flex items-center">
         <div className="flex-1  text-center"> */}
-          <li key={props.post.id} className="flex items-center m-auto">
-            <img
-              src={props.post.picture}
-              className="rounded-lg"
-              onClick={() => props.modalOpenHandler(props.post)}
-            />
-            {/* <Link to={'/profilepage/' + props.post.id}>
+      {/* <li key={props.post.id} className="flex items-center m-auto"> */}
+      <img
+        src={props.post.picture}
+        className="rounded-lg"
+        onClick={() => props.modalOpenHandler(props.post)}
+      />
+      {/* <Link to={'/profilepage/' + props.post.id}>
               post_id__{props.post.id} &emsp;{props.post.content}&emsp;
             </Link>
 
@@ -109,9 +109,9 @@ export const Post = (props: any) => {
                 Like
               </Button>
             )} */}
-          </li>{' '}
-        </div>
-      </div>
+      {/* </li>{' '} */}
+      {/* </div> */}
+      {/* </div> */}
     </>
   );
 };

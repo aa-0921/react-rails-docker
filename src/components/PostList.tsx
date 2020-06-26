@@ -17,12 +17,14 @@ export const PostList = (props: any): any => {
           columnWidth={300}
           gutterWidth={20}
           gutterHeight={40}
-          appearDelay={30}
-          appear={scaleDown.appear}
-          appeared={scaleDown.appeared}
-          enter={scaleDown.enter}
-          entered={scaleDown.entered}
-          leaved={scaleDown.leaved}
+          // duration={700}
+          monitorImagesLoaded={true}
+          // appearDelay={30}
+          // appear={scaleDown.appear}
+          // appeared={scaleDown.appeared}
+          // enter={scaleDown.enter}
+          // entered={scaleDown.entered}
+          // leaved={scaleDown.leaved}
         >
           {props.fetchPosts.map((post: any) => (
             <Post
