@@ -1,5 +1,9 @@
 import User from './User';
-import React, { useState, useEffect } from 'react';
+
+import React from 'react';
+import axios from 'axios';
+// @ts-ignore
+import { csrfToken } from 'rails-ujs';
 
 type LoginParams = {
   email: string;
@@ -9,7 +13,7 @@ type LoginParams = {
 
 export const sessionApiLogin = async ({ email, password }: LoginParams) => {
   console.log('process.env.NODE_ENV:', process.env.NODE_ENV);
-
+  axios.defaults.headers.common['X-CSRF-Token'] = csrfToken();
   const obj = {
     email: email,
     password: password,
