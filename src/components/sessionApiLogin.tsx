@@ -13,7 +13,6 @@ type LoginParams = {
 
 export const sessionApiLogin = async ({ email, password }: LoginParams) => {
   console.log('process.env.NODE_ENV:', process.env.NODE_ENV);
-  axios.defaults.headers.common['X-CSRF-Token'] = csrfToken();
   const obj = {
     email: email,
     password: password,
@@ -25,47 +24,18 @@ export const sessionApiLogin = async ({ email, password }: LoginParams) => {
   const headers = {
     'Content-Type': 'application/json',
   };
-  const loginUrl: string = process.env.REACT_APP_API_URL + '/sign_in';
-  console.log('loginUrl:', loginUrl);
+  // const loginUrl: string = process.env.REACT_APP_API_URL + '/sign_in';
+  const loginUrl: string = 'http://localhost:3000/User/sign_in';
 
-  // if (process.env.NODE_ENV !== 'production') {
-  console.log('process.env.NODE_ENV:', process.env.NODE_ENV);
-  console.log('loginUrl:', loginUrl);
-  console.log('process.env.REACT_APP_API_URL_SIGN_IN!:', process.env.REACT_APP_API_URL_SIGN_IN!);
-  console.log('process.env.REACT_APP_API_URL_POSTS!:', process.env.REACT_APP_API_URL_POSTS!);
-  // }
+  //  /User/sign_in
+  axios.defaults.headers.common['X-CSRF-Token'] = csrfToken();
 
-  return await fetch(loginUrl, { method, headers, body })
+  return await axios
+    .post(loginUrl, { body })
     .then((response) => {
-      console.log('user.Login');
-
-      if (response.status == 200) {
-        User.set('isLoggedIn', 'true');
-        console.log('isLoggedIn(sessionApi.tsx):', User.isLoggedIn());
-        // response.json().then((response) => {
-        //   const responseData = response.data;
-        //   console.log('responseData:', responseData);
-        // });
-        return response.json().then((response) => {
-          const currentUserId = response.data.id;
-          console.log('currentUserId:', currentUserId);
-          // setResponseUserData(responseData);
-          User.set('currentUserId', JSON.stringify(currentUserId));
-        });
-      } else {
-        User.set('isLoggedIn', 'false');
-        if (process.env.NODE_ENV !== 'production') {
-          console.log('isLoggedIn(else後):', User.isLoggedIn());
-        }
-
-        throw new Error();
-      }
+      console.log('response', response);
     })
-    .catch((error) => {
-      User.set('isLoggedIn', 'false');
-      if (process.env.NODE_ENV !== 'production') {
-        console.log('isLoggedIn(catch後):', User.isLoggedIn());
-        console.log('errorの内容', JSON.stringify(error.json));
-      }
+    .catch((err) => {
+      console.log('err', err);
     });
 };
