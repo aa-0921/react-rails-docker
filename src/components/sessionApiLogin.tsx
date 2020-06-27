@@ -1,5 +1,3 @@
-require('dotenv').config();
-
 import User from './User';
 import React, { useState, useEffect } from 'react';
 

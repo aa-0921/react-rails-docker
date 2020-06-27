@@ -8,7 +8,8 @@
     "build:css": "tailwindcss build css/tailwind.css -o public/style.css",
     "watch": "webpack --mode=development --watch",
     "watch:tailwind": "postcss ./src/styles.css -o ./src/tailwind.css -w",
-    "lint": "eslint src",
+    "lint": "eslint src -c .eslintrc.json",
+    "fmt": "prettier --write 'src'",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack-dev-server"
   },

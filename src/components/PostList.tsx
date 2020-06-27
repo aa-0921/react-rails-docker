@@ -1,10 +1,8 @@
-require('dotenv').config();
 import React from 'react';
 import { Post } from './Post';
 import { Spacer } from '@zeit-ui/react';
 import sizeMe from 'react-sizeme';
 // @ts-ignore
-// import StackGrid from 'react-stack-grid';
 import StackGrid, { transitions } from 'react-stack-grid';
 
 const { scaleDown } = transitions;
