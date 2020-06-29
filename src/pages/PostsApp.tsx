@@ -78,8 +78,10 @@ export const PostsApp = () => {
 
   // clickLike,unlike
   const onClickLike = async (postId: any) => {
+    const csrf = sessionStorage.getItem('X-CSRF-Token');
     const obj = {
       current_user_id: User.get('currentUserId'),
+      'X-CSRF-Token': csrf,
     };
     const body = JSON.stringify(obj);
     const method = 'PUT';
@@ -106,10 +108,11 @@ export const PostsApp = () => {
       });
   };
   const onClickUnLike = async (postId: any) => {
+    const csrf = sessionStorage.getItem('X-CSRF-Token');
     const obj = {
       current_user_id: User.get('currentUserId'),
+      'X-CSRF-Token': csrf,
     };
-
     const body = JSON.stringify(obj);
     const method = 'PUT';
     const postUrl: string = process.env.REACT_APP_API_URL_POSTS + '/unlike/' + postId;
