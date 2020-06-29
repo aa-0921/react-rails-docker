@@ -16,14 +16,20 @@ export const FormikPost = () => {
   //   picture: picpostImage,
   //   content: '',
   // };
-  const createPicpost = async (body: any) => {
+  const createPicpost = async (postFormData: any) => {
     if (process.env.NODE_ENV !== 'production') {
-      console.log('body:', body);
+      console.log('postFormData:', postFormData);
     }
-    // values.user_id = 1;
+
+    const csrf = sessionStorage.getItem('X-CSRF-Token');
+    const obj = {
+      'X-CSRF-Token': csrf,
+      postFormData: postFormData,
+    };
+    const body = JSON.stringify(obj);
+
     const method = 'POST';
-    // const body = JSON.stringify(values);
-    // const [picpost, setPicpost] = useState('');
+
     const headers = {
       'content-type': 'multipart/form-data',
     };
@@ -85,9 +91,9 @@ export const FormikPost = () => {
         submitData.append('picture', values.picture);
         submitData.append('content', values.content);
         submitData.append('user_id', '1');
-        const body = submitData;
+        const postFormData = submitData;
 
-        createPicpost(body);
+        createPicpost(postFormData);
       }}
       render={({ values, handleSubmit, handleChange, setFieldValue, isSubmitting }) => {
         return (
