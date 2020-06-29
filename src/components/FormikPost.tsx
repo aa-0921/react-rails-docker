@@ -24,7 +24,9 @@ export const FormikPost = () => {
     const method = 'POST';
     // const body = JSON.stringify(values);
     // const [picpost, setPicpost] = useState('');
-    const headers = { 'content-type': 'multipart/form-data' };
+    const headers = {
+      'content-type': 'multipart/form-data',
+    };
     const postUrl: string = process.env.REACT_APP_API_URL_POSTS!;
     if (process.env.NODE_ENV !== 'production') {
       console.log('postUrl:', postUrl);
