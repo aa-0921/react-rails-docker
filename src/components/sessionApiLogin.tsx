@@ -61,7 +61,7 @@ export const sessionApiLogin = async ({ email, password }: LoginParams) => {
         // } as HeadersObject;
         // const headers = response.headers as HeadersObject;
         const headers: any = response.headers;
-        // console.log('response.headers:', headers);
+        console.log('response.headers:', headers);
 
         // const x-csrf-token: keyof ISomeObject = 'secondKey';
         // const key: string = 'x-csrf-token';
