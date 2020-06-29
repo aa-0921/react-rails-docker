@@ -5,23 +5,22 @@ import './scss/index.scss';
 import { LoginApp } from './pages/LoginApp';
 
 import 'font-awesome/css/font-awesome.min.css';
-// require('./index.scss');
 
-// import createSagaMiddleware from 'redux-saga';
-// import { createStore, applyMiddleware } from 'redux';
-// import { Provider } from 'react-redux';
-// import { rootReducer } from './Reducers';
-// import { rootSaga } from './sagas/index';
+// const response: any = Response;
+// console.log('response:::', response);
+// console.log('response.data:::', response.data);
 
-// const sagaMiddleware = createSagaMiddleware();
-// const store = createStore(rootReducer, applyMiddleware(sagaMiddleware));
+// const token = response.Headers.get('X-CSRF-token');
+// console.log('token:::', token);
 
-// sagaMiddleware.run(rootSaga);
+// if (token) {
+//   // save token in localStorage for later use
+//   window.localStorage.setItem('csrf-token', token);
+// }
 
 const target = document.getElementById('app');
 ReactDOM.render(
-  // <Provider store={store}>
   <LoginApp />,
-  // </Provider>,
+
   target,
 );
