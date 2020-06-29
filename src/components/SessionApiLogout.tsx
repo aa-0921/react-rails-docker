@@ -4,7 +4,12 @@ import User from './User';
 export const sessionApiLogout = async () => {
   const logoutUrl: string = process.env.REACT_APP_API_URL + '/sign_out';
 
-  await fetch(logoutUrl, { method: 'DELETE' })
+  const csrf = sessionStorage.getItem('X-CSRF-Token');
+  const obj = {
+    'X-CSRF-Token': csrf,
+  };
+  const body = JSON.stringify(obj);
+  await fetch(logoutUrl, { method: 'DELETE', body })
     .then((response) => {
       if (response.status == 200) {
         if (process.env.NODE_ENV !== 'production') {
