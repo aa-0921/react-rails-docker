@@ -8,8 +8,10 @@ import User from './User';
 
 export const UserList = (props: any) => {
   const onClickFollow = async (userId: any) => {
+    const csrf = sessionStorage.getItem('X-CSRF-Token');
     const obj = {
       current_user_id: User.get('currentUserId'),
+      'X-CSRF-Token': csrf,
     };
     const body = JSON.stringify(obj);
     const method = 'PUT';
