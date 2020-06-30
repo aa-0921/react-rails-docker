@@ -11,34 +11,32 @@ export const sessionApiLogin = async ({ email, password }: LoginParams) => {
   console.log('process.env.NODE_ENV:', process.env.NODE_ENV);
   const csrf = sessionStorage.getItem('X-CSRF-Token');
 
-  const headers = new Headers();
-  if (csrf) {
-    console.log('csrf(sessionApiLogin.tsx):', csrf);
+  // const headers = new Headers();
+  // if (csrf) {
+  //   console.log('csrf(sessionApiLogin.tsx):', csrf);
 
-    // headers.append('X-CSRF-Token', csrf);
-    headers.append('X-CSRF-Token', 'abababababa');
+  //   // headers.append('X-CSRF-Token', csrf);
+  //   headers.append('X-CSRF-Token', 'abababababa');
 
-    headers.append('Content-Type', 'application/json');
-    console.log('appendedHeaders(sessionApiLogin.tsx) :', headers);
-    console.log('headers.token(sessionApiLogin.tsx):', headers.get('X-CSRF-Token'));
-  }
-  // type headersType = {
-  //   'X-CSRF-Token': any;
-  // };
+  //   headers.append('Content-Type', 'application/json');
+  //   console.log('appendedHeaders(sessionApiLogin.tsx) :', headers);
+  //   console.log('headers.token(sessionApiLogin.tsx):', headers.get('X-CSRF-Token'));
+  // }
+  type headersType = {
+    'X-CSRF-Token': any;
+  };
 
-  // const headers = {
-  //   // 'X-CSRF-Token': csrf,
-  //   'X-CSRF-Token': 'abababababa',
-  //   'Content-Type': 'application/json',
-  // } as headersType;
+  const headers = {
+    // 'X-CSRF-Token': csrf,
+    'X-CSRF-Token': 'abababababa',
+    'Content-Type': 'application/json',
+  } as headersType;
 
   console.log('headers(sessionApiLogin.tsx):', headers);
 
   const obj = {
     email: email,
     password: password,
-    // 'X-CSRF-Token': csrf,
-    // 'X-CSRF-Token': 'abababababab',
   };
   const method = 'POST';
   const body = JSON.stringify(obj);
