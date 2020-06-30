@@ -39,13 +39,15 @@ export const PostsApp = () => {
     console.log('modal-closed');
   };
   // clickedPost.idからそのpostの投稿者を取得
-  const getClickedPostUserUrl: string =
-    process.env.REACT_APP_API_URL_USERS + '/' + clickedPost.user_id;
 
-  console.log('getClickedPostUserUrl:', getClickedPostUserUrl);
+  // console.log('PostsApp.tsx44行目:', getClickedPostUserUrl);
+
+  // console.log('getClickedPostUserUrl:', getClickedPostUserUrl);
   console.log('clickedPost.user_id:', clickedPost.user_id);
 
   useEffect(() => {
+    const getClickedPostUserUrl: string =
+      process.env.REACT_APP_API_URL_USERS + '/' + clickedPost.user_id;
     FetchData(getClickedPostUserUrl).then((res) => setClickedPostUser(res.data));
   }, [clickedPost]);
   console.log('post: ', clickedPost.id);

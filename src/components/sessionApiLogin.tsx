@@ -14,7 +14,8 @@ export const sessionApiLogin = async ({ email, password }: LoginParams) => {
   const obj = {
     email: email,
     password: password,
-    'X-CSRF-Token': csrf,
+    // 'X-CSRF-Token': csrf,
+    'X-CSRF-Token': 'abababababab',
   };
   const method = 'POST';
   const body = JSON.stringify(obj);
