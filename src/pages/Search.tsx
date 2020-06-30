@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export const Search = () => {
   const [initialItem, setInitialItem] = useState([
@@ -13,6 +13,12 @@ export const Search = () => {
     'book',
   ]);
   const [items, setItems] = useState<string[]>([]);
+  // const items: string[] = [];
+
+  useEffect(() => {
+    setItems(initialItem);
+  }, [initialItem]);
+
   // const [items, setItems] = useState([
   //   'apple',
   //   'tree',
@@ -26,7 +32,7 @@ export const Search = () => {
   // componentDidMount() {
   //   this.setState({ items: this.state.initialItem });
   // }
-
+  // useEffect(() => {
   const filterList = (e: any) => {
     // const updateList = items.filter((item) => {
     const updateList = initialItem.filter((item) => {
@@ -34,7 +40,7 @@ export const Search = () => {
     });
     setItems(updateList);
   };
-
+  // }, [initialItem]);
   return (
     <div>
       <form action="">
