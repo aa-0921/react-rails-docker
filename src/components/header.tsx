@@ -107,6 +107,12 @@ export function Header() {
                         Profile
                       </Link>
                       <Link
+                        to="/search"
+                        className="text-lg text-white ml-4 px-3 py-2 rounded-md text-sm font-medium  hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
+                      >
+                        Search
+                      </Link>
+                      <Link
                         to="/MemberListApp"
                         className="text-lg text-white ml-4 px-3 py-2 rounded-md text-sm font-medium hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
                       >
