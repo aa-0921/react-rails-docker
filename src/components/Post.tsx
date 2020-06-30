@@ -75,11 +75,13 @@ export const Post = (props: any) => {
       {/* <div className="flex items-center">
         <div className="flex-1  text-center"> */}
       {/* <li key={props.post.id} className="flex items-center m-auto"> */}
-      <img
-        src={props.post.picture}
-        className="rounded-lg"
-        onClick={() => props.modalOpenHandler(props.post)}
-      />
+      <div id="${props.index}-id">
+        <img
+          src={props.post.picture}
+          className="rounded-lg"
+          onClick={() => props.modalOpenHandler(props.post)}
+        />
+      </div>
       {/* <Link to={'/profilepage/' + props.post.id}>
               post_id__{props.post.id} &emsp;{props.post.content}&emsp;
             </Link>

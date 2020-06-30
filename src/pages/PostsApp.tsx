@@ -13,7 +13,22 @@ require('dotenv').config();
 import * as Icon from '@zeit-ui/react-icons';
 
 export const PostsApp = () => {
-  const [fetchPosts, setFetchPosts] = useState([]);
+  // 全投稿の配列のState定義
+  const [fetchPosts, setFetchPosts] = useState<string[]>([]);
+  // 検索のfilter後の投稿の配列の定義
+  const [filterPosts, setFilterPosts] = useState<string[]>([]);
+
+  useEffect(() => {
+    setFilterPosts(fetchPosts);
+  }, [fetchPosts]);
+
+  const filterList = (e: any) => {
+    const updateList = fetchPosts.filter((post) => {
+      return post.search(e.target.id) !== -1;
+    });
+    setFetchPosts(updateList);
+  };
+
   const [likeList, setLikeList] = useState<number[]>([]);
   const [clickedPostUser, setClickedPostUser] = useState({
     id: 0,
@@ -166,6 +181,8 @@ export const PostsApp = () => {
                 pushToLikeList={pushToLikeList}
                 removeFromLikeList={removeFromLikeList}
                 modalOpenHandler={modalOpenHandler}
+                filterList={filterList}
+                filterPosts={filterPosts}
               />
             </div>
             <Modal width="35rem" open={modalOpen} onClose={closeHandler}>

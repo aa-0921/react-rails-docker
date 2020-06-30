@@ -13,26 +13,11 @@ export const Search = () => {
     'book',
   ]);
   const [items, setItems] = useState<string[]>([]);
-  // const items: string[] = [];
 
   useEffect(() => {
     setItems(initialItem);
   }, [initialItem]);
 
-  // const [items, setItems] = useState([
-  //   'apple',
-  //   'tree',
-  //   'pen',
-  //   'mike',
-  //   'dog',
-  //   'cat',
-  //   'iphone',
-  //   'book',
-  // ]);
-  // componentDidMount() {
-  //   this.setState({ items: this.state.initialItem });
-  // }
-  // useEffect(() => {
   const filterList = (e: any) => {
     // const updateList = items.filter((item) => {
     const updateList = initialItem.filter((item) => {
@@ -40,7 +25,6 @@ export const Search = () => {
     });
     setItems(updateList);
   };
-  // }, [initialItem]);
   return (
     <div>
       <form action="">
