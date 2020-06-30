@@ -34,6 +34,60 @@ export function Header() {
                         Dashboard
                       </a>
 
+                      <div className="ml-3 relative">
+                        <ButtonDropdown size="small">
+                          <ButtonDropdown.Item main className="bg-indigo-300">
+                            <div className="text-lg text-gray ml-4 px-3 py-2 rounded-md text-sm font-medium hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">
+                              Setting
+                            </div>
+                            {/* <div>
+                            <button
+                              className="max-w-xs flex items-center text-sm rounded-full text-white focus:outline-none focus:shadow-solid"
+                              id="user-menu"
+                              aria-label="User menu"
+                              aria-haspopup="true"
+                            ></button>
+                          </div> */}
+                          </ButtonDropdown.Item>
+                          {/* <div className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg"> */}
+                          {/* <div
+                            className="py-1 rounded-md bg-white shadow-xs"
+                            role="menu"
+                            aria-orientation="vertical"
+                            aria-labelledby="user-menu"
+                          > */}
+                          <ButtonDropdown.Item>
+                            <a
+                              href="#"
+                              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                              role="menuitem"
+                            >
+                              Your Profile
+                            </a>
+                          </ButtonDropdown.Item>
+                          <ButtonDropdown.Item>
+                            <a
+                              href="#"
+                              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                              role="menuitem"
+                            >
+                              Settings
+                            </a>
+                          </ButtonDropdown.Item>
+                          <ButtonDropdown.Item>
+                            <a
+                              href="#"
+                              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                              role="menuitem"
+                              onClick={onClickLogout}
+                            >
+                              Sign out
+                            </a>
+                          </ButtonDropdown.Item>
+                          {/* </div> */}
+                          {/* </div> */}
+                        </ButtonDropdown>
+                      </div>
                       <Link
                         to="/"
                         className="text-lg text-white ml-4 px-3 py-2 rounded-md text-sm font-medium hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
@@ -93,60 +147,6 @@ export function Header() {
                         />
                       </svg>
                     </button>
-                    <div className="ml-3 relative">
-                      <ButtonDropdown size="small">
-                        <ButtonDropdown.Item main className="bg-indigo-300">
-                          <div className="text-lg text-gray ml-4 px-3 py-2 rounded-md text-sm font-medium hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">
-                            Setting
-                          </div>
-                          {/* <div>
-                            <button
-                              className="max-w-xs flex items-center text-sm rounded-full text-white focus:outline-none focus:shadow-solid"
-                              id="user-menu"
-                              aria-label="User menu"
-                              aria-haspopup="true"
-                            ></button>
-                          </div> */}
-                        </ButtonDropdown.Item>
-                        {/* <div className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg"> */}
-                        {/* <div
-                            className="py-1 rounded-md bg-white shadow-xs"
-                            role="menu"
-                            aria-orientation="vertical"
-                            aria-labelledby="user-menu"
-                          > */}
-                        <ButtonDropdown.Item>
-                          <a
-                            href="#"
-                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                            role="menuitem"
-                          >
-                            Your Profile
-                          </a>
-                        </ButtonDropdown.Item>
-                        <ButtonDropdown.Item>
-                          <a
-                            href="#"
-                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                            role="menuitem"
-                          >
-                            Settings
-                          </a>
-                        </ButtonDropdown.Item>
-                        <ButtonDropdown.Item>
-                          <a
-                            href="#"
-                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                            role="menuitem"
-                            onClick={onClickLogout}
-                          >
-                            Sign out
-                          </a>
-                        </ButtonDropdown.Item>
-                        {/* </div> */}
-                        {/* </div> */}
-                      </ButtonDropdown>
-                    </div>
                   </div>
                 </div>
                 <div className="-mr-2 flex md:hidden">
