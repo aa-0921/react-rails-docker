@@ -15,7 +15,9 @@ export const sessionApiLogin = async ({ email, password }: LoginParams) => {
   if (csrf) {
     console.log('csrf(sessionApiLogin.tsx):', csrf);
 
-    headers.append('X-CSRF-Token', csrf);
+    // headers.append('X-CSRF-Token', csrf);
+    headers.append('X-CSRF-Token', 'abababababa');
+
     headers.append('Content-Type', 'application/json');
     console.log('appendedHeaders(sessionApiLogin.tsx) :', headers);
     console.log('headers.token(sessionApiLogin.tsx):', headers.get('X-CSRF-Token'));
