@@ -10,8 +10,10 @@ const mode = 'cors';
 const headers = {
   'Content-Type': 'application/json',
 };
-const loginUrl: string = process.env.REACT_APP_API_URL_USERS + '/get_token';
-fetch(loginUrl, { headers, mode }).then((response) => {
+const getTokenUrl: string = process.env.REACT_APP_API_URL_USERS + '/token/get';
+console.info('getTokenUrl:::', getTokenUrl);
+
+fetch(getTokenUrl, { headers, mode }).then((response) => {
   const headers: any = response.headers;
   console.info('headers:::', headers);
 

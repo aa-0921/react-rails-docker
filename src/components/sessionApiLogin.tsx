@@ -10,12 +10,31 @@ type LoginParams = {
 export const sessionApiLogin = async ({ email, password }: LoginParams) => {
   console.log('process.env.NODE_ENV:', process.env.NODE_ENV);
   const csrf = sessionStorage.getItem('X-CSRF-Token');
+  console.log('csrf(sessionApiLogin.tsx):', csrf);
+
+  // const headers = new Headers();
+  // if (csrf) {
+  //   headers.append('X-CSRF-Token', csrf);
+  //   headers.append('Content-Type', 'application/json');
+  // }
+  const headers = {
+    'X-CSRF-Token': csrf,
+    'Content-Type': 'application/json',
+
+    // };
+  } as headersType;
+
+  type headersType = {
+    'X-CSRF-Token': any;
+  };
+  console.log('headers(sessionApiLogin.tsx):', headers);
+  // console.log('headers.token(sessionApiLogin.tsx):', headers.get('X-CSRF-Token'));
 
   const obj = {
     email: email,
     password: password,
     // 'X-CSRF-Token': csrf,
-    'X-CSRF-Token': 'abababababab',
+    // 'X-CSRF-Token': 'abababababab',
   };
   const method = 'POST';
   const body = JSON.stringify(obj);
@@ -24,10 +43,10 @@ export const sessionApiLogin = async ({ email, password }: LoginParams) => {
 
   console.log('csrf(fetch前):', csrf);
 
-  const headers = {
-    'Content-Type': 'application/json',
-    // 'X-CSRF-Token': csrf,
-  };
+  // const headers = {
+  //   'Content-Type': 'application/json',
+  //   // 'X-CSRF-Token': csrf,
+  // };
   const loginUrl: string = process.env.REACT_APP_API_URL + '/sign_in';
   console.log('loginUrl:', loginUrl);
 
