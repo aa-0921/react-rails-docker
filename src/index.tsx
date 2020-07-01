@@ -18,14 +18,18 @@ fetch(getTokenUrl, { headers, mode }).then((response) => {
   console.info('headers:::', headers);
 
   const token = headers.get('X-CSRF-Token');
+  // const token = headers.get('Set-Cookie');
+
+  // console.info('sessionID:::', token);
   console.info('token:::', token);
+
   if (token) {
     // window.localStorage.setItem('csrf-token', token);
     sessionStorage.setItem('X-CSRF-Token', token);
     // const csrf = window.localStorage.getItem('csrf-token');
     const csrf = sessionStorage.getItem('X-CSRF-Token');
 
-    console.log('csrf:::', csrf);
+    console.log('sessionStorage.getItem(X-CSRF-Token):::', csrf);
     console.log('response.headers:', headers);
   }
 });
