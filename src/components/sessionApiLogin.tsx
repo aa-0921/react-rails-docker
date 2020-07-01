@@ -35,10 +35,12 @@ export const sessionApiLogin = async ({ email, password }: LoginParams) => {
   console.log('headers(sessionApiLogin.tsx):', headers);
 
   const obj = {
-    email: email,
-    password: password,
-    // 'X-CSRF-Token': csrf,
-    // 'X-CSRF-Token': 'abababababab',
+    user: {
+      email: email,
+      password: password,
+      // 'X-CSRF-Token': csrf,
+      // 'X-CSRF-Token': 'abababababab',
+    },
   };
   const method = 'POST';
   const body = JSON.stringify(obj);
@@ -51,7 +53,9 @@ export const sessionApiLogin = async ({ email, password }: LoginParams) => {
   //   'Content-Type': 'application/json',
   //   // 'X-CSRF-Token': csrf,
   // };
-  const loginUrl: string = process.env.REACT_APP_API_URL + '/sign_in';
+  // const loginUrl: string = process.env.REACT_APP_API_URL + '/sign_in';
+  const loginUrl: string = 'http://localhost:3000/User/sign_in';
+
   console.log('loginUrl:', loginUrl);
 
   // if (process.env.NODE_ENV !== 'production') {
@@ -62,7 +66,7 @@ export const sessionApiLogin = async ({ email, password }: LoginParams) => {
   // }
 
   // return await fetch(loginUrl, { method: 'POST', headers, body, mode, credentials })
-  return await fetch(loginUrl, { method: 'POST', headers, body, mode })
+  return await fetch(loginUrl, { method: 'POST', headers, body })
     .then((response) => {
       console.log('user.Login');
       console.log('response:', response);
