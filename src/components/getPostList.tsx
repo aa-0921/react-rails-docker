@@ -1,6 +1,6 @@
-import * as React from "react";
-import PropTypes from "prop-types";
-import { useState, useEffect } from "react";
+import * as React from 'react';
+import PropTypes from 'prop-types';
+import { useState, useEffect } from 'react';
 
 interface Props {
   // error: string;
@@ -12,7 +12,7 @@ interface Props {
 
 export const getPostList = (props: Props) => {
   const [error, setError] = useState(null);
-  const [apiResponse, setApiResponse] = useState("");
+  const [apiResponse, setApiResponse] = useState('');
 
   // public static defaultProps: Props = {
   //   color: "blue",
@@ -21,7 +21,7 @@ export const getPostList = (props: Props) => {
 
   useEffect(() => {
     // fetch(props.url)
-    fetch("/posts")
+    fetch('/posts')
       .then((res) => res.json())
       .then(
         (result) => {
@@ -29,7 +29,7 @@ export const getPostList = (props: Props) => {
         },
         (error) => {
           setApiResponse(error);
-          throw new Error("error");
+          throw new Error('error');
         },
         // .catch(error => console.error('Error:', error));
       );

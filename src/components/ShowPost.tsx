@@ -1,5 +1,5 @@
-import * as React from "react";
-import { useEffect } from "react";
+import * as React from 'react';
+import { useEffect } from 'react';
 
 interface ShowPostProps {
   text: string[];
@@ -21,17 +21,14 @@ interface postedTextData {
 export const ShowPost = (props: ShowPostProps): void => {
   useEffect(() => {
     props.requestFetch();
-    const postedTextDatas =
-      props.textForHomeTimeline.postForHomeTimeline.postText;
+    const postedTextDatas = props.textForHomeTimeline.postForHomeTimeline.postText;
     return () => {
       <div>
         {postedTextDatas.map((postedTextData: postedTextData) => {
           return (
             <div key={postedTextData.id}>
               {postedTextData.text}
-              <span onClick={() => props.requestDelete(postedTextData.id)}>
-                x
-              </span>
+              <span onClick={() => props.requestDelete(postedTextData.id)}>x</span>
             </div>
           );
         })}

@@ -1,7 +1,21 @@
 {
-  "plugins": ["prettier"],
-  "extends": ["airbnb"],
-  "rules": {
-    "prettier/prettier": "error"
-  }
+  "extends": [
+    "plugin:prettier/recommended",
+    "prettier/@typescript-eslint",
+    "prettier/react"
+
+
+  ],
+  "plugins": ["@typescript-eslint"],
+  "env": {
+    "browser": true,
+    "node": true,
+    "es6": true
+  },
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "sourceType": "module",
+    "project": "./tsconfig.json"
+  },
+  "rules": {}
 }

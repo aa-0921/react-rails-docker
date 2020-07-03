@@ -32,20 +32,20 @@ export const FormikPost = () => {
     await axios.post(postUrl, body, { headers });
   };
   const setImage = (e: any, setFieldValue: any) => {
-    let canvas: any = document.getElementById('canvas');
+    const canvas: any = document.getElementById('canvas');
     console.log('canvas:', canvas);
 
-    let ctx = canvas!.getContext('2d');
-    let maxW = 250;
-    let maxH = 250;
+    const ctx = canvas!.getContext('2d');
+    const maxW = 250;
+    const maxH = 250;
 
-    let img = new Image();
+    const img = new Image();
     img.onload = () => {
-      let iw = img.width;
-      let ih = img.height;
-      let scale = Math.min(maxW / iw, maxH / ih);
-      let iwScaled = iw * scale;
-      let ihScaled = ih * scale;
+      const iw = img.width;
+      const ih = img.height;
+      const scale = Math.min(maxW / iw, maxH / ih);
+      const iwScaled = iw * scale;
+      const ihScaled = ih * scale;
       canvas.width = iwScaled;
       canvas.height = ihScaled;
       ctx.drawImage(img, 0, 0, iwScaled, ihScaled);
@@ -116,8 +116,8 @@ export const FormikPost = () => {
                   onChange={(e: any) => {
                     setImage(e, setFieldValue);
 
-                    var file = e.target.files[0];
-                    var reader = new FileReader();
+                    const file = e.target.files[0];
+                    const reader = new FileReader();
 
                     reader.onload = function (item) {
                       setFieldValue('picture', item.target !== null ? item.target.result : null);

@@ -1,5 +1,5 @@
-import * as React from "react";
-import { ShowPost } from "../components/ShowPost";
+import * as React from 'react';
+import { ShowPost } from '../components/ShowPost';
 // import { TakeApi } from '../components/TakeApi';
 
 export function Home() {

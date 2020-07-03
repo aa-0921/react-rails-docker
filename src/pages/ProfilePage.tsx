@@ -1,12 +1,12 @@
 // import { Grid, Row, Note, Button } from '@zeit-ui/react';
-require("dotenv").config();
+require('dotenv').config();
 
-import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
-import { FetchData } from "../scripts/api/FetchData";
-import { Grid, Row, Note, Button, Divider } from "@zeit-ui/react";
-import * as Icon from "@zeit-ui/react-icons";
-import User from "../components/User";
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
+import { FetchData } from '../scripts/api/FetchData';
+import { Grid, Row, Note, Button, Divider } from '@zeit-ui/react';
+import * as Icon from '@zeit-ui/react-icons';
+import User from '../components/User';
 
 // export const ProfilePage = (props: any) => {
 const ProfilePage = (props: any) => {
