@@ -5,23 +5,30 @@ import './scss/index.scss';
 import { LoginApp } from './pages/LoginApp';
 
 import 'font-awesome/css/font-awesome.min.css';
-// require('./index.scss');
 
-// import createSagaMiddleware from 'redux-saga';
-// import { createStore, applyMiddleware } from 'redux';
-// import { Provider } from 'react-redux';
-// import { rootReducer } from './Reducers';
-// import { rootSaga } from './sagas/index';
+const mode = 'cors';
+const headers = {
+  'Content-Type': 'application/json',
+};
+const getTokenUrl: string = process.env.REACT_APP_API_URL_USERS + '/token/get';
+console.info('getTokenUrl:::', getTokenUrl);
 
-// const sagaMiddleware = createSagaMiddleware();
-// const store = createStore(rootReducer, applyMiddleware(sagaMiddleware));
+fetch(getTokenUrl, { headers, mode }).then((response) => {
+  const headers: any = response.headers;
+  console.info('headers:::', headers);
 
-// sagaMiddleware.run(rootSaga);
+  const token = headers.get('X-CSRF-Token');
+  console.info('token:::', token);
+  if (token) {
+    // window.localStorage.setItem('csrf-token', token);
+    sessionStorage.setItem('X-CSRF-Token', token);
+    // const csrf = window.localStorage.getItem('csrf-token');
+    const csrf = sessionStorage.getItem('X-CSRF-Token');
+
+    console.log('csrf:::', csrf);
+    console.log('response.headers:', headers);
+  }
+});
 
 const target = document.getElementById('app');
-ReactDOM.render(
-  // <Provider store={store}>
-  <LoginApp />,
-  // </Provider>,
-  target,
-);
+ReactDOM.render(<LoginApp />, target);

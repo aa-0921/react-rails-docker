@@ -10,11 +10,14 @@ type RejistrationParams = {
 };
 
 export const registrationApiSignup = ({ email, password, name }: RejistrationParams) => {
+  const csrf = sessionStorage.getItem('X-CSRF-Token');
+
   const registrationFormData = {
     email: email,
     password: password,
     name: name,
     confirm_success_url: 'http://localhost:8000/App',
+    'X-CSRF-Token': csrf,
   };
   const signupUrl: string = process.env.REACT_APP_API_URL!;
   if (process.env.NODE_ENV !== 'production') {

@@ -6,8 +6,15 @@ export const Profile = () => {
     if (process.env.NODE_ENV !== 'production') {
       console.log('followUserId:', followUserId);
     }
+
+    const csrf = sessionStorage.getItem('X-CSRF-Token');
+    const obj = {
+      followUserId: followUserId,
+      'X-CSRF-Token': csrf,
+    };
+    const body = JSON.stringify(obj);
     const method = 'PUT';
-    const body = JSON.stringify(followUserId);
+
     const headers = {
       'Content-Type': 'application/json',
     };

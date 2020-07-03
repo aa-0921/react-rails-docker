@@ -21,7 +21,13 @@ export const getPostList = (props: Props) => {
 
   useEffect(() => {
     // fetch(props.url)
-    fetch('/posts')
+
+    const csrf = sessionStorage.getItem('X-CSRF-Token');
+    const obj = {
+      'X-CSRF-Token': csrf,
+    };
+    const body = JSON.stringify(obj);
+    fetch('/posts', { body })
       .then((res) => res.json())
       .then(
         (result) => {

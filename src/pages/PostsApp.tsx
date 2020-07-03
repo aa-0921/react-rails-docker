@@ -39,13 +39,15 @@ export const PostsApp = () => {
     console.log('modal-closed');
   };
   // clickedPost.idからそのpostの投稿者を取得
-  const getClickedPostUserUrl: string =
-    process.env.REACT_APP_API_URL_USERS + '/' + clickedPost.user_id;
 
-  console.log('getClickedPostUserUrl:', getClickedPostUserUrl);
+  // console.log('PostsApp.tsx44行目:', getClickedPostUserUrl);
+
+  // console.log('getClickedPostUserUrl:', getClickedPostUserUrl);
   console.log('clickedPost.user_id:', clickedPost.user_id);
 
   useEffect(() => {
+    const getClickedPostUserUrl: string =
+      process.env.REACT_APP_API_URL_USERS + '/' + clickedPost.user_id;
     FetchData(getClickedPostUserUrl).then((res) => setClickedPostUser(res.data));
   }, [clickedPost]);
   console.log('post: ', clickedPost.id);
@@ -78,8 +80,10 @@ export const PostsApp = () => {
 
   // clickLike,unlike
   const onClickLike = async (postId: any) => {
+    const csrf = sessionStorage.getItem('X-CSRF-Token');
     const obj = {
       current_user_id: User.get('currentUserId'),
+      'X-CSRF-Token': csrf,
     };
     const body = JSON.stringify(obj);
     const method = 'PUT';
@@ -106,10 +110,11 @@ export const PostsApp = () => {
       });
   };
   const onClickUnLike = async (postId: any) => {
+    const csrf = sessionStorage.getItem('X-CSRF-Token');
     const obj = {
       current_user_id: User.get('currentUserId'),
+      'X-CSRF-Token': csrf,
     };
-
     const body = JSON.stringify(obj);
     const method = 'PUT';
     const postUrl: string = process.env.REACT_APP_API_URL_POSTS + '/unlike/' + postId;
