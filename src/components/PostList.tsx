@@ -10,9 +10,7 @@ export const PostList = (props: any): any => {
   return (
     <>
       <Spacer y={1.5} />
-      <form action="">
-        <input type="text" placeholder="search" onChange={props.filterList} />
-      </form>
+
       <Spacer y={1.5} />
 
       <div>

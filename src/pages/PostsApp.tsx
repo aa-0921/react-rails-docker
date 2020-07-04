@@ -14,7 +14,9 @@ import * as Icon from '@zeit-ui/react-icons';
 
 export const PostsApp = () => {
   // 全投稿の配列のState定義
+  // const [fetchPosts, setFetchPosts] = useState<string[]>([]);
   const [fetchPosts, setFetchPosts] = useState<string[]>([]);
+
   // 検索のfilter後の投稿の配列の定義
   const [filterPosts, setFilterPosts] = useState<string[]>([]);
 
@@ -23,11 +25,13 @@ export const PostsApp = () => {
   }, [fetchPosts]);
 
   const filterList = (e: any) => {
-    const updateList = fetchPosts.filter((post) => {
-      return post.search(e.target.id) !== -1;
+    const updateList = fetchPosts.filter((post: any) => {
+      console.log('post.content', post.content);
+      return post.content.search(e.target.value) !== -1;
     });
     setFetchPosts(updateList);
   };
+  console.log('fetchPosts', fetchPosts);
 
   const [likeList, setLikeList] = useState<number[]>([]);
   const [clickedPostUser, setClickedPostUser] = useState({
@@ -174,7 +178,9 @@ export const PostsApp = () => {
               {/* <DropZone /> */}
               <FormikPost />
               <Divider />
-
+              <form action="">
+                <input type="text" placeholder="search" onChange={filterList} />
+              </form>
               <PostList
                 fetchPosts={fetchPosts}
                 likeList={likeList}
