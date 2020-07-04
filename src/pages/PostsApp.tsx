@@ -29,17 +29,17 @@ export const PostsApp = () => {
       setInitialFetchPosts(res.data);
     });
   }, []);
+
   useEffect(() => {
     setFilterPosts(fetchPosts);
   }, [fetchPosts]);
 
   const filterList = (e: any) => {
-    if (!e.target.value) {
-      setFetchPosts(fetchPosts);
-      setFetchPosts(initialFetchPosts);
-      return;
-    }
-    const updateList = fetchPosts.filter((post: any) => {
+    // if (!e.target.value) {
+    //   setFetchPosts(initialFetchPosts);
+    //   return;
+    // }
+    const updateList = initialFetchPosts.filter((post: any) => {
       console.log('post.content', post.content);
       return post.content.search(e.target.value) !== -1;
     });
