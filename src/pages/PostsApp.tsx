@@ -16,16 +16,29 @@ export const PostsApp = () => {
   // 全投稿の配列のState定義
   // const [fetchPosts, setFetchPosts] = useState<string[]>([]);
   const [fetchPosts, setFetchPosts] = useState<string[]>([]);
-
+  const [initialFetchPosts, setInitialFetchPosts] = useState<string[]>([]);
   // 検索のfilter後の投稿の配列の定義
   const [filterPosts, setFilterPosts] = useState<string[]>([]);
+  const getAllPostUrl: string = process.env.REACT_APP_API_URL_POSTS!;
 
+  console.log('getAllPostUrl:', getAllPostUrl);
+
+  useEffect(() => {
+    FetchData(getAllPostUrl).then((res) => {
+      setFetchPosts(res.data);
+      setInitialFetchPosts(res.data);
+    });
+  }, []);
   useEffect(() => {
     setFilterPosts(fetchPosts);
   }, [fetchPosts]);
 
   const filterList = (e: any) => {
-    if (!e.target.value) setFetchPosts(fetchPosts);
+    if (!e.target.value) {
+      setFetchPosts(fetchPosts);
+      setFetchPosts(initialFetchPosts);
+      return;
+    }
     const updateList = fetchPosts.filter((post: any) => {
       console.log('post.content', post.content);
       return post.content.search(e.target.value) !== -1;
@@ -161,14 +174,6 @@ export const PostsApp = () => {
       });
   };
   // clickLike,unlike
-
-  const getAllPostUrl: string = process.env.REACT_APP_API_URL_POSTS!;
-
-  console.log('getAllPostUrl:', getAllPostUrl);
-
-  useEffect(() => {
-    FetchData(getAllPostUrl).then((res) => setFetchPosts(res.data));
-  }, []);
 
   return (
     <>
