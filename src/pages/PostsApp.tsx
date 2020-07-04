@@ -25,10 +25,13 @@ export const PostsApp = () => {
   }, [fetchPosts]);
 
   const filterList = (e: any) => {
+    if (!e.target.value) setFetchPosts(fetchPosts);
     const updateList = fetchPosts.filter((post: any) => {
       console.log('post.content', post.content);
       return post.content.search(e.target.value) !== -1;
     });
+    console.log('updateList', updateList);
+
     setFetchPosts(updateList);
   };
   console.log('fetchPosts', fetchPosts);
